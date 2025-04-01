@@ -1,9 +1,12 @@
 <script lang="ts">
+	import HomeHero from '$lib/components/HomeHero.svelte';
 	import { CheckCircleSolid } from 'flowbite-svelte-icons';
+
 	export let data;
 	const { qualifications } = data.initialData;
 </script>
 
+<HomeHero />
 <div class="bg-white">
 	<div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
 		<div class="mx-auto max-w-3xl text-center">
