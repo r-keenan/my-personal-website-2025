@@ -2,9 +2,7 @@
 	import { Navbar, NavBrand, NavLi, NavUl, NavHamburger } from 'flowbite-svelte';
 </script>
 
-<Navbar
-	class="background-blue-dark background-blur-sm fixed top-0 z-10 w-full text-white opacity-90"
->
+<Navbar class="bg-blue-dark background-blur-md fixed top-0 z-10 w-full text-white opacity-90">
 	<NavBrand href="/">
 		<!--
 		<img src="/images/flowbite-svelte-icon-logo.svg" class="me-3 h-6 sm:h-9" alt="Flowbite Logo" />
