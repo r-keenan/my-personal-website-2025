@@ -1,9 +1,6 @@
 <script lang="ts">
-	/*
 	export let data;
-	const { sanityData } = data;
-	console.log(sanityData);
-*/
+	const qualifications = data.initialData;
 </script>
 
 <h1 class="text-blue-light">Welcome to SvelteKit</h1>

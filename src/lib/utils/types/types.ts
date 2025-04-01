@@ -27,3 +27,9 @@ export type Qualification = SanityDocument & {
 	description: PortableTextBlock[];
 	category: string;
 };
+
+type ResourceState<T> = {
+	data: T | null;
+	loading: boolean;
+	error: string | null;
+};
