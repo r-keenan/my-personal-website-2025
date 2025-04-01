@@ -1,6 +1,6 @@
 <script lang="ts">
 	export let data;
-	const qualifications = data.initialData;
+	const { qualifications } = data.initialData;
 </script>
 
 <div class="bg-white">
@@ -14,26 +14,12 @@
 		<dl
 			class="mt-12 space-y-10 sm:grid sm:grid-cols-2 sm:space-y-0 sm:gap-x-6 sm:gap-y-12 lg:grid-cols-4 lg:gap-x-8"
 		>
-			<!-- 
-            {qualifications.map((qualification: Qualification) => (
-              <div key={qualification._id} class="relative">
-                <dt>
-                  <CheckIcon
-                    class="absolute h-6 w-6 text-blue-light"
-                    aria-hidden="true"
-                  />
-                  <p class="ml-9 text-lg leading-6 font-medium text-gray-dark">
-                    {qualification.category}
-                  </p>
-                </dt>
+			{#each qualifications as qual, i (qual.id || i)}
+				<div class="relative" data-index={i}>
+					<p>{qual.category}</p>
+				</div>
+			{/each}
 
-                <dd class="mt-2 ml-9 text-base text-gray-medium">
-                  {qualification.description[0].children[0].text.toString()}
-                </dd>
-              </div>
-            ))}
-          </dl>
--->
 			<div class="mt-10 grid place-content-center content-center">
 				<div class="mt-10">
 					<a href="/skills" class="text-blue-light text-base font-medium">
