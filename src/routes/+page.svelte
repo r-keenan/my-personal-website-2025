@@ -1,6 +1,7 @@
-<script>
-	import { helloThere } from './+server';
-	helloThere();
+<script lang="ts">
+	export let data;
+	const { sanityData } = data;
+	console.log(sanityData);
 </script>
 
 <h1>Welcome to SvelteKit</h1>

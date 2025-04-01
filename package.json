@@ -45,6 +45,8 @@
 		"vitest": "^3.0.0"
 	},
 	"dependencies": {
-		"@sanity/client": "^6.28.4"
+		"@portabletext/types": "^2.0.13",
+		"@sanity/client": "^6.28.4",
+		"@sanity/types": "^3.81.0"
 	}
 }
