@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { CheckCircleSolid } from 'flowbite-svelte-icons';
 	export let data;
 	const { qualifications } = data.initialData;
 </script>
@@ -16,18 +17,25 @@
 		>
 			{#each qualifications as qual, i (qual.id || i)}
 				<div class="relative" data-index={i}>
-					<p>{qual.category}</p>
+					<dt>
+						<CheckCircleSolid class="text-blue-light absolute h-6 w-6" aria-hidden="true" />
+						<p class="text-gray-dark ml-9 text-lg leading-6 font-medium">
+							{qual.category}
+						</p>
+					</dt>
+					<dd class="text-gray-medium mt-2 ml-9 text-base">
+						{qual.description[0].children[0].text.toString()}
+					</dd>
 				</div>
 			{/each}
-
-			<div class="mt-10 grid place-content-center content-center">
-				<div class="mt-10">
-					<a href="/skills" class="text-blue-light text-base font-medium">
-						Check out the details of my skills
-						<span aria-hidden="true">&rarr;</span>
-					</a>
-				</div>
-			</div>
 		</dl>
+		<div class="mt-10 grid place-content-center content-center">
+			<div class="mt-10">
+				<a href="/skills" class="text-blue-light text-base font-medium">
+					Check out the details of my skills
+					<span aria-hidden="true">&rarr;</span>
+				</a>
+			</div>
+		</div>
 	</div>
 </div>
