@@ -1,3 +1,306 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
+
+@theme {
+	--font-display: 'Roboto', 'sans-serif';
+
+	--color-blue-light: #00b9fb;
+	--color-blue-dark: #011439;
+	--color-gray-lighter: #f9fafb;
+	--color-gray-light: #e8e8e8;
+	--color-gray-medium: #6b7280;
+	--color-gray-dark: #1f2937;
+	--color-red-warning: #dc143c;
+	--color-green-success: #4bb543;
+}
+
+#myNameHeader {
+	font-family: 'Bebas Neue', cursive;
+	font-size: 2rem;
+	letter-spacing: 0.1rem;
+}
+
+/*Aninmation borrowed from https://codepen.io/GhostRider/pen/FctLB*/
+
+@-webkit-keyframes spaceboots {
+	0% {
+		-webkit-transform: translate(2px, 1px) rotate(0deg);
+	}
+	10% {
+		-webkit-transform: translate(-1px, -2px) rotate(-1deg);
+	}
+	20% {
+		-webkit-transform: translate(-3px, 0px) rotate(1deg);
+	}
+	30% {
+		-webkit-transform: translate(0px, 2px) rotate(0deg);
+	}
+	40% {
+		-webkit-transform: translate(1px, -1px) rotate(1deg);
+	}
+	50% {
+		-webkit-transform: translate(-1px, 2px) rotate(-1deg);
+	}
+	60% {
+		-webkit-transform: translate(-3px, 1px) rotate(0deg);
+	}
+	70% {
+		-webkit-transform: translate(2px, 1px) rotate(-1deg);
+	}
+	80% {
+		-webkit-transform: translate(-1px, -1px) rotate(1deg);
+	}
+	90% {
+		-webkit-transform: translate(2px, 2px) rotate(0deg);
+	}
+	100% {
+		-webkit-transform: translate(1px, -2px) rotate(-1deg);
+	}
+}
+
+.shake:hover,
+.shake:focus {
+	-webkit-animation-name: spaceboots;
+	-webkit-animation-duration: 0.8s;
+	-webkit-transform-origin: 50% 50%;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+}
+body {
+	font-family: 'Roboto', sans-serif;
+}
+
+.heroContainer {
+	display: grid;
+	grid-template-columns: 100%;
+	grid-template-rows: 1fr;
+	width: 100%;
+	place-items: center;
+}
+
+.heroImage {
+	grid-column: 1;
+	grid-row: 1;
+	z-index: 0;
+}
+
+.heroText {
+	grid-column: 1;
+	grid-row: 1;
+	z-index: 1;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 59%;
+	padding-right: 1rem;
+	padding-left: 1rem;
+	border-right: solid 3px rgba(0, 255, 0, 0.75);
+	white-space: nowrap;
+	overflow: hidden;
+	font-family: 'Source Code Pro', monospace;
+	font-size: 4rem;
+	color: rgba(255, 255, 255, 1.7);
+	-webkit-backdrop-filter: blur(15px);
+	backdrop-filter: blur(15px);
+	background-color: rgba(64, 64, 64, 0.5);
+	animation:
+		animated-text 4s steps(29, end) 1s 1 normal both,
+		animated-cursor 600ms steps(29, end) infinite;
+}
+
+#nvimText {
+	font-family: 'Source Code Pro', monospace;
+	font-size: 4rem;
+	color: rgba(50, 205, 50, 1.7);
+}
+
+@keyframes animated-text {
+	from {
+		width: 0%;
+		min-width: 15px;
+	}
+	to {
+		width: 73%;
+		max-width: -moz-fit-content;
+		max-width: fit-content;
+		border-right-color: transparent;
+	}
+}
+
+@keyframes animated-cursor {
+	from {
+		border-right-color: rgba(0, 255, 0, 0.75);
+	}
+	to {
+		border-right-color: transparent;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.heroText {
+		grid-column: 1;
+		grid-row: 1;
+		z-index: 1;
+		position: absolute;
+		top: 25%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 59%;
+		padding-right: 1rem;
+		padding-left: 1rem;
+		border-right: solid 3px rgba(0, 255, 0, 0.75);
+		white-space: nowrap;
+		overflow: hidden;
+		font-family: 'Source Code Pro', monospace;
+		font-size: 1.25rem;
+		color: rgba(255, 255, 255, 1.7);
+		-webkit-backdrop-filter: blur(15px);
+		backdrop-filter: blur(15px);
+		background-color: rgba(64, 64, 64, 0.5);
+		animation:
+			animated-text 4s steps(29, end) 1s 1 normal both,
+			animated-cursor 600ms steps(29, end) infinite;
+	}
+
+	#nvimText {
+		font-family: 'Source Code Pro', monospace;
+		font-size: 1.5rem;
+		color: rgba(50, 205, 50, 1.7);
+	}
+
+	@keyframes animated-text {
+		from {
+			width: 0%;
+			min-width: 15px;
+		}
+		to {
+			width: 77%;
+			max-width: -moz-fit-content;
+			max-width: fit-content;
+			border-right-color: transparent;
+		}
+	}
+
+	@keyframes animated-cursor {
+		from {
+			border-right-color: rgba(0, 255, 0, 0.75);
+		}
+		to {
+			border-right-color: transparent;
+		}
+	}
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+	.heroText {
+		grid-column: 1;
+		grid-row: 1;
+		z-index: 1;
+		position: absolute;
+		top: 30%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 59%;
+		padding-right: 1rem;
+		padding-left: 1rem;
+		border-right: solid 3px rgba(0, 255, 0, 0.75);
+		white-space: nowrap;
+		overflow: hidden;
+		font-family: 'Source Code Pro', monospace;
+		font-size: 2rem;
+		color: rgba(255, 255, 255, 1.7);
+		-webkit-backdrop-filter: blur(15px);
+		backdrop-filter: blur(15px);
+		background-color: rgba(64, 64, 64, 0.5);
+		animation:
+			animated-text 4s steps(29, end) 1s 1 normal both,
+			animated-cursor 600ms steps(29, end) infinite;
+	}
+
+	#nvimText {
+		font-family: 'Source Code Pro', monospace;
+		font-size: 2rem;
+		color: rgba(50, 205, 50, 1.7);
+	}
+
+	@keyframes animated-text {
+		from {
+			width: 0%;
+			min-width: 15px;
+		}
+		to {
+			width: 77%;
+			max-width: -moz-fit-content;
+			max-width: fit-content;
+			border-right-color: transparent;
+		}
+	}
+
+	@keyframes animated-cursor {
+		from {
+			border-right-color: rgba(0, 255, 0, 0.75);
+		}
+		to {
+			border-right-color: transparent;
+		}
+	}
+}
+
+@media (min-width: 1023.5px) and (max-width: 1025px) {
+	.heroText {
+		grid-column: 1;
+		grid-row: 1;
+		z-index: 1;
+		position: absolute;
+		top: 30%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 59%;
+		padding-right: 1rem;
+		padding-left: 1rem;
+		border-right: solid 3px rgba(0, 255, 0, 0.75);
+		white-space: nowrap;
+		overflow: hidden;
+		font-family: 'Source Code Pro', monospace;
+		font-size: 1.75rem;
+		color: rgba(255, 255, 255, 1.7);
+		-webkit-backdrop-filter: blur(15px);
+		backdrop-filter: blur(15px);
+		background-color: rgba(64, 64, 64, 0.5);
+		animation:
+			animated-text 4s steps(29, end) 1s 1 normal both,
+			animated-cursor 600ms steps(29, end) infinite;
+	}
+
+	#nvimText {
+		font-family: 'Source Code Pro', monospace;
+		font-size: 1.75rem;
+		color: rgba(50, 205, 50, 1.7);
+	}
+
+	@keyframes animated-text {
+		from {
+			width: 0%;
+			min-width: 15px;
+		}
+		to {
+			width: 77%;
+			max-width: -moz-fit-content;
+			max-width: fit-content;
+			border-right-color: transparent;
+		}
+	}
+
+	@keyframes animated-cursor {
+		from {
+			border-right-color: rgba(0, 255, 0, 0.75);
+		}
+		to {
+			border-right-color: transparent;
+		}
+	}
+}
