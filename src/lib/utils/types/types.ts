@@ -1,5 +1,6 @@
 import type { SanityDocument, Reference, Slug } from '@sanity/types';
 import { type PortableTextBlock } from '@portabletext/types';
+import type { LegacyComponentType } from 'svelte/legacy';
 
 export type PostPreview = SanityDocument & {
 	title: string;
@@ -32,4 +33,17 @@ export type ResourceState<T> = {
 	data: T | null;
 	loading: boolean;
 	error: string | null;
+};
+
+export type Skill = {
+	name: string;
+	icon: string | null;
+	listItems: string[];
+};
+export type SocialIcon = {
+	name: string;
+	href: string;
+	target: string;
+	rel: string;
+	icon: string | LegacyComponentType;
 };
