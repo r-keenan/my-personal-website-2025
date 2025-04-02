@@ -1,5 +1,10 @@
 import type { PageServerLoad } from './$types';
-import { getQualifications, sanityApiStore } from '$lib/stores/sanityDataStore';
+import {
+	getPost,
+	getPostsPreview,
+	getQualifications,
+	sanityApiStore
+} from '$lib/stores/sanityDataStore';
 
 // This will not allow me to use a constant from utils. It throws an error that the value must be statically analyzable
 // 86400 = seconds in a day
@@ -11,6 +16,12 @@ export const load: PageServerLoad = async () => {
 
 	if (!state.qualifications?.data) {
 		promises.push(getQualifications());
+	}
+	if (!state.postsPreview?.data) {
+		promises.push(getPostsPreview());
+	}
+	if (!state.post?.data) {
+		promises.push(getPost());
 	}
 
 	if (promises.length > 0) {

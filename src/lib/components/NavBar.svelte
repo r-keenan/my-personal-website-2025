@@ -14,10 +14,12 @@
 	</NavBrand>
 	<NavHamburger />
 	<NavUl>
-		<NavLi href="/" class="text-blue-light">Home</NavLi>
-		<NavLi href="/posts" class="text-blue-light">Posts</NavLi>
-		<NavLi href="/skills" class="text-blue-light">Skills</NavLi>
-		<NavLi href="/about" class="text-blue-light">About Me</NavLi>
-		<NavLi href="/contact" class="text-blue-light">Contact</NavLi>
+		<NavLi href="/" class="text-blue-light hover:bg-gray-light hover:text-white-DEFAULT">Home</NavLi
+		>
+		<NavLi href="/posts" class="text-blue-light hover:bg-gray-700 hover:text-white">Posts</NavLi>
+		<NavLi href="/skills" class="text-blue-light hover:bg-gray-700 hover:text-white">Skills</NavLi>
+		<NavLi href="/about" class="text-blue-light hover:bg-gray-700 hover:text-white">About Me</NavLi>
+		<NavLi href="/contact" class="text-blue-light hover:bg-gray-700 hover:text-white">Contact</NavLi
+		>
 	</NavUl>
 </Navbar>

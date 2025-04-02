@@ -1,5 +1,9 @@
 import sanityClient from '$lib/clients/sanity';
-import { qualificationsPreviewQuery } from '$lib/utils/queries/sanityQueries';
+import {
+	fullPostQuery,
+	postsPreviewQuery,
+	qualificationsPreviewQuery
+} from '$lib/utils/queries/sanityQueries';
 import type { Post, PostPreview, ResourceState, Qualification } from '$lib/utils/types/types';
 import { writable } from 'svelte/store';
 
@@ -69,6 +73,60 @@ export async function getQualifications(): Promise<Qualification[]> {
 		store.update((state) => ({
 			...state,
 			qualifications: { ...state.qualifications, loading: false, error: errorMessage }
+		}));
+
+		throw error;
+	}
+}
+
+export async function getPostsPreview(): Promise<PostPreview[]> {
+	store.update((state) => ({
+		...state,
+		postsPreview: { ...state.postsPreview, loading: true, error: null }
+	}));
+
+	try {
+		const data: PostPreview[] = await sanityClient.fetch(postsPreviewQuery);
+
+		store.update((state) => ({
+			...state,
+			postsPreview: { data, loading: false, error: null }
+		}));
+
+		return data;
+	} catch (error) {
+		const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+
+		store.update((state) => ({
+			...state,
+			postsPreview: { ...state.postsPreview, loading: false, error: errorMessage }
+		}));
+
+		throw error;
+	}
+}
+
+export async function getPost(): Promise<Post> {
+	store.update((state) => ({
+		...state,
+		post: { ...state.post, loading: true, error: null }
+	}));
+
+	try {
+		const data: Post = await sanityClient.fetch(fullPostQuery);
+
+		store.update((state) => ({
+			...state,
+			post: { data, loading: false, error: null }
+		}));
+
+		return data;
+	} catch (error) {
+		const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+
+		store.update((state) => ({
+			...state,
+			post: { ...state.post, loading: false, error: errorMessage }
 		}));
 
 		throw error;
