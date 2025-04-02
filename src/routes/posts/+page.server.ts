@@ -3,6 +3,7 @@ import { getPostsPreview, getQualifications, sanityApiStore } from '$lib/stores/
 
 // This will not allow me to use a constant from utils. It throws an error that the value must be statically analyzable
 // 86400 = seconds in a day
+//export const revalidate = 86_400;
 
 export const load: PageServerLoad = async () => {
 	const state = sanityApiStore.get();
@@ -21,7 +22,7 @@ export const load: PageServerLoad = async () => {
 
 	return {
 		initialData: {
-			qualifications: sanityApiStore.get().qualifications.data || []
+			postsPreview: sanityApiStore.get().postsPreview.data || []
 		}
 	};
 };
