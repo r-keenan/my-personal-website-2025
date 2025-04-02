@@ -1,5 +1,5 @@
 <script>
-	import mainBackground from '../images/codeHeroImage.jpeg';
+	import mainBackground from '$images/codeHeroImage.jpeg';
 </script>
 
 <div class="heroContainer">
