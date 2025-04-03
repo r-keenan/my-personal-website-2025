@@ -59,7 +59,7 @@ export async function getQualifications(): Promise<Qualification[]> {
 	}));
 
 	try {
-		const data: Qualification[] = await sanityClient.fetch(qualificationsPreviewQuery);
+		const data: Qualification[] = await (await sanityClient()).fetch(qualificationsPreviewQuery);
 
 		store.update((state) => ({
 			...state,
@@ -86,7 +86,7 @@ export async function getPostsPreview(): Promise<PostPreview[]> {
 	}));
 
 	try {
-		const data: PostPreview[] = await sanityClient.fetch(postsPreviewQuery);
+		const data: PostPreview[] = await (await sanityClient()).fetch(postsPreviewQuery);
 
 		store.update((state) => ({
 			...state,
@@ -113,7 +113,7 @@ export async function getPost(): Promise<Post> {
 	}));
 
 	try {
-		const data: Post = await sanityClient.fetch(fullPostQuery);
+		const data: Post = await (await sanityClient()).fetch(fullPostQuery);
 
 		store.update((state) => ({
 			...state,

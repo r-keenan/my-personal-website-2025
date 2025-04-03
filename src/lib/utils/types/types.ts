@@ -15,6 +15,7 @@ export type PostPreview = SanityDocument & {
 	dateTime: string | null;
 	publishedAt: string;
 	readingTime: string;
+	imageUrl: string;
 };
 
 export type Post = PostPreview & {

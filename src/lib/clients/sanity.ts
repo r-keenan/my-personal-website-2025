@@ -34,4 +34,4 @@ export async function getSanityImageUrl() {
 	return sanityImageUrl;
 }
 
-export default { sanityClient };
+export default sanityClient;

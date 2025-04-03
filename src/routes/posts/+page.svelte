@@ -26,7 +26,7 @@
 				<div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
 					<div class="flex-shrink-0">
 						<a href={`/post/${postPreview.slug.current}`}>
-							{#await formatImageUrl(postPreview.mainImage.asset._ref)}
+							{#awaformatImageUrl(postPreview.mainImage.asset._ref)it formatImageUrl(postPreview.mainImage.asset._ref)}
 								<p>Loading...</p>
 							{:then imageUrl}
 								<img class="object-cover" src={imageUrl} alt="BlogPhoto" width={413} height={192} />
