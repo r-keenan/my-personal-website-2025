@@ -5,6 +5,7 @@ import {
 	qualificationsPreviewQuery
 } from '$lib/utils/queries/sanityQueries';
 import type { Post, PostPreview, ResourceState, Qualification } from '$lib/utils/types/types';
+import { formatImageUrl } from '$lib/utils/utilityFunctions';
 import { writable } from 'svelte/store';
 
 type StoreState = {
@@ -86,7 +87,22 @@ export async function getPostsPreview(): Promise<PostPreview[]> {
 	}));
 
 	try {
-		const data: PostPreview[] = await (await sanityClient()).fetch(postsPreviewQuery);
+		const apiData: PostPreview[] = await (await sanityClient()).fetch(postsPreviewQuery);
+
+		// Process each post to add the imageUrl
+		const data = await Promise.all(
+			apiData.map(async (post) => {
+				// Only process if post has an image
+				if (post.mainImage?.asset?._ref) {
+					const imageUrl = await formatImageUrl(post.mainImage.asset._ref);
+					return {
+						...post,
+						imageUrl // Add the resolved URL to the post object
+					};
+				}
+				return post;
+			})
+		);
 
 		store.update((state) => ({
 			...state,
