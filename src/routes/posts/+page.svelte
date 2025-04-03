@@ -25,7 +25,7 @@
 			{#each postsPreview as postPreview (postPreview.slug)}
 				<div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
 					<div class="flex-shrink-0">
-						<a href={`/post/${postPreview.slug.current}`}>
+						<a href={`/posts/${postPreview.slug.current}`}>
 							<img
 								class="object-cover"
 								src={postPreview.imageUrl?.toString()}
