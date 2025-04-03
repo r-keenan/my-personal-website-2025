@@ -7,12 +7,16 @@ const client = new SecretsManagerClient({
 	// AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_SESSION_TOKEN
 });
 
-export async function getSecret(secretName: string) {
+type SecretValue = string | number | boolean | null;
+type SecretObject = Record<string, SecretValue | Record<string, SecretValue>>;
+
+export async function getSecret<T extends SecretObject = SecretObject>(
+	secretName: string
+): Promise<T | string | null> {
 	try {
 		const command = new GetSecretValueCommand({ SecretId: secretName });
 		const response = await client.send(command);
 
-		// Parse the secret if it's stored as JSON
 		if (response.SecretString) {
 			try {
 				return JSON.parse(response.SecretString);
