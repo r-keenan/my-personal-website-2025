@@ -1,4 +1,4 @@
-import sanityClient from '$lib/clients/sanity';
+import { getSanityClient } from '$lib/clients/sanity';
 import {
 	fullPostQuery,
 	postsPreviewQuery,
@@ -60,7 +60,7 @@ export async function getQualifications(): Promise<Qualification[]> {
 	}));
 
 	try {
-		const data: Qualification[] = await (await sanityClient()).fetch(qualificationsPreviewQuery);
+		const data: Qualification[] = await (await getSanityClient()).fetch(qualificationsPreviewQuery);
 
 		store.update((state) => ({
 			...state,
@@ -87,7 +87,7 @@ export async function getPostsPreview(): Promise<PostPreview[]> {
 	}));
 
 	try {
-		const apiData: PostPreview[] = await (await sanityClient()).fetch(postsPreviewQuery);
+		const apiData: PostPreview[] = await (await getSanityClient()).fetch(postsPreviewQuery);
 
 		// Process each post to add the imageUrl
 		const data = await Promise.all(
@@ -129,7 +129,7 @@ export async function getPost(): Promise<Post> {
 	}));
 
 	try {
-		const data: Post = await (await sanityClient()).fetch(fullPostQuery);
+		const data: Post = await (await getSanityClient()).fetch(fullPostQuery);
 
 		store.update((state) => ({
 			...state,

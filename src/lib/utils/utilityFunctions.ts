@@ -1,6 +1,5 @@
 import { monthsAbbreviated, monthsFull } from '$lib/constants/index';
 import { MONTH_FORMAT } from '$lib/enums/index';
-import { PUBLIC_SANITY_CDN_URL } from '$env/static/public';
 import { getSanityImageUrl } from '$lib/clients/sanity';
 
 export function formatPhone(phoneNumber: string): string {
