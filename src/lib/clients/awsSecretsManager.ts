@@ -3,8 +3,6 @@ import { SecretsManagerClient, GetSecretValueCommand } from '@aws-sdk/client-sec
 // Initialize the client
 const client = new SecretsManagerClient({
 	region: 'us-east-2'
-	// AWS credentials can be provided through environment variables:
-	// AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_SESSION_TOKEN
 });
 
 const secretCache: Record<string, string> = {};
