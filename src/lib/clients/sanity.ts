@@ -26,4 +26,12 @@ export async function sanityClient() {
 	});
 }
 
+export async function getSanityImageUrl() {
+	const sanityImageUrl = await getSecret('SANITY_CDN_URL');
+	if (!sanityImageUrl || typeof sanityImageUrl !== 'string') {
+		throw new Error('Failed to get Sanity Image URL');
+	}
+	return sanityImageUrl;
+}
+
 export default { sanityClient };

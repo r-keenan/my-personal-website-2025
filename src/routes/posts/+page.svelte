@@ -26,13 +26,13 @@
 				<div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
 					<div class="flex-shrink-0">
 						<a href={`/post/${postPreview.slug.current}`}>
-							<img
-								class="object-cover"
-								src={formatImageUrl(postPreview.mainImage.asset._ref)}
-								alt="BlogPhoto"
-								width={413}
-								height={192}
-							/>
+							{#await formatImageUrl(postPreview.mainImage.asset._ref)}
+								<p>Loading...</p>
+							{:then imageUrl}
+								<img class="object-cover" src={imageUrl} alt="BlogPhoto" width={413} height={192} />
+							{:catch error}
+								<p>Error: unable to load image</p>
+							{/await}
 						</a>
 					</div>
 					<div class="flex flex-1 flex-col justify-between bg-white p-6">

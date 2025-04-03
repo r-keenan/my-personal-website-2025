@@ -1,6 +1,7 @@
 import { monthsAbbreviated, monthsFull } from '$lib/constants/index';
 import { MONTH_FORMAT } from '$lib/enums/index';
 import { PUBLIC_SANITY_CDN_URL } from '$env/static/public';
+import { getSanityImageUrl } from '$lib/clients/sanity';
 
 export function formatPhone(phoneNumber: string): string {
 	const regexPattern = /[^0-9]+/g;
@@ -55,8 +56,9 @@ export function formatBlogDate(dateTime: string, monthFormat: MONTH_FORMAT): str
 	return dateStr;
 }
 
-export function formatImageUrl(image: string): string {
-	let imageUrl: URL | string = new URL(`${PUBLIC_SANITY_CDN_URL}${image}`);
+export async function formatImageUrl(image: string): Promise<string> {
+	const sanityImageUrl = await getSanityImageUrl();
+	let imageUrl: URL | string = new URL(`${sanityImageUrl}${image}`);
 	imageUrl.searchParams.append('auto', 'format');
 	imageUrl.searchParams.append('fit', 'min');
 
