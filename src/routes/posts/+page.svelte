@@ -2,7 +2,7 @@
 	import Avatar from '$components/Avatar.svelte';
 	import { MONTH_FORMAT } from '$lib/enums/index.js';
 	import { formatBlogDate } from '$lib/utils/utilityFunctions';
-	import type { PostPreview } from '$lib/utils/types/types.js';
+	import type { PostPreview } from '$lib/utils/types/types';
 
 	export let data;
 	const { postsPreview } = data.initialData;
