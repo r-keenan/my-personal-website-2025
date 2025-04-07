@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { HomeSolid } from 'flowbite-svelte-icons';
+	export let title: string;
+	export let slug: string;
 	const pages = [
 		{ name: 'Posts', href: '/posts', current: false, id: 1 },
 		{ name: title, href: slug, current: true, id: 2 }

@@ -122,14 +122,27 @@ export async function getPostsPreview(): Promise<PostPreview[]> {
 	}
 }
 
-export async function getPost(): Promise<Post> {
+export async function getPost(slug: string): Promise<Post> {
 	store.update((state) => ({
 		...state,
 		post: { ...state.post, loading: true, error: null }
 	}));
 
 	try {
-		const data: Post = await (await getSanityClient()).fetch(fullPostQuery);
+		const apiData: Post = await (await getSanityClient()).fetch(fullPostQuery, { slug });
+
+		let data;
+
+		if (apiData.mainImage?.asset?._ref) {
+			const imageUrl = await formatImageUrl(apiData.mainImage.asset._ref);
+
+			data = {
+				...apiData,
+				imageUrl
+			};
+		} else {
+			data = apiData;
+		}
 
 		store.update((state) => ({
 			...state,
