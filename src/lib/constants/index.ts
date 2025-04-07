@@ -1,18 +1,15 @@
 import LinkedInIcon from '$components/LinkedInIcon.svelte';
 import GitHubIcon from '$components/GitHubIcon.svelte';
-/*
 import {
-	CogIcon,
-	DesktopComputerIcon,
-	ServerIcon,
-	DatabaseIcon,
-	TerminalIcon,
-	CodeIcon,
-	CloudIcon,
-	BeakerIcon,
-	CursorClickIcon
-} from '@heroicons/react/outline';
-*/
+	ApiKeyOutline,
+	BookOpenOutline,
+	CodeOutline,
+	CogOutline,
+	DatabaseOutline,
+	ServerOutline,
+	TerminalOutline,
+	WindowOutline
+} from 'flowbite-svelte-icons';
 
 import type { Skill, SocialIcon } from '$lib/utils/types/types';
 
@@ -52,7 +49,7 @@ export const monthsFull: string[] = [
 export const skills: Skill[] = [
 	{
 		name: 'Front End Development',
-		icon: null,
+		icon: WindowOutline,
 		listItems: [
 			'HTML5',
 			'CSS3',
@@ -68,7 +65,7 @@ export const skills: Skill[] = [
 	},
 	{
 		name: 'Backend Development',
-		icon: null,
+		icon: ServerOutline,
 		listItems: [
 			'C#/.Net',
 			'Node.js/Express.js',
@@ -83,12 +80,12 @@ export const skills: Skill[] = [
 	},
 	{
 		name: 'Object Relational Mappers (ORMs)',
-		icon: null,
+		icon: ServerOutline,
 		listItems: ['Entity Framwork Core', 'Prisma', 'Dapper', 'Active Record']
 	},
 	{
 		name: 'Data Engineering/Analysis',
-		icon: null,
+		icon: TerminalOutline,
 		listItems: [
 			'Web Scrapers (Python)',
 			'Extract, Transform, Load (ETL)',
@@ -99,12 +96,12 @@ export const skills: Skill[] = [
 	},
 	{
 		name: 'API/API Integrations',
-		icon: null,
+		icon: ApiKeyOutline,
 		listItems: ['RESTful APIs', 'Microservices', 'GraphQL APIs']
 	},
 	{
 		name: 'Database Development & Object Storage',
-		icon: null,
+		icon: DatabaseOutline,
 		listItems: [
 			'Postgres',
 			'Microsoft SQL Server',
@@ -119,12 +116,12 @@ export const skills: Skill[] = [
 	},
 	{
 		name: 'CMS Development',
-		icon: null,
+		icon: CogOutline,
 		listItems: ['Sanity', 'Shopify', 'WordPress']
 	},
 	{
 		name: 'Development Tools',
-		icon: null,
+		icon: CodeOutline,
 		listItems: [
 			'Neovim',
 			'Visual Studio Code',
@@ -139,7 +136,7 @@ export const skills: Skill[] = [
 	},
 	{
 		name: 'Tools/Applications',
-		icon: null,
+		icon: CodeOutline,
 		listItems: [
 			'Jira',
 			'Confluence',
@@ -156,12 +153,12 @@ export const skills: Skill[] = [
 	},
 	{
 		name: 'Cloud Platforms',
-		icon: null,
+		icon: ServerOutline,
 		listItems: ['AWS', 'Azure', 'Digital Ocean', 'Vercel']
 	},
 	{
 		name: 'Methodologies',
-		icon: null,
+		icon: BookOpenOutline,
 		listItems: ['Agile', 'Kanban', 'Scrum', 'SAFe', 'Waterfall']
 	}
 ];

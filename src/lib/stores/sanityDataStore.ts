@@ -1,11 +1,12 @@
 import { getSanityClient } from '$lib/clients/sanity';
+import { MONTH_FORMAT } from '$lib/enums';
 import {
 	fullPostQuery,
 	postsPreviewQuery,
 	qualificationsPreviewQuery
 } from '$lib/utils/queries/sanityQueries';
 import type { Post, PostPreview, ResourceState, Qualification } from '$lib/utils/types/types';
-import { formatImageUrl } from '$lib/utils/utilityFunctions';
+import { formatBlogDate, formatImageUrl } from '$lib/utils/utilityFunctions';
 import { writable } from 'svelte/store';
 
 type StoreState = {
@@ -97,7 +98,7 @@ export async function getPostsPreview(): Promise<PostPreview[]> {
 					const imageUrl = await formatImageUrl(post.mainImage.asset._ref);
 					return {
 						...post,
-						imageUrl // Add the resolved URL to the post object
+						imageUrl
 					};
 				}
 				return post;
@@ -132,17 +133,23 @@ export async function getPost(slug: string): Promise<Post> {
 		const apiData: Post = await (await getSanityClient()).fetch(fullPostQuery, { slug });
 
 		let data;
+		let imageUrl = '';
+		let publishedAt = '';
 
 		if (apiData.mainImage?.asset?._ref) {
-			const imageUrl = await formatImageUrl(apiData.mainImage.asset._ref);
-
-			data = {
-				...apiData,
-				imageUrl
-			};
+			imageUrl = await formatImageUrl(apiData.mainImage.asset._ref);
+		}
+		if (apiData.publishedAt) {
+			publishedAt = formatBlogDate(apiData.publishedAt, MONTH_FORMAT.FULL_MONTH);
 		} else {
 			data = apiData;
 		}
+
+		data = {
+			...apiData,
+			imageUrl,
+			publishedAt
+		};
 
 		store.update((state) => ({
 			...state,

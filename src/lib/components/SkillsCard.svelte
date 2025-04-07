@@ -12,7 +12,7 @@
 				<span
 					class="bg-blue-light inline-flex items-center justify-center rounded-md p-3 shadow-lg"
 				>
-					<skill.icon class="h-6 w-6 text-white" aria-hidden="true" />
+					<svelte:component this={skill.icon} class="h-6 w-6 text-white" aria-hidden="true" />
 				</span>
 			</div>
 			<h3 class="text-gray-dark mt-8 text-lg font-medium tracking-tight">

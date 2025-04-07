@@ -1,12 +1,9 @@
 <script lang="ts">
 	import Breadcrumb from '$components/Breadcrumb.svelte';
-	import { formatBlogDate } from '../../../lib/utils/utilityFunctions';
 	import type { Post } from '$lib/utils/types/types';
-	import { MONTH_FORMAT } from '$lib/enums/index';
 
 	export let data;
 	const { post } = data.initialData as { post: Post };
-	const blogDate = formatBlogDate(post.publishedAt, MONTH_FORMAT.FULL_MONTH);
 </script>
 
 <div class="relative min-h-screen overflow-hidden bg-white pt-20 sm:mt-10 md:pt-10">
@@ -40,7 +37,7 @@
 			</p>
 			<div class="text-gray-medium pt-3 text-center text-xl">
 				<time dateTime={post.datetime?.toString()}>
-					{blogDate}
+					{post.publishedAt}
 				</time>
 			</div>
 		</div>

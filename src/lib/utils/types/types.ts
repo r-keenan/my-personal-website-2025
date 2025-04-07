@@ -1,6 +1,8 @@
 import type { SanityDocument, Reference, Slug } from '@sanity/types';
 import { type PortableTextBlock } from '@portabletext/types';
 import type { LegacyComponentType } from 'svelte/legacy';
+import type { Component } from 'flowbite-svelte-icons';
+import type { OutlineProps } from 'flowbite-svelte-icons';
 
 export type PostPreview = SanityDocument & {
 	title: string;
@@ -38,7 +40,7 @@ export type ResourceState<T> = {
 
 export type Skill = {
 	name: string;
-	icon: string | null;
+	icon: any;
 	listItems: string[];
 };
 export type SocialIcon = {
