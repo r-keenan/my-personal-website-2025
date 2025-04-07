@@ -2,7 +2,6 @@
 	import Breadcrumb from '$components/Breadcrumb.svelte';
 	import { formatBlogDate } from '../../../lib/utils/utilityFunctions';
 	import type { Post } from '$lib/utils/types/types';
-	import type { PortableTextBlock } from '@portabletext/types';
 	import { MONTH_FORMAT } from '$lib/enums/index';
 
 	export let data;
@@ -72,7 +71,7 @@
 				</div>
 				<div class="my-1">
 					<div class="grid grid-cols-1 justify-items-center">
-						<a href={'/posts'} class="text-blue-light text-base font-medium">
+						<a href="/posts" class="text-blue-light text-base font-medium">
 							<span aria-hidden="true"> &larr;</span> Back to Posts
 						</a>
 					</div>
