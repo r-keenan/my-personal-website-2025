@@ -1,4 +1,4 @@
-import type { PageServerLoad } from './$types';
+import type { EntryGenerator, PageServerLoad } from './$types';
 import {
 	getPost,
 	getPostsPreview,
@@ -29,4 +29,17 @@ export const load: PageServerLoad = async ({ params, depends }) => {
 			post: sanityApiStore.get().post.data || []
 		}
 	};
+};
+
+type PostSlug = { slug: string };
+
+export const entries: EntryGenerator = () => {
+	const state = sanityApiStore.get().postsPreview;
+
+	const postSlugs: PostSlug[] = [];
+	state.data?.map((post) => {
+		postSlugs.push({ slug: post.slug.current });
+	});
+
+	return postSlugs;
 };
