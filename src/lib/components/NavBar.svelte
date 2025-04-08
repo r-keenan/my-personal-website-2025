@@ -2,7 +2,7 @@
 	import { page } from '$app/state';
 	import { Navbar, NavBrand, NavLi, NavUl, NavHamburger } from 'flowbite-svelte';
 
-	const activeUrl = $derived(page.url.pathname);
+	let activeUrl = $derived(page.url.pathname.includes('posts') ? '/posts' : page.url.pathname);
 
 	let activeClass =
 		'text-white-DEFAULT bg-green-100 md:bg-transparent md:text-white-DEFAULT md:dark:text-white dark:bg-green-600 md:dark:bg-transparent';
