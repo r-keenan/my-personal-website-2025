@@ -126,13 +126,12 @@ export async function getPostsPreview(): Promise<PostPreview[]> {
 export async function getPost(slug: string): Promise<Post> {
 	store.update((state) => ({
 		...state,
-		post: { ...state.post, loading: true, error: null }
+		post: { data: null, loading: true, error: null }
 	}));
 
 	try {
 		const apiData: Post = await (await getSanityClient()).fetch(fullPostQuery, { slug });
 
-		let data;
 		let imageUrl = '';
 		let publishedAt = '';
 
@@ -141,11 +140,9 @@ export async function getPost(slug: string): Promise<Post> {
 		}
 		if (apiData.publishedAt) {
 			publishedAt = formatBlogDate(apiData.publishedAt, MONTH_FORMAT.FULL_MONTH);
-		} else {
-			data = apiData;
 		}
 
-		data = {
+		const data = {
 			...apiData,
 			imageUrl,
 			publishedAt

@@ -10,7 +10,8 @@ import {
 // 86400 = seconds in a day
 //export const revalidate = 86_400;
 
-export const load: PageServerLoad = async ({ params }) => {
+export const load: PageServerLoad = async ({ params, depends }) => {
+	depends(`posts:${params.slug}`);
 	const state = sanityApiStore.get();
 	const promises = [];
 	const { slug } = params;
@@ -21,9 +22,7 @@ export const load: PageServerLoad = async ({ params }) => {
 	if (!state.postsPreview?.data) {
 		promises.push(getPostsPreview());
 	}
-	if (!state.postsPreview?.data) {
-		promises.push(getPost(slug));
-	}
+	promises.push(getPost(slug));
 
 	if (promises.length > 0) {
 		await Promise.all(promises);
