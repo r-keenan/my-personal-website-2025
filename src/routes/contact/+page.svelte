@@ -4,7 +4,7 @@
 	let { data } = $props();
 
 	// Client API:
-	const { form } = superForm(data.form);
+	const { form, errors, constraints, message } = superForm(data.form);
 </script>
 
 <div>
@@ -137,8 +137,11 @@
 										id="first-name"
 										class="text-gray-dark block w-full rounded-md border-gray-300 px-4 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
 										bind:value={$form.firstName}
+										aria-invalid={$errors.firstName ? 'true' : undefined}
+										{...$constraints.firstName}
 										required
 									/>
+									{#if $errors.firstName}<span class="warning">{$errors.firstName}</span>{/if}
 								</div>
 							</div>
 							<div>
@@ -151,8 +154,11 @@
 										id="last-name"
 										class="text-gray-dark block w-full rounded-md border-gray-300 px-4 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
 										bind:value={$form.lastName}
+										aria-invalid={$errors.lastName ? 'true' : undefined}
+										{...$constraints.lastName}
 										required
 									/>
+									{#if $errors.lastName}<span class="warning">{$errors.lastName}</span>{/if}
 								</div>
 							</div>
 							<div>
@@ -168,8 +174,11 @@
 										id="company-name"
 										class="text-gray-dark block w-full rounded-md border-gray-300 px-4 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
 										bind:value={$form.companyName}
+										aria-invalid={$errors.companyName ? 'true' : undefined}
+										{...$constraints.companyName}
 										aria-describedby="company-name-optional"
 									/>
+									{#if $errors.companyName}<span class="warning">{$errors.companyName}</span>{/if}
 								</div>
 							</div>
 							<div>
@@ -185,8 +194,12 @@
 										id="company-website"
 										class="text-gray-dark block w-full rounded-md border-gray-300 px-4 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
 										bind:value={$form.companyWebsite}
+										aria-invalid={$errors.companyWebsite ? 'true' : undefined}
+										{...$constraints.companyWebsite}
 										aria-describedby="company-website-optional"
 									/>
+									{#if $errors.companyWebsite}<span class="warning">{$errors.companyWebsite}</span
+										>{/if}
 								</div>
 							</div>
 							<div>
@@ -197,8 +210,11 @@
 										type="email"
 										class="text-gray-dark block w-full rounded-md border-gray-300 px-4 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
 										bind:value={$form.email}
+										aria-invalid={$errors.email ? 'true' : undefined}
+										{...$constraints.email}
 										required
 									/>
+									{#if $errors.email}<span class="warning">{$errors.email}</span>{/if}
 								</div>
 							</div>
 							<div>
@@ -214,8 +230,11 @@
 										id="phone"
 										class="text-gray-dark block w-full rounded-md border-gray-300 px-4 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
 										bind:value={$form.phone}
+										aria-invalid={$errors.phone ? 'true' : undefined}
+										{...$constraints.phone}
 										aria-describedby="phone-optional"
 									/>
+									{#if $errors.phone}<span class="warning">{$errors.phone}</span>{/if}
 								</div>
 							</div>
 							<div class="hidden">
@@ -231,6 +250,8 @@
 										id="botHoneyPot"
 										class="text-gray-dark block w-full rounded-md border-gray-300 px-4 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
 										bind:value={$form.hp}
+										aria-invalid={$errors.hp ? 'true' : undefined}
+										{...$constraints.hp}
 										aria-describedby="botHP"
 									/>
 								</div>
@@ -245,8 +266,11 @@
 										id="subject"
 										class="text-gray-dark block w-full rounded-md border-gray-300 px-4 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
 										bind:value={$form.subject}
+										aria-invalid={$errors.subject ? 'true' : undefined}
+										{...$constraints.subject}
 										required
 									/>
+									{#if $errors.subject}<span class="warning">{$errors.subject}</span>{/if}
 								</div>
 							</div>
 							<div class="sm:col-span-2">
@@ -265,8 +289,11 @@
 										class="text-gray-dark block w-full rounded-md border border-gray-300 px-4 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
 										aria-describedby="message-max"
 										bind:value={$form.message}
+										aria-invalid={$errors.message ? 'true' : undefined}
+										{...$constraints.message}
 										required
 									/>
+									{#if $errors.message}<span class="warning">{$errors.message}</span>{/if}
 								</div>
 							</div>
 							<div
