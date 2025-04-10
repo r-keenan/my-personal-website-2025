@@ -118,7 +118,7 @@ body {
 	white-space: nowrap;
 	overflow: hidden;
 	font-family: 'Source Code Pro', monospace;
-	font-size: 4rem;
+	font-size: 3rem;
 	color: rgba(255, 255, 255, 1.7);
 	-webkit-backdrop-filter: blur(15px);
 	backdrop-filter: blur(15px);
@@ -130,7 +130,7 @@ body {
 
 #nvimText {
 	font-family: 'Source Code Pro', monospace;
-	font-size: 4rem;
+	font-size: 3rem;
 	color: rgba(50, 205, 50, 1.7);
 }
 
