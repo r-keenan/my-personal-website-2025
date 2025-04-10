@@ -4,7 +4,7 @@
 	let { data } = $props();
 
 	// Client API:
-	const { form, errors, constraints, enhance } = superForm(data.form);
+	const { form, errors, constraints, enhance, message } = superForm(data.form);
 </script>
 
 <div>
@@ -126,6 +126,9 @@
 
 					<div class="px-6 py-10 sm:px-10 lg:col-span-2 xl:p-12">
 						<h3 class="text-gray-dark text-lg font-medium tracking-wide">Send Me a Message</h3>
+						{#if $message}
+							<div class="bg-green-success">{$message}</div>
+						{/if}
 						<form
 							class="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
 							method="POST"
@@ -296,7 +299,7 @@
 										aria-invalid={$errors.message ? 'true' : undefined}
 										{...$constraints.message}
 										required
-									/>
+									></textarea>
 									{#if $errors.message}<span class="warning">{$errors.message}</span>{/if}
 								</div>
 							</div>
