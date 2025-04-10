@@ -4,7 +4,7 @@
 	let { data } = $props();
 
 	// Client API:
-	const { form, errors, constraints, message } = superForm(data.form);
+	const { form, errors, constraints, enhance } = superForm(data.form);
 </script>
 
 <div>
@@ -126,7 +126,11 @@
 
 					<div class="px-6 py-10 sm:px-10 lg:col-span-2 xl:p-12">
 						<h3 class="text-gray-dark text-lg font-medium tracking-wide">Send Me a Message</h3>
-						<form method="POST" class="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+						<form
+							class="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
+							method="POST"
+							use:enhance
+						>
 							<div>
 								<label for="firstName" class="text-gray-dark block text-sm font-medium">
 									First Name
