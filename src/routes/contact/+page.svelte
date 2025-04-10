@@ -1,4 +1,10 @@
 <script lang="ts">
+	import { superForm } from 'sveltekit-superforms';
+
+	let { data } = $props();
+
+	// Client API:
+	const { form } = superForm(data.form);
 </script>
 
 <div>
@@ -120,7 +126,7 @@
 
 					<div class="px-6 py-10 sm:px-10 lg:col-span-2 xl:p-12">
 						<h3 class="text-gray-dark text-lg font-medium tracking-wide">Send Me a Message</h3>
-						<form class="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+						<form method="POST" class="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
 							<div>
 								<label for="firstName" class="text-gray-dark block text-sm font-medium">
 									First Name
@@ -129,8 +135,8 @@
 									<input
 										type="text"
 										id="first-name"
-										autoComplete="given-name"
 										class="text-gray-dark block w-full rounded-md border-gray-300 px-4 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+										bind:value={$form.firstName}
 										required
 									/>
 								</div>
@@ -143,8 +149,8 @@
 									<input
 										type="text"
 										id="last-name"
-										autoComplete="family-name"
 										class="text-gray-dark block w-full rounded-md border-gray-300 px-4 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+										bind:value={$form.lastName}
 										required
 									/>
 								</div>
@@ -161,6 +167,7 @@
 										type="text"
 										id="company-name"
 										class="text-gray-dark block w-full rounded-md border-gray-300 px-4 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+										bind:value={$form.companyName}
 										aria-describedby="company-name-optional"
 									/>
 								</div>
@@ -177,6 +184,7 @@
 										type="url"
 										id="company-website"
 										class="text-gray-dark block w-full rounded-md border-gray-300 px-4 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+										bind:value={$form.companyWebsite}
 										aria-describedby="company-website-optional"
 									/>
 								</div>
@@ -188,6 +196,7 @@
 										id="email"
 										type="email"
 										class="text-gray-dark block w-full rounded-md border-gray-300 px-4 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+										bind:value={$form.email}
 										required
 									/>
 								</div>
@@ -203,8 +212,8 @@
 									<input
 										type="text"
 										id="phone"
-										autoComplete="tel"
 										class="text-gray-dark block w-full rounded-md border-gray-300 px-4 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+										bind:value={$form.phone}
 										aria-describedby="phone-optional"
 									/>
 								</div>
@@ -221,6 +230,7 @@
 										type="text"
 										id="botHoneyPot"
 										class="text-gray-dark block w-full rounded-md border-gray-300 px-4 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+										bind:value={$form.hp}
 										aria-describedby="botHP"
 									/>
 								</div>
@@ -234,6 +244,7 @@
 										type="text"
 										id="subject"
 										class="text-gray-dark block w-full rounded-md border-gray-300 px-4 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+										bind:value={$form.subject}
 										required
 									/>
 								</div>
@@ -253,6 +264,7 @@
 										rows={4}
 										class="text-gray-dark block w-full rounded-md border border-gray-300 px-4 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
 										aria-describedby="message-max"
+										bind:value={$form.message}
 										required
 									/>
 								</div>
@@ -263,12 +275,6 @@
 								<button
 									type="submit"
 									class="bg-blue-light hover:bg-blue-dark inline-flex items-center rounded-md border border-transparent px-4 py-2 text-base font-medium text-white shadow-sm focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none"
-									on:click={(e) => {
-										if (formik.values.botHoneyPot.length > 0) {
-											e.preventDefault();
-											return;
-										}
-									}}
 								>
 									Send Message
 								</button>
