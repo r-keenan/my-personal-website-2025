@@ -52,6 +52,7 @@
 		"@aws-sdk/client-secrets-manager": "^3.777.0",
 		"@portabletext/types": "^2.0.13",
 		"@sanity/client": "^6.28.4",
-		"@sanity/types": "^3.81.0"
+		"@sanity/types": "^3.81.0",
+		"zod": "^3.24.2"
 	}
 }

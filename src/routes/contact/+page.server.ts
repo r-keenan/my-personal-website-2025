@@ -1,19 +1,65 @@
-import { message } from 'sveltekit-superforms';
-import { fail } from '@sveltejs/kit';
+import { superValidate } from 'sveltekit-superforms/server';
+import { zod } from 'sveltekit-superforms/adapters';
+import { z } from 'zod';
 
+const schema = z.object({
+	firstName: z
+		.string()
+		.min(2, 'First Name must be at least 2 characters')
+		.max(50, 'First Name must not exceed 50 characters'),
+	lastName: z
+		.string()
+		.min(2, 'Last Name must be at least 2 characters')
+		.max(50, 'Last Name must not exceed 50 characters'),
+	companyName: z
+		.string()
+		.min(2, 'Company Name must be at least 2 characters')
+		.max(100, 'Last Name must not exceed 100 characters')
+		.optional(),
+	companyWebsite: z
+		.string()
+		.url('Invalid URL. Format must be: https://www.yourwebsite.com')
+		.min(6, 'Company Website must be at least 6 characters')
+		.max(100, 'Company Website must not exceed 100 characters')
+		.optional(),
+	email: z
+		.string()
+		.email('Must be formatted like: hello@email.com')
+		.min(8, 'Email Address must be at least 8 characters')
+		.max(75, 'Email Address must not exceed 75 characters'),
+	phone: z
+		.string()
+		.min(10, 'Email Address must be at least 10 characters')
+		.max(20, 'Email Address must be at least 20 characters long')
+		.optional(),
+	subject: z
+		.string()
+		.min(10, 'Subject must be at least 10 characters')
+		.max(100, 'Subject must be at least 100 characters'),
+	message: z
+		.string()
+		.min(50, 'Message body must be at least 50 characters')
+		.max(1000, 'Message body be at least 1000 characters')
+});
+
+export const load = async () => {
+	const form = await superValidate(zod(schema));
+
+	return { form };
+};
+// If you have a form action
 export const actions = {
 	default: async ({ request }) => {
-		const form = await superValidate(request, your_adapter(schema));
-		console.log(form);
+		const formData = await request.formData();
+		const form = await superValidate(request, zod(schema));
 
 		if (!form.valid) {
-			// Return { form } and things will just work.
-			return fail(400, { form });
+			return { form };
 		}
 
-		// TODO: Do something with the validated form.data
+		// Process form data
+		// ...
 
-		// Return the form with a status message
-		return message(form, 'Form posted successfully!');
+		return { form };
 	}
 };
