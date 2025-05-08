@@ -1,6 +1,7 @@
 import { superValidate } from 'sveltekit-superforms/server';
 import { zod } from 'sveltekit-superforms/adapters';
 import { z } from 'zod';
+import { logError } from '$lib/clients/awsCloudFormation';
 
 const schema = z.object({
 	firstName: z
@@ -51,9 +52,11 @@ export const load = async () => {
 export const actions = {
 	default: async ({ request }) => {
 		const formData = await request.formData();
-		const form = await superValidate(request, zod(schema));
+		const form = await superValidate(formData, zod(schema));
 
+		console.log(form);
 		if (!form.valid) {
+			logError('Form not valid', request);
 			return { form };
 		}
 
