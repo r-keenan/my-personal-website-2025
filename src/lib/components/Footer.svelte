@@ -10,7 +10,7 @@
 	import { GithubSolid, LinkedinSolid } from 'flowbite-svelte-icons';
 </script>
 
-<Footer>
+<Footer footerType="logo">
 	<div class="w-2/3 place-content-between sm:flex sm:items-center sm:justify-between">
 		<FooterBrand href="/" alt="Ross Keenan" name="Ross Keenan" class="shake" />
 		<FooterLinkGroup

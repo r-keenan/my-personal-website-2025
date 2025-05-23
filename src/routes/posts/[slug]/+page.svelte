@@ -44,11 +44,11 @@
 		<div class="grid">
 			<div class="grid-1 items-center justify-center">
 				<div
-					class="prose prose-indigo prose-lg text-gray-medium mt-10 grid sm:mx-20 lg:mx-80 2xl:mx-auto 2xl:w-1/3"
+					class="prose prose-indigo prose-lg text-gray-medium lg:mx-2xl:mx-auto mt-10 grid sm:mx-20 2xl:w-1/3"
 				>
 					{#each post.body as postBody (postBody._key)}
-						<div class="grid w-100 grid-cols-1">
-							<div class="w-100">{postBody.children[0].text}</div>
+						<div class="grid w-full grid-cols-1">
+							<div class="w-full">{postBody.children[0].text}</div>
 							<br />
 						</div>
 					{/each}
