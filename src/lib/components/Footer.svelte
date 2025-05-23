@@ -10,11 +10,11 @@
 	import { GithubSolid, LinkedinSolid } from 'flowbite-svelte-icons';
 </script>
 
-<Footer footerType="logo">
-	<div class="sm:flex sm:items-center sm:justify-between">
-		<FooterBrand href="/" alt="Ross Keenan" name="Ross Keenan" />
+<Footer>
+	<div class="w-2/3 place-content-between sm:flex sm:items-center sm:justify-between">
+		<FooterBrand href="/" alt="Ross Keenan" name="Ross Keenan" class="shake" />
 		<FooterLinkGroup
-			class="mb-6 flex flex-wrap items-center text-sm text-gray-500 sm:mb-0 dark:text-gray-400"
+			class="text-blue-light mb-6 flex flex-wrap items-center text-sm sm:mb-0 dark:text-gray-400"
 		>
 			<FooterLink href="/posts">Posts</FooterLink>
 			<FooterLink href="/skills">Skills</FooterLink>

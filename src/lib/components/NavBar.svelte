@@ -14,9 +14,6 @@
 {#key activeUrl}
 	<Navbar class="bg-blue-dark/80 fixed top-0 z-10 w-full text-white backdrop-blur-md">
 		<NavBrand href="/" class="pl-2.5">
-			<!--
-		<img src="/images/flowbite-svelte-icon-logo.svg" class="me-3 h-6 sm:h-9" alt="Flowbite Logo" />
-		-->
 			<span
 				class="shake self-center text-xl font-semibold whitespace-nowrap dark:text-white"
 				id="myNameHeader">Ross Keenan</span
