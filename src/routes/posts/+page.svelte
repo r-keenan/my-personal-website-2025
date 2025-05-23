@@ -29,7 +29,7 @@
 							<img
 								class="h-48 w-full object-cover"
 								src={postPreview.imageUrl?.toString()}
-								alt="Blog Photo"
+								alt="Blog pic"
 								width="413"
 								height="192"
 							/>
