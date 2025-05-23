@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import avi from '$images/myAvi.jpg';
-	import { Avatar, Button, Navbar, NavBrand, NavHamburger, NavLi, NavUl } from 'flowbite-svelte';
+	import { Avatar, Navbar, NavBrand, NavHamburger, NavLi, NavUl } from 'flowbite-svelte';
 
 	let activeUrl = $derived(page.url.pathname.includes('posts') ? '/posts' : page.url.pathname);
 
@@ -11,7 +11,7 @@
 		'text-gray-700 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-gray-300 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent';
 </script>
 
-<header>
+{#key activeUrl}
 	<Navbar class="bg-blue-dark/80 fixed top-0 z-10 w-full text-white backdrop-blur-md">
 		<NavBrand href="/" class="pl-2.5">
 			<!--
@@ -41,4 +41,4 @@
 			>
 		</NavUl>
 	</Navbar>
-</header>
+{/key}

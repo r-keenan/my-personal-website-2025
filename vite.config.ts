@@ -4,6 +4,9 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+	optimizeDeps: {
+		exclude: ['esm-dep > cjs-dep', '.vite']
+	},
 	plugins: [tailwindcss(), sveltekit()],
 	test: {
 		workspace: [
