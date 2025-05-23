@@ -24,14 +24,14 @@
 		<div class="mx-auto mt-12 grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-3">
 			{#each postsPreview as postPreview (postPreview.slug)}
 				<div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
-					<div class="flex-shrink-0">
+					<div class="shrink-0">
 						<a href={`/posts/${postPreview.slug.current}`}>
 							<img
-								class="object-cover"
+								class="h-48 w-full object-cover"
 								src={postPreview.imageUrl?.toString()}
-								alt="BlogPhoto"
-								width={413}
-								height={192}
+								alt="Blog Photo"
+								width="413"
+								height="192"
 							/>
 						</a>
 					</div>
