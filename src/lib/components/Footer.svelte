@@ -4,13 +4,15 @@
 		FooterCopyright,
 		FooterLinkGroup,
 		FooterLink,
-		FooterIcon
+		FooterIcon,
+		FooterBrand
 	} from 'flowbite-svelte';
 	import { GithubSolid, LinkedinSolid } from 'flowbite-svelte-icons';
 </script>
 
 <Footer footerType="logo">
 	<div class="sm:flex sm:items-center sm:justify-between">
+		<FooterBrand href="/" alt="Ross Keenan" name="Ross Keenan" />
 		<FooterLinkGroup
 			class="mb-6 flex flex-wrap items-center text-sm text-gray-500 sm:mb-0 dark:text-gray-400"
 		>
