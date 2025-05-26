@@ -24,16 +24,21 @@
 			<NavHamburger />
 		</div>
 		<NavUl {activeUrl} {activeClass} {nonActiveClass}>
-			<NavLi href="/" class="text-blue-light hover:bg-gray-light hover:text-white-DEFAULT"
+			<NavLi
+				href="/"
+				class="text-blue-light hover:bg-gray-light hover:text-white-DEFAULT pr-2 text-lg"
 				>Home</NavLi
 			>
-			<NavLi href="/posts" class="text-blue-light hover:bg-gray-700 hover:text-white">Posts</NavLi>
-			<NavLi href="/skills" class="text-blue-light hover:bg-gray-700 hover:text-white">Skills</NavLi
+			<NavLi href="/posts" class="text-blue-light pr-4 text-lg hover:bg-gray-700 hover:text-white"
+				>Posts</NavLi
 			>
-			<NavLi href="/about" class="text-blue-light hover:bg-gray-700 hover:text-white"
+			<NavLi href="/skills" class="text-blue-light pr-4 text-lg hover:bg-gray-700 hover:text-white"
+				>Skills</NavLi
+			>
+			<NavLi href="/about" class="text-blue-light pr-4 text-lg hover:bg-gray-700 hover:text-white"
 				>About Me</NavLi
 			>
-			<NavLi href="/contact" class="text-blue-light hover:bg-gray-700 hover:text-white"
+			<NavLi href="/contact" class="text-blue-light text-lg hover:bg-gray-700 hover:text-white"
 				>Contact</NavLi
 			>
 		</NavUl>
