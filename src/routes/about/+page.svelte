@@ -7,8 +7,8 @@
 		<div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
 			<!-- Avatar Image Section -->
 			<div class="my-8 flex justify-center sm:mb-12">
-				<div class="h-64 w-64 rounded-2xl shadow-xl sm:h-80 sm:w-80">
-					<img class="h-full w-full rounded-2xl object-contain" src={aboutMePic2} alt="Me" />
+				<div class="relative rounded-2xl shadow-xl">
+					<img class="w-64 h-auto rounded-2xl object-contain sm:w-80" src={aboutMePic2} alt="Me" />
 				</div>
 			</div>
 
