@@ -3,12 +3,12 @@
 </script>
 
 <div>
-	<div class="relative min-h-screen bg-white py-8 pt-28 sm:py-20 sm:pt-32">
+	<div class="relative min-h-screen bg-white py-8 pt-20 sm:py-20 sm:pt-32">
 		<div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
 			<!-- Avatar Image Section -->
 			<div class="my-8 flex justify-center sm:mb-12">
 				<div class="relative rounded-2xl shadow-xl">
-					<img class="w-64 h-auto rounded-2xl object-contain sm:w-80" src={aboutMePic2} alt="Me" />
+					<img class="h-auto w-32 rounded-2xl object-contain sm:w-40" src={aboutMePic2} alt="Me" />
 				</div>
 			</div>
 
