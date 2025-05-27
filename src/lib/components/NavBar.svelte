@@ -20,7 +20,7 @@
 			>
 		</NavBrand>
 		<div class="flex items-center md:order-2">
-			<Button class="bg-blue-light mr-4 hidden md:block" size="sm"
+			<Button class="bg-blue-light hover:bg-blue-dark mr-4 hidden md:block" size="sm"
 				><a href="/contact">Contact Me</a></Button
 			>
 			<Avatar />
