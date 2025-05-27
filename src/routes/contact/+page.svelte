@@ -12,24 +12,24 @@
 	// Computed toast properties
 	let hasErrors = $derived(Object.keys($errors).length > 0);
 	let toastColor = $derived(hasErrors ? 'red' : 'green') as 'red' | 'green';
-	let ToastIcon = $derived(hasErrors ? ExclamationCircleSolid : CheckCircleSolid);
-	let iconLabel = $derived(hasErrors ? 'Error icon' : 'Check icon');
 </script>
 
 <div>
-	{#if $message}
-		<div transition:fly={{ y: -50, duration: 300 }}>
-			<Toast params={{ x: 200 }} color={toastColor} class="right-30 mb-4">
-				<ToastIcon class="h-5 w-5" />
-				{$message}
-			</Toast>
-		</div>
-	{/if}
 	<div class="mt-10 min-h-screen bg-white">
 		<div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
+			{#if $message}
+				<div transition:fly={{ y: -50, duration: 300 }} class="mb-4 flex justify-end">
+					<Toast color={toastColor} class="max-w-sm">
+						{#snippet icon()}
+							<CheckCircleSolid class="h-5 w-5" />
+							<span class="sr-only">Check icon</span>
+						{/snippet}
+						{$message}
+					</Toast>
+				</div>
+			{/if}
 			<div class="relative bg-white shadow-xl">
 				<h2 class="sr-only">Contact Me</h2>
-
 				<div class="grid grid-cols-1 lg:grid-cols-3">
 					<div class="bg-blue-light relative overflow-hidden px-6 py-10 sm:px-10 xl:p-12">
 						<div class="pointer-events-none absolute inset-0 sm:hidden" aria-hidden="true">
