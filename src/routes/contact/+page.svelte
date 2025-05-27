@@ -30,7 +30,7 @@
 								<path
 									d="M-99 461.107L608.107-246l707.103 707.107-707.103 707.103L-99 461.107z"
 									fill="url(#linear1)"
-									fillOpacity=".1"
+									fill-opacity=".1"
 								/>
 								<defs>
 									<linearGradient
@@ -41,8 +41,8 @@
 										y2="814.66"
 										gradientUnits="userSpaceOnUse"
 									>
-										<stop stopColor="#fff" />
-										<stop offset={1} stopColor="#fff" stopOpacity={0} />
+										<stop stop-color="#fff" />
+										<stop offset={1} stop-color="#fff" stop-opacity={0} />
 									</linearGradient>
 								</defs>
 							</svg>
@@ -74,8 +74,8 @@
 										y2="735.66"
 										gradientUnits="userSpaceOnUse"
 									>
-										<stop stopColor="#fff" />
-										<stop offset={1} stopColor="#fff" stopOpacity={0} />
+										<stop stop-color="#fff" />
+										<stop offset={1} stop-color="#fff" stop-opacity={0} />
 									</linearGradient>
 								</defs>
 							</svg>
@@ -96,7 +96,7 @@
 								<path
 									d="M-161 679.107L546.107-28l707.103 707.107-707.103 707.103L-161 679.107z"
 									fill="url(#linear3)"
-									fillOpacity=".1"
+									fill-opacity=".1"
 								/>
 								<defs>
 									<linearGradient
@@ -107,8 +107,8 @@
 										y2="1032.66"
 										gradientUnits="userSpaceOnUse"
 									>
-										<stop stopColor="#fff" />
-										<stop offset={1} stopColor="#fff" stopOpacity={0} />
+										<stop stop-color="#fff" />
+										<stop offset={1} stop-color="#fff" stop-opacity={0} />
 									</linearGradient>
 								</defs>
 							</svg>
