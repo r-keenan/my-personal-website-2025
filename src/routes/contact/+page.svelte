@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Toast } from 'flowbite-svelte';
-	import { CheckCircleSolid, ExclamationCircleSolid } from 'flowbite-svelte-icons';
+	import { CheckCircleSolid } from 'flowbite-svelte-icons';
 	import { fly } from 'svelte/transition';
 	import { superForm } from 'sveltekit-superforms';
 
