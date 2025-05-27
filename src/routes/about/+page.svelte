@@ -7,14 +7,6 @@
 		<div class="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2 lg:items-start lg:gap-24 lg:px-8">
 			<div class="relative sm:py-16 lg:py-0">
 				<div
-					aria-hidden="true"
-					class="hidden sm:block lg:absolute lg:inset-y-0 lg:right-0 lg:w-screen"
-				>
-					<div
-						class="absolute inset-y-0 right-1/2 w-full rounded-r-3xl bg-gray-50 lg:right-72"
-					></div>
-				</div>
-				<div
 					class="relative mx-auto max-w-md px-10 py-4 sm:max-w-max sm:px-6 lg:max-w-max lg:px-16 lg:py-20"
 				>
 					<div class="grid justify-items-center overflow-hidden rounded-2xl shadow-xl">
