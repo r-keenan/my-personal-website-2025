@@ -1,43 +1,49 @@
 <script>
-	import {
-		Footer,
-		FooterCopyright,
-		FooterLinkGroup,
-		FooterLink,
-		FooterIcon,
-		FooterBrand
-	} from 'flowbite-svelte';
 	import { GithubSolid, LinkedinSolid } from 'flowbite-svelte-icons';
+
+	const navigation = [
+		{ name: 'Posts', href: '/posts' },
+		{ name: 'Skills', href: '/skills' },
+		{ name: 'About Me', href: '/about' },
+		{ name: 'Contact', href: '/contact' }
+	];
 </script>
 
-<Footer footerType="logo">
-	<div class="w-2/3 place-content-between sm:flex sm:items-center sm:justify-between">
-		<FooterBrand href="/" alt="Ross Keenan" name="Ross Keenan" class="shake" />
-		<FooterLinkGroup
-			class="text-blue-light mb-6 flex flex-wrap items-center text-sm sm:mb-0 dark:text-gray-400"
-		>
-			<FooterLink href="/posts">Posts</FooterLink>
-			<FooterLink href="/skills">Skills</FooterLink>
-			<FooterLink href="/about">About Me</FooterLink>
-			<FooterLink href="/contact">Contact</FooterLink>
-		</FooterLinkGroup>
+<footer class="bg-gray-light">
+	<div class="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
+		<nav class="-mb-6 flex flex-wrap justify-center gap-x-12 gap-y-3 text-sm/6" aria-label="Footer">
+			{#each navigation as nav (nav.name)}
+				<a href={nav.href} class="text-gray-dark hover:text-blue-light text-base">
+					{nav.name}
+				</a>
+			{/each}
+		</nav>
+		<div class="mt-16 flex justify-center gap-x-10">
+			<a
+				href="https://www.linkedin.com/in/r-keenan"
+				target="_blank"
+				rel="noreferrer"
+				class="hover:text-blue-light text-gray-400"
+			>
+				<span class="sr-only">LinkedIn</span>
+				<svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+					<LinkedinSolid />
+				</svg>
+			</a>
+			<a
+				href="https://www.github.com/r-keenan"
+				target="_blank"
+				rel="noreferrer"
+				class="hover:text-blue-light text-gray-400"
+			>
+				<span class="sr-only">Facebook</span>
+				<svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+					<GithubSolid />
+				</svg>
+			</a>
+		</div>
+		<p class="text-gray-dark mt-8 text-center text-base">
+			&copy; {new Date().getFullYear()} Ross Keenan. All rights reserved.
+		</p>
 	</div>
-	<hr class="my-6 border-gray-200 sm:mx-auto lg:my-8 dark:border-gray-700" />
-	<FooterCopyright href="/" by="Ross Keenan" />
-	<div class="mt-4 flex space-x-6 pt-3 sm:mt-0 sm:justify-center rtl:space-x-reverse">
-		<FooterIcon href="https://github.com/r-keenan" target="_blank" rel="noopener noreferrer">
-			<GithubSolid
-				class="h-5 w-5 text-gray-500 hover:text-gray-900 dark:text-gray-500 dark:hover:text-white"
-			/>
-		</FooterIcon>
-		<FooterIcon
-			href="https://www.linkedin.com/in/r-keenan"
-			target="_blank"
-			rel="noopener noreferrer"
-		>
-			<LinkedinSolid
-				class="h-5 w-5 text-gray-500 hover:text-gray-900 dark:text-gray-500 dark:hover:text-white"
-			/>
-		</FooterIcon>
-	</div>
-</Footer>
+</footer>
