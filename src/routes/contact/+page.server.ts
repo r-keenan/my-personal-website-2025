@@ -33,6 +33,7 @@ const schema = z.object({
 		.min(10, 'Email Address must be at least 10 characters')
 		.max(20, 'Email Address must be at least 20 characters long')
 		.optional(),
+	hp: z.string().max(0).optional(), 
 	subject: z
 		.string()
 		.min(10, 'Subject must be at least 10 characters')
