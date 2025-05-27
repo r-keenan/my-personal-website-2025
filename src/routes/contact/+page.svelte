@@ -63,7 +63,7 @@
 								<path
 									d="M-161 382.107L546.107-325l707.103 707.107-707.103 707.103L-161 382.107z"
 									fill="url(#linear2)"
-									fillOpacity=".1"
+									fill-opacity=".1"
 								/>
 								<defs>
 									<linearGradient
