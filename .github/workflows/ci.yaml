@@ -19,6 +19,13 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
       - name: Install dependencies
         run: npm install
 
@@ -34,10 +41,10 @@ jobs:
       - name: Build project
         run: npm run build
         env:
-          NEXT_PUBLIC_SANITY_PROJECT_ID: ${{secrets.NEXT_PUBLIC_SANITY_PROJECT_ID}}
-          NEXT_PUBLIC_SANITY_DATASET: ${{secrets.NEXT_PUBLIC_SANITY_DATASET}}
-          NEXT_PUBLIC_SANITY_CDN_URL: ${{secrets.NEXT_PUBLIC_SANITY_CDN_URL}}
-          NEXT_PUBLIC_SANITY_TOKEN: ${{secrets.NEXT_PUBLIC_SANITY_TOKEN}}
+          SANITY_PROJECT_ID: ${{secrets.PUBLIC_SANITY_PROJECT_ID}}
+          SANITY_DATASET: ${{secrets.PUBLIC_SANITY_DATASET}}
+          SANITY_CDN_URL: ${{secrets.PUBLIC_SANITY_CDN_URL}}
+          SANITY_TOKEN: ${{secrets.PUBLIC_SANITY_TOKEN}}
 
       - name: Run tests
         run: npm run test
