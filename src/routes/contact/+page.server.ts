@@ -37,8 +37,6 @@ const schema = z.object({
 export const load = async () => {
 	const form = await superValidate(zod(schema));
 
-	//console.log(form);
-
 	return { form };
 };
 // If you have a form action
@@ -47,21 +45,12 @@ export const actions = {
 		const formData = await request.formData();
 		const form = await superValidate(formData, zod(schema));
 
-		//console.log('Form submission:', form);
-
 		if (!form.valid) {
 			//logError('Form validation failed', request);
-			console.log(form);
 			return message(form, 'Please complete all required fields.', {
 				status: 400
 			});
 		}
-
-		// Process form data here
-		console.log('Processing valid form data:', form.data);
-
-		// TODO: Add your form processing logic here
-		// For example: send email, save to database, etc.
 
 		// Set success message using SuperForms message system
 		return message(form, 'Message sent! Please allow up to two business days for a reply.');
