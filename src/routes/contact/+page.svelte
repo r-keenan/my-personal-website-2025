@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { superForm } from 'sveltekit-superforms';
+	import SuperDebug, { superForm } from 'sveltekit-superforms';
 
 	let { data } = $props();
 
@@ -8,6 +8,9 @@
 </script>
 
 <div>
+	<div class="mt-20">
+		<SuperDebug data={$form} />
+	</div>
 	<div class="mt-10 min-h-screen bg-white">
 		<div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
 			<div class="relative bg-white shadow-xl">
@@ -141,7 +144,8 @@
 								<div class="mt-1">
 									<input
 										type="text"
-										id="first-name"
+										id="firstName"
+										name="firstName"
 										class="text-gray-dark block w-full rounded-md border-gray-300 px-4 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
 										bind:value={$form.firstName}
 										aria-invalid={$errors.firstName ? 'true' : undefined}
@@ -158,7 +162,8 @@
 								<div class="mt-1">
 									<input
 										type="text"
-										id="last-name"
+										id="lastName"
+										name="lastName"
 										class="text-gray-dark block w-full rounded-md border-gray-300 px-4 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
 										bind:value={$form.lastName}
 										aria-invalid={$errors.lastName ? 'true' : undefined}
@@ -178,7 +183,8 @@
 								<div class="mt-1">
 									<input
 										type="text"
-										id="company-name"
+										id="companyName"
+										name="companyName"
 										class="text-gray-dark block w-full rounded-md border-gray-300 px-4 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
 										bind:value={$form.companyName}
 										aria-invalid={$errors.companyName ? 'true' : undefined}
@@ -198,7 +204,8 @@
 								<div class="mt-1">
 									<input
 										type="url"
-										id="company-website"
+										id="companyWebsite"
+										name="companyWebsite"
 										class="text-gray-dark block w-full rounded-md border-gray-300 px-4 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
 										bind:value={$form.companyWebsite}
 										aria-invalid={$errors.companyWebsite ? 'true' : undefined}
@@ -214,6 +221,7 @@
 								<div class="mt-1">
 									<input
 										id="email"
+										name="email"
 										type="email"
 										class="text-gray-dark block w-full rounded-md border-gray-300 px-4 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
 										bind:value={$form.email}
@@ -235,6 +243,7 @@
 									<input
 										type="text"
 										id="phone"
+										name="phone"
 										class="text-gray-dark block w-full rounded-md border-gray-300 px-4 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
 										bind:value={$form.phone}
 										aria-invalid={$errors.phone ? 'true' : undefined}
@@ -255,6 +264,7 @@
 									<input
 										type="text"
 										id="botHoneyPot"
+										name="hp"
 										class="text-gray-dark block w-full rounded-md border-gray-300 px-4 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
 										bind:value={$form.hp}
 										aria-invalid={$errors.hp ? 'true' : undefined}
@@ -271,6 +281,7 @@
 									<input
 										type="text"
 										id="subject"
+										name="subject"
 										class="text-gray-dark block w-full rounded-md border-gray-300 px-4 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
 										bind:value={$form.subject}
 										aria-invalid={$errors.subject ? 'true' : undefined}
@@ -292,6 +303,7 @@
 								<div class="mt-1">
 									<textarea
 										id="message"
+										name="message"
 										rows={4}
 										class="text-gray-dark block w-full rounded-md border border-gray-300 px-4 py-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
 										aria-describedby="message-max"
