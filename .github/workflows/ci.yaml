@@ -26,6 +26,16 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
+      - name: Get secrets from AWS
+        id: secrets
+        run: |
+          SANITY_PROJECT_ID=$(aws secretsmanager get-secret-value --secret-id "sanity/project-id" --query SecretString --output text)
+          SANITY_TOKEN=$(aws secretsmanager get-secret-value --secret-id "sanity/token" --query SecretString --output text)
+          echo "::add-mask::$SANITY_PROJECT_ID"
+          echo "::add-mask::$SANITY_TOKEN"
+          echo "SANITY_PROJECT_ID=$SANITY_PROJECT_ID" >> $GITHUB_OUTPUT
+          echo "SANITY_TOKEN=$SANITY_TOKEN" >> $GITHUB_OUTPUT
+
       - name: Install dependencies
         run: npm install
 
