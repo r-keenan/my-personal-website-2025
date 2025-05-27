@@ -1,4 +1,4 @@
-import { superValidate } from 'sveltekit-superforms/server';
+import { superValidate, message } from 'sveltekit-superforms/server';
 import { zod } from 'sveltekit-superforms/adapters';
 import { z } from 'zod';
 import { logError } from '$lib/clients/awsCloudFormation';
@@ -52,7 +52,9 @@ export const actions = {
 		if (!form.valid) {
 			//logError('Form validation failed', request);
 			console.log(form);
-			return { form };
+			return message(form, 'Please complete all required fields.', {
+				status: 400
+			});
 		}
 
 		// Process form data here
@@ -61,10 +63,7 @@ export const actions = {
 		// TODO: Add your form processing logic here
 		// For example: send email, save to database, etc.
 
-		// Return success with a message
-		return {
-			form,
-			message: 'Thank you! Your message has been sent successfully.'
-		};
+		// Set success message using SuperForms message system
+		return message(form, 'Message sent! Please allow up to two business days for a reply.');
 	}
 };

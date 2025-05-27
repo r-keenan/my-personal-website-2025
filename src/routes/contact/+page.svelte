@@ -1,23 +1,35 @@
 <script lang="ts">
-	import SuperDebug, { superForm } from 'sveltekit-superforms';
+	import { Toast } from 'flowbite-svelte';
+	import { CheckCircleSolid, ExclamationCircleSolid } from 'flowbite-svelte-icons';
+	import { fly } from 'svelte/transition';
+	import { superForm } from 'sveltekit-superforms';
 
 	let { data } = $props();
 
 	// Client API:
 	const { form, errors, constraints, enhance, message } = superForm(data.form);
+
+	// Computed toast properties
+	let hasErrors = $derived(Object.keys($errors).length > 0);
+	let toastColor = $derived(hasErrors ? 'red' : 'green') as 'red' | 'green';
+	let ToastIcon = $derived(hasErrors ? ExclamationCircleSolid : CheckCircleSolid);
+	let iconLabel = $derived(hasErrors ? 'Error icon' : 'Check icon');
 </script>
 
 <div>
-	<div class="mt-20">
-		<SuperDebug data={$form} />
-	</div>
+	{#if $message}
+		<div transition:fly={{ y: -50, duration: 300 }}>
+			<Toast params={{ x: 200 }} color={toastColor} class="right-30 mb-4">
+				<ToastIcon class="h-5 w-5" />
+				{$message}
+			</Toast>
+		</div>
+	{/if}
 	<div class="mt-10 min-h-screen bg-white">
 		<div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
 			<div class="relative bg-white shadow-xl">
 				<h2 class="sr-only">Contact Me</h2>
-				<!-- 
-            <ToastContainer toastClassName="bg-green-success" />
-        -->
+
 				<div class="grid grid-cols-1 lg:grid-cols-3">
 					<div class="bg-blue-light relative overflow-hidden px-6 py-10 sm:px-10 xl:p-12">
 						<div class="pointer-events-none absolute inset-0 sm:hidden" aria-hidden="true">
@@ -129,9 +141,6 @@
 
 					<div class="px-6 py-10 sm:px-10 lg:col-span-2 xl:p-12">
 						<h3 class="text-gray-dark text-lg font-medium tracking-wide">Send Me a Message</h3>
-						{#if $message}
-							<div class="bg-green-success">{$message}</div>
-						{/if}
 						<form
 							class="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
 							method="POST"
