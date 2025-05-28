@@ -97,6 +97,16 @@ export const skills: Skill[] = [
 		listItems: ['AWS', 'Azure', 'Digital Ocean', 'Vercel']
 	},
 	{
+		name: 'Generative AI (GenAI)',
+		icon: ServerOutline,
+		listItems: [
+			'Prompt Engineering',
+			'Consuming LLMs & Transformers (OpenAI ChatGPT, Anthropic Claude 3.7, Llama 3.x)',
+			'Retrieval Augmented Generation (RAG)',
+			'Creating clients to interact with external models'
+		]
+	},
+	{
 		name: 'Data Engineering/Analysis',
 		icon: TerminalOutline,
 		listItems: [
