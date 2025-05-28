@@ -1,5 +1,3 @@
-import LinkedInIcon from '$components/LinkedInIcon.svelte';
-import GitHubIcon from '$components/GitHubIcon.svelte';
 import {
 	ApiKeyOutline,
 	BookOpenOutline,
@@ -11,7 +9,7 @@ import {
 	WindowOutline
 } from 'flowbite-svelte-icons';
 
-import type { Skill, SocialIcon } from '$lib/utils/types/types';
+import type { Skill } from '$lib/utils/types/types';
 
 export const oneHour: number = 60 * 60;
 export const oneDay: number = 60 * 60 * 24;
@@ -167,22 +165,5 @@ export const skills: Skill[] = [
 		name: 'Methodologies',
 		icon: BookOpenOutline,
 		listItems: ['Agile', 'Kanban', 'Scrum', 'SAFe', 'Waterfall']
-	}
-];
-
-export const socials: SocialIcon[] = [
-	{
-		name: 'LinkedIn',
-		href: 'https://www.linkedin.com/in/r-keenan',
-		target: '_blank',
-		rel: 'noopener noreferrer',
-		icon: LinkedInIcon
-	},
-	{
-		name: 'GitHub',
-		href: 'https://github.com/r-keenan',
-		target: '_blank',
-		rel: 'noopener noreferrer',
-		icon: GitHubIcon
 	}
 ];

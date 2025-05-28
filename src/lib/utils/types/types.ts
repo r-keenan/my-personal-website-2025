@@ -41,10 +41,3 @@ export type Skill = {
 	icon: any;
 	listItems: string[];
 };
-export type SocialIcon = {
-	name: string;
-	href: string;
-	target: string;
-	rel: string;
-	icon: string | LegacyComponentType;
-};
