@@ -1,7 +1,7 @@
 import { superValidate, message } from 'sveltekit-superforms/server';
 import { zod } from 'sveltekit-superforms/adapters';
 import { z } from 'zod';
-import { logError } from '$lib/clients/awsCloudFormation';
+import { logError } from '$lib/clients/awsCloudWatch';
 
 const schema = z.object({
 	firstName: z
