@@ -46,7 +46,7 @@ export const actions = {
 		const form = await superValidate(formData, zod(schema));
 
 		if (!form.valid) {
-			//logError('Form validation failed', request);
+			logError('Form validation failed', request);
 			return message(form, 'Please complete all required fields.', {
 				status: 400
 			});
