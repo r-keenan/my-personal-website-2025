@@ -79,9 +79,24 @@ export const skills: Skill[] = [
 		]
 	},
 	{
+		name: 'API/API Integrations',
+		icon: ApiKeyOutline,
+		listItems: ['RESTful APIs', 'Microservices', 'GraphQL APIs']
+	},
+	{
 		name: 'Object Relational Mappers (ORMs)',
 		icon: ServerOutline,
 		listItems: ['Entity Framwork Core', 'Prisma', 'Dapper', 'Active Record']
+	},
+	{
+		name: 'Infrastructure as Code (IAC)',
+		icon: ServerOutline,
+		listItems: ['AWS CDK', 'AWS CloudFormation', 'Pulumi']
+	},
+	{
+		name: 'Cloud Platforms',
+		icon: ServerOutline,
+		listItems: ['AWS', 'Azure', 'Digital Ocean', 'Vercel']
 	},
 	{
 		name: 'Data Engineering/Analysis',
@@ -93,11 +108,6 @@ export const skills: Skill[] = [
 			'Data Visualizations',
 			'Reporting Software'
 		]
-	},
-	{
-		name: 'API/API Integrations',
-		icon: ApiKeyOutline,
-		listItems: ['RESTful APIs', 'Microservices', 'GraphQL APIs']
 	},
 	{
 		name: 'Database Development & Object Storage',
@@ -125,6 +135,8 @@ export const skills: Skill[] = [
 		listItems: [
 			'Neovim',
 			'Visual Studio Code',
+			'Cursor',
+			'Windsurf',
 			'JetBrains Rider',
 			'Visual Studio',
 			'IntelliJ',
@@ -150,11 +162,6 @@ export const skills: Skill[] = [
 			'Postman',
 			'Azure DevOps (ADO)'
 		]
-	},
-	{
-		name: 'Cloud Platforms',
-		icon: ServerOutline,
-		listItems: ['AWS', 'Azure', 'Digital Ocean', 'Vercel']
 	},
 	{
 		name: 'Methodologies',
