@@ -1,22 +1,28 @@
-# sv
+# Welcome to my website makeover!
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+This is my portfolio and blog that I am currently working on. The backend is currently SvelteKit hosted on Vercel. The URL to see this code live is https://rosskeenan.com.
 
-## Creating a project
+### Tech Stack for This Project
 
-If you're seeing this, you've probably already done this step. Congrats!
+- SvelteKit
+- TypeScript
+- ESLint
+- TSLint
+- Tailwind CSS
+- Flowbite-Svelte
+- Prettier
+- GitHub Actions
+- Codeql
+- Sanity Headless CMS
+- Vite
+- Vitest
+- Playwright
+- AWS Secrets Manager
+- AWS CloudWatch
 
-```bash
-# create a new project in the current directory
-npx sv create
+### How to run on your local machine
 
-# create a new project in my-app
-npx sv create my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Once you've cloned the project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
 ```bash
 npm run dev
