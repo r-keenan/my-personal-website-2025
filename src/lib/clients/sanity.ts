@@ -39,7 +39,7 @@ export async function sanityClient() {
 
 		return client;
 	} catch (error) {
-		console.error('Error intializing Sanity Client');
+		console.error('Error initializing Sanity Client');
 		throw new Error('Failed to set up Sanity Client config');
 	}
 }
