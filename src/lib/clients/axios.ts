@@ -14,6 +14,9 @@ export const apiGatewayClient = async (): Promise<AxiosInstance> => {
 	return axios.create({
 		baseURL: config.apiBaseUrl,
 		timeout: 1000,
-		headers: { 'x-api-key': config.apiKey }
+		headers: {
+			'x-api-key': config.apiKey,
+			'Content-Type': 'application/json'
+		}
 	});
 };

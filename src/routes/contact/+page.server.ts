@@ -62,7 +62,7 @@ export const actions = {
 
 		try {
 			const client = await apiGatewayClient();
-			const response = await client.post('/contact', { data: formData });
+			const response = await client.post('/contact', form.data);
 
 			console.log(response.status);
 
