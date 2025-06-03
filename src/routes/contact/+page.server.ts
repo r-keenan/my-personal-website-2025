@@ -2,6 +2,7 @@ import { superValidate, message } from 'sveltekit-superforms/server';
 import { zod } from 'sveltekit-superforms/adapters';
 import { z } from 'zod';
 import { logError } from '$lib/clients/awsCloudWatch';
+import { apiGatewayClient } from '$lib/clients/axios';
 
 const schema = z.object({
 	firstName: z
@@ -52,7 +53,31 @@ export const actions = {
 			});
 		}
 
-		// Set success message using SuperForms message system
-		return message(form, 'Message sent! Please allow up to two business days for a reply.');
+		if (form.data.hp && form.data.hp.length > 0) {
+			// Not logging, because I do want to exit if honeypot is filled out
+			return message(form, 'Error occurred when submitting your form', {
+				status: 400
+			});
+		}
+
+		try {
+			const client = await apiGatewayClient();
+			const response = await client.post('/contact', { data: formData });
+
+			console.log(response.status);
+
+			if (response.status != 200 && response.status != 201) {
+				logError('Form validation failed', request);
+				return message(
+					form,
+					'Unknown error occurred when trying to save contact form information.'
+				);
+			}
+
+			// Set success message using SuperForms message system
+			return message(form, 'Message sent! Please allow up to two business days for a reply.');
+		} catch (error) {
+			return message(form, 'Message sent! Please allow up to two business days for a reply.');
+		}
 	}
 };

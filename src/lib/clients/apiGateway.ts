@@ -23,7 +23,7 @@ export const getApiGatewayConfig = async (): Promise<ApiGatewayConfig> => {
 
 			return { apiBaseUrl, apiKey };
 		} catch (error) {
-			configPromise = null; // Reset on error so it can be retried
+			configPromise = null;
 			console.error('Error initializing API Gateway client:', error);
 			throw new Error('Failed to set up AWS API Gateway client config');
 		}
