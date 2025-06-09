@@ -3,6 +3,14 @@
 	import { skills } from '$lib/constants/index';
 </script>
 
+<svelte:head>
+	<title>Skills & Technologies - Ross Keenan | Full Stack Developer</title>
+	<meta
+		name="description"
+		content="Comprehensive overview of Ross Keenan's technical skills including full stack development, data engineering, and analysis. Explore technologies and frameworks I'm experienced with."
+	/>
+</svelte:head>
+
 <div>
 	<div class="relative bg-white pt-24 pb-20 sm:py-24 lg:pt-32">
 		<div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">

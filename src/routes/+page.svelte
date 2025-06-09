@@ -6,6 +6,14 @@
 	const { qualifications } = data.initialData;
 </script>
 
+<svelte:head>
+	<title>Ross Keenan | Senior Software Consultant - Web Development & JavaScript Expert</title>
+	<meta
+		name="description"
+		content="Senior Software Consultant specializing in web development, JavaScript frameworks, backend systems, and data engineering. Available for consulting and contract work."
+	/>
+</svelte:head>
+
 <HomeHero />
 <div class="bg-white">
 	<div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">

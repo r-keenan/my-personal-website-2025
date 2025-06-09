@@ -6,6 +6,14 @@
 	const { postsPreview }: { postsPreview: PostPreview[] } = data.initialData;
 </script>
 
+<svelte:head>
+	<title>Blog Posts - Ross Keenan | Senior Software Consultant</title>
+	<meta
+		name="description"
+		content="Latest blog posts from Ross Keenan covering web development, JavaScript frameworks, software consulting, and tech insights. Stay updated on current projects and industry thoughts."
+	/>
+</svelte:head>
+
 <div class="lg:pb- relative bg-white px-4 pb-20 sm:px-6 sm:py-24 lg:px-8 lg:pt-12">
 	<div class="absolute inset-0">
 		<div class="h-1/3 bg-white sm:h-2/3"></div>
