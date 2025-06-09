@@ -14,6 +14,14 @@
 	let toastColor = $derived(hasErrors ? 'red' : 'green') as 'red' | 'green';
 </script>
 
+<svelte:head>
+	<title>Contact - Ross Keenan | Senior Software Consultant</title>
+	<meta
+		name="description"
+		content="Contact Ross Keenan for web development consulting, JavaScript frameworks, backend systems, Generative AI, and data engineering projects. Available for contract work and consulting."
+	/>
+</svelte:head>
+
 <div>
 	<div class="mt-10 min-h-screen bg-white">
 		<div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
