@@ -2,6 +2,14 @@
 	import aboutMePic2 from '$lib/images/meQuarterHeight.jpg';
 </script>
 
+<svelte:head>
+	<title>About - Ross Keenan | Senior Software Consultant</title>
+	<meta
+		name="description"
+		content="Ross Keenan is a Senior Software Consultant specializing in web development, JavaScript frameworks, backend systems, and data engineering. Available for contract work."
+	/>
+</svelte:head>
+
 <div>
 	<div class="relative min-h-screen bg-white py-8 pt-20 sm:py-20 sm:pt-32">
 		<div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">

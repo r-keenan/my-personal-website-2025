@@ -29,20 +29,29 @@
 		<NavUl {activeUrl} {activeClass} {nonActiveClass}>
 			<NavLi
 				href="/"
+				data-sveltekit-preload-data
 				class="text-blue-light hover:bg-gray-light hover:text-white-DEFAULT pr-2 text-lg"
 				>Home</NavLi
 			>
-			<NavLi href="/posts" class="text-blue-light pr-4 text-lg hover:bg-gray-700 hover:text-white"
-				>Posts</NavLi
+			<NavLi
+				href="/posts"
+				data-sveltekit-preload-data
+				class="text-blue-light pr-4 text-lg hover:bg-gray-700 hover:text-white">Posts</NavLi
 			>
-			<NavLi href="/skills" class="text-blue-light pr-4 text-lg hover:bg-gray-700 hover:text-white"
-				>Skills</NavLi
+			<NavLi
+				href="/skills"
+				data-sveltekit-preload-data
+				class="text-blue-light pr-4 text-lg hover:bg-gray-700 hover:text-white">Skills</NavLi
 			>
-			<NavLi href="/about" class="text-blue-light pr-4 text-lg hover:bg-gray-700 hover:text-white"
-				>About Me</NavLi
+			<NavLi
+				href="/about"
+				data-sveltekit-preload-data
+				class="text-blue-light pr-4 text-lg hover:bg-gray-700 hover:text-white">About Me</NavLi
 			>
-			<NavLi href="/contact" class="text-blue-light text-lg hover:bg-gray-700 hover:text-white"
-				>Contact</NavLi
+			<NavLi
+				href="/contact"
+				data-sveltekit-preload-data
+				class="text-blue-light text-lg hover:bg-gray-700 hover:text-white">Contact</NavLi
 			>
 		</NavUl>
 	</Navbar>
