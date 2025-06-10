@@ -12,6 +12,7 @@
 		name="description"
 		content="Latest blog posts from Ross Keenan covering web development, JavaScript frameworks, software consulting, and tech insights. Stay updated on current projects and industry thoughts."
 	/>
+	<link rel="canonical" href="https://rosskeenan.com/posts" />
 </svelte:head>
 
 <div class="lg:pb- relative bg-white px-4 pb-20 sm:px-6 sm:py-24 lg:px-8 lg:pt-12">

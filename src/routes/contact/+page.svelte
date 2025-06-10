@@ -20,6 +20,7 @@
 		name="description"
 		content="Contact Ross Keenan for web development consulting, JavaScript frameworks, backend systems, Generative AI, and data engineering projects. Available for contract work and consulting."
 	/>
+	<link rel="canonical" href="https://rosskeenan.com/contact" />
 </svelte:head>
 
 <div>

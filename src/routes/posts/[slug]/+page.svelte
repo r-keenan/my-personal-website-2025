@@ -14,6 +14,7 @@
 	<meta property="og:image" content={post.imageUrl?.toString()} />
 	<meta property="og:type" content="article" />
 	<meta name="twitter:card" content={post.imageUrl?.toString()} />
+	<link rel="canonical" href={`https://rosskeenan.com/posts/${post.slug.current}`} />
 </svelte:head>
 
 <div class="relative min-h-screen overflow-hidden bg-white pt-20 sm:mt-10 md:pt-10">

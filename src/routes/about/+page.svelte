@@ -8,6 +8,7 @@
 		name="description"
 		content="Ross Keenan is a Senior Software Consultant specializing in web development, JavaScript frameworks, backend systems, and data engineering. Available for contract work."
 	/>
+	<link rel="canonical" href="https://rosskeenan.com/about" />
 </svelte:head>
 
 <div>

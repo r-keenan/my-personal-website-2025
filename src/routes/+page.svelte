@@ -12,6 +12,7 @@
 		name="description"
 		content="Senior Software Consultant specializing in web development, JavaScript frameworks, backend systems, and data engineering. Available for consulting and contract work."
 	/>
+	<link rel="canonical" href="https://rosskeenan.com" />
 </svelte:head>
 
 <HomeHero />
