@@ -23,7 +23,7 @@
 			<Button class="bg-blue-light hover:bg-blue-dark mr-4 hidden md:block" size="sm"
 				><a href="/contact">Contact Me</a></Button
 			>
-			<Avatar clickable={true} />
+			<Avatar isClickable={true} />
 			<NavHamburger />
 		</div>
 		<NavUl {activeUrl} {activeClass} {nonActiveClass}>

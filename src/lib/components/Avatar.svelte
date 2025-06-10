@@ -1,10 +1,10 @@
 <script>
 	import avi from '$images/myAvi.jpg';
 
-	let { clickable = false } = $props();
+	let { isClickable = false } = $props();
 </script>
 
-{#if clickable}
+{#if isClickable}
 	<a href="/about">
 		<img src={avi} alt="me" height={40} width={40} class="rounded-full" />
 	</a>
