@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-	<title>About - Ross Keenan | Senior Software Consultant</title>
+	<title>About - Ross Keenan</title>
 	<meta
 		name="description"
 		content="Ross Keenan is a Senior Software Consultant specializing in web development, JavaScript frameworks, backend systems, and data engineering. Available for contract work."

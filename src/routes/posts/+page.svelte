@@ -7,7 +7,7 @@
 </script>
 
 <svelte:head>
-	<title>Blog Posts - Ross Keenan | Senior Software Consultant</title>
+	<title>Blog Posts - Ross Keenan</title>
 	<meta
 		name="description"
 		content="Latest blog posts from Ross Keenan covering web development, JavaScript frameworks, software consulting, and tech insights. Stay updated on current projects and industry thoughts."

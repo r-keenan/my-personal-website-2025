@@ -15,7 +15,7 @@
 </script>
 
 <svelte:head>
-	<title>Contact - Ross Keenan | Senior Software Consultant</title>
+	<title>Contact - Ross Keenan</title>
 	<meta
 		name="description"
 		content="Contact Ross Keenan for web development consulting, JavaScript frameworks, backend systems, Generative AI, and data engineering projects. Available for contract work and consulting."

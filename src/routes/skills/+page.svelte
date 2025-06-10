@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-	<title>Skills &amp; Technologies - Ross Keenan | Full Stack Developer</title>
+	<title>Skills &amp; Technologies - Ross Keenan</title>
 	<meta
 		name="description"
 		content="Comprehensive overview of Ross Keenan's technical skills including full stack development, data engineering, and analysis. Explore technologies and frameworks I'm experienced with."
