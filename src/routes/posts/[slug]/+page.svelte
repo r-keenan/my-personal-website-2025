@@ -13,7 +13,7 @@
 	<meta property="og:description" content={post.excerpt} />
 	<meta property="og:image" content={post.imageUrl?.toString()} />
 	<meta property="og:type" content="article" />
-	<meta name="twitter:card" content={post.imageUrl?.toString()} />
+	<meta name="twitter:card" content="summary_large_image" />
 	<link rel="canonical" href={`https://rosskeenan.com/posts/${post.slug.current}`} />
 </svelte:head>
 
