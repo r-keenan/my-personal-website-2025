@@ -23,34 +23,34 @@
 			<Button class="bg-blue-light hover:bg-blue-dark mr-4 hidden md:block" size="sm"
 				><a href="/contact">Contact Me</a></Button
 			>
-			<Avatar />
+			<Avatar clickable={true} />
 			<NavHamburger />
 		</div>
 		<NavUl {activeUrl} {activeClass} {nonActiveClass}>
 			<NavLi
 				href="/"
-				data-sveltekit-preload-data
+				data-sveltekit-preload-data="hover"
 				class="text-blue-light hover:bg-gray-light hover:text-white-DEFAULT pr-2 text-lg"
 				>Home</NavLi
 			>
 			<NavLi
 				href="/posts"
-				data-sveltekit-preload-data
+				data-sveltekit-preload-data="hover"
 				class="text-blue-light pr-4 text-lg hover:bg-gray-700 hover:text-white">Posts</NavLi
 			>
 			<NavLi
 				href="/skills"
-				data-sveltekit-preload-data
+				data-sveltekit-preload-data="hover"
 				class="text-blue-light pr-4 text-lg hover:bg-gray-700 hover:text-white">Skills</NavLi
 			>
 			<NavLi
 				href="/about"
-				data-sveltekit-preload-data
+				data-sveltekit-preload-data="hover"
 				class="text-blue-light pr-4 text-lg hover:bg-gray-700 hover:text-white">About Me</NavLi
 			>
 			<NavLi
 				href="/contact"
-				data-sveltekit-preload-data
+				data-sveltekit-preload-data="hover"
 				class="text-blue-light text-lg hover:bg-gray-700 hover:text-white">Contact</NavLi
 			>
 		</NavUl>
