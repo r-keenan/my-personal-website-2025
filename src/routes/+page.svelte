@@ -7,15 +7,15 @@
 	export let data;
 	const { qualifications } = data.initialData;
 
-	const metaContent =
+	const content =
 		'Senior Software Consultant specializing in web development, JavaScript frameworks, backend systems, and data engineering. Available for consulting and contract work.';
-	const seoTitle = 'Home';
-	const url = 'https://rosskeenan.com/';
+	const pageTitle = 'Home';
+	const canonicalUrl = 'https://rosskeenan.com/';
 
 	const seoData: SeoData = {
-		pageTitle: seoTitle,
-		content: metaContent,
-		canonicalUrl: url
+		pageTitle,
+		content,
+		canonicalUrl
 	};
 </script>
 

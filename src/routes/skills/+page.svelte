@@ -4,15 +4,15 @@
 	import { skills } from '$lib/constants/index';
 	import type { SeoData } from '$lib/utils/types/types';
 
-	const metaContent =
+	const content =
 		"Comprehensive overview of Ross Keenan's technical skills including full stack development, data engineering, and analysis. Explore technologies and frameworks I'm experienced with.";
-	const seoTitle = 'Skills';
-	const url = 'https://rosskeenan.com/skills';
+	const pageTitle = 'Skills';
+	const canonicalUrl = 'https://rosskeenan.com/skills';
 
 	const seoData: SeoData = {
-		pageTitle: seoTitle,
-		content: metaContent,
-		canonicalUrl: url
+		pageTitle,
+		content,
+		canonicalUrl
 	};
 </script>
 

@@ -6,15 +6,15 @@
 	export let data;
 	const { postsPreview }: { postsPreview: PostPreview[] } = data.initialData;
 
-	const metaContent =
+	const content =
 		'Ross Keenan is a Senior Software Consultant specializing in web development, JavaScript frameworks, backend systems, and data engineering. Available for contract work.';
-	const seoTitle = 'Blog Posts';
-	const url = 'https://rosskeenan.com/posts';
+	const pageTitle = 'Blog Posts';
+	const canonicalUrl = 'https://rosskeenan.com/posts';
 
 	const seoData: SeoData = {
-		pageTitle: seoTitle,
-		content: metaContent,
-		canonicalUrl: url
+		pageTitle,
+		content,
+		canonicalUrl
 	};
 </script>
 

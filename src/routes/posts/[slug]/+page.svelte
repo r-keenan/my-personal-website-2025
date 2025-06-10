@@ -1,21 +1,25 @@
 <script lang="ts">
 	import Breadcrumb from '$components/Breadcrumb.svelte';
-	import type { Post } from '$lib/utils/types/types';
+	import SeoHead from '$components/SeoHead.svelte';
+	import type { Post, SeoBlogPostData } from '$lib/utils/types/types';
 
 	export let data;
 	const { post } = data.initialData as { post: Post };
+
+	const content = post.excerpt;
+	const pageTitle = post.title;
+	const canonicalUrl = `https://rosskeenan.com/${post.slug.current}`;
+	const imageUrl = post.imageUrl?.toString();
+
+	const seoData: SeoBlogPostData = {
+		pageTitle,
+		content,
+		canonicalUrl,
+		imageUrl
+	};
 </script>
 
-<svelte:head>
-	<title>{post.title} | Ross Keenan</title>
-	<meta name="description" content={post.excerpt} />
-	<meta property="og:title" content={post.title} />
-	<meta property="og:description" content={post.excerpt} />
-	<meta property="og:image" content={post.imageUrl?.toString()} />
-	<meta property="og:type" content="article" />
-	<meta name="twitter:card" content="summary_large_image" />
-	<link rel="canonical" href={`https://rosskeenan.com/posts/${post.slug.current}`} />
-</svelte:head>
+<SeoHead data={seoData} />
 
 <div class="relative min-h-screen overflow-hidden bg-white pt-20 sm:mt-10 md:pt-10">
 	<div class="hidden lg:absolute lg:inset-y-0 lg:block lg:h-full lg:w-full">

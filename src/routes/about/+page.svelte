@@ -3,15 +3,15 @@
 	import aboutMePic2 from '$lib/images/meQuarterHeight.jpg';
 	import type { SeoData } from '$lib/utils/types/types';
 
-	const metaContent =
+	const content =
 		'Ross Keenan is a Senior Software Consultant specializing in web development, JavaScript frameworks, backend systems, and data engineering. Available for contract work.';
-	const seoTitle = 'About';
-	const url = 'https://rosskeenan.com/about';
+	const pageTitle = 'About';
+	const canonicalUrl = 'https://rosskeenan.com/about';
 
 	const seoData: SeoData = {
-		pageTitle: seoTitle,
-		content: metaContent,
-		canonicalUrl: url
+		pageTitle,
+		content,
+		canonicalUrl
 	};
 </script>
 

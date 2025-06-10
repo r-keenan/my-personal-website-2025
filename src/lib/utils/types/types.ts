@@ -47,3 +47,7 @@ export type SeoData = {
 	content: string;
 	canonicalUrl: string;
 };
+
+export type SeoBlogPostData = SeoData & {
+	imageUrl: string;
+};

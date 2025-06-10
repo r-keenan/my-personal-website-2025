@@ -15,15 +15,15 @@
 	let hasErrors = $derived(Object.keys($errors).length > 0);
 	let toastColor = $derived(hasErrors ? 'red' : 'green') as 'red' | 'green';
 
-	const metaContent =
+	const content =
 		'Contact Ross Keenan for web development consulting, JavaScript frameworks, backend systems, Generative AI, and data engineering projects. Available for contract work and consulting.';
-	const seoTitle = 'Contact';
-	const url = 'https://rosskeenan.com/contact';
+	const pageTitle = 'Contact';
+	const canonicalUrl = 'https://rosskeenan.com/contact';
 
 	const seoData: SeoData = {
-		pageTitle: seoTitle,
-		content: metaContent,
-		canonicalUrl: url
+		pageTitle,
+		content,
+		canonicalUrl
 	};
 </script>
 
