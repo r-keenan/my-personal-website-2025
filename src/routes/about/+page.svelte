@@ -1,15 +1,21 @@
 <script lang="ts">
+	import SeoHead from '$components/SeoHead.svelte';
 	import aboutMePic2 from '$lib/images/meQuarterHeight.jpg';
+	import type { SeoData } from '$lib/utils/types/types';
+
+	const metaContent =
+		'Ross Keenan is a Senior Software Consultant specializing in web development, JavaScript frameworks, backend systems, and data engineering. Available for contract work.';
+	const seoTitle = 'About';
+	const url = 'https://rosskeenan.com/about';
+
+	const seoData: SeoData = {
+		pageTitle: seoTitle,
+		content: metaContent,
+		canonicalUrl: url
+	};
 </script>
 
-<svelte:head>
-	<title>About - Ross Keenan</title>
-	<meta
-		name="description"
-		content="Ross Keenan is a Senior Software Consultant specializing in web development, JavaScript frameworks, backend systems, and data engineering. Available for contract work."
-	/>
-	<link rel="canonical" href="https://rosskeenan.com/about" />
-</svelte:head>
+<SeoHead data={seoData} />
 
 <div>
 	<div class="relative min-h-screen bg-white py-8 pt-20 sm:py-20 sm:pt-32">

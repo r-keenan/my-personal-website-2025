@@ -1,19 +1,24 @@
 <script lang="ts">
 	import BlogCard from '$components/BlogCard.svelte';
-	import type { PostPreview } from '$lib/utils/types/types.js';
+	import SeoHead from '$components/SeoHead.svelte';
+	import type { PostPreview, SeoData } from '$lib/utils/types/types';
 
 	export let data;
 	const { postsPreview }: { postsPreview: PostPreview[] } = data.initialData;
+
+	const metaContent =
+		'Ross Keenan is a Senior Software Consultant specializing in web development, JavaScript frameworks, backend systems, and data engineering. Available for contract work.';
+	const seoTitle = 'Blog Posts';
+	const url = 'https://rosskeenan.com/posts';
+
+	const seoData: SeoData = {
+		pageTitle: seoTitle,
+		content: metaContent,
+		canonicalUrl: url
+	};
 </script>
 
-<svelte:head>
-	<title>Blog Posts - Ross Keenan</title>
-	<meta
-		name="description"
-		content="Latest blog posts from Ross Keenan covering web development, JavaScript frameworks, software consulting, and tech insights. Stay updated on current projects and industry thoughts."
-	/>
-	<link rel="canonical" href="https://rosskeenan.com/posts" />
-</svelte:head>
+<SeoHead data={seoData} />
 
 <div class="lg:pb- relative bg-white px-4 pb-20 sm:px-6 sm:py-24 lg:px-8 lg:pt-12">
 	<div class="absolute inset-0">

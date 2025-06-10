@@ -41,3 +41,9 @@ export type Skill = {
 	icon: any;
 	listItems: string[];
 };
+
+export type SeoData = {
+	pageTitle: string;
+	content: string;
+	canonicalUrl: string;
+};

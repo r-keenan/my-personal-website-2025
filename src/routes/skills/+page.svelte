@@ -1,16 +1,22 @@
 <script lang="ts">
+	import SeoHead from '$components/SeoHead.svelte';
 	import SkillCard from '$lib/components/SkillsCard.svelte';
 	import { skills } from '$lib/constants/index';
+	import type { SeoData } from '$lib/utils/types/types';
+
+	const metaContent =
+		"Comprehensive overview of Ross Keenan's technical skills including full stack development, data engineering, and analysis. Explore technologies and frameworks I'm experienced with.";
+	const seoTitle = 'Skills';
+	const url = 'https://rosskeenan.com/skills';
+
+	const seoData: SeoData = {
+		pageTitle: seoTitle,
+		content: metaContent,
+		canonicalUrl: url
+	};
 </script>
 
-<svelte:head>
-	<title>Skills &amp; Technologies - Ross Keenan</title>
-	<meta
-		name="description"
-		content="Comprehensive overview of Ross Keenan's technical skills including full stack development, data engineering, and analysis. Explore technologies and frameworks I'm experienced with."
-	/>
-	<link rel="canonical" href="https://rosskeenan.com/skills" />
-</svelte:head>
+<SeoHead data={seoData} />
 
 <div>
 	<div class="relative bg-white pt-24 pb-20 sm:py-24 lg:pt-32">

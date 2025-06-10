@@ -1,4 +1,6 @@
 <script lang="ts">
+	import SeoHead from '$components/SeoHead.svelte';
+	import type { SeoData } from '$lib/utils/types/types';
 	import { Toast } from 'flowbite-svelte';
 	import { CheckCircleSolid } from 'flowbite-svelte-icons';
 	import { fly } from 'svelte/transition';
@@ -12,16 +14,20 @@
 	// Computed toast properties
 	let hasErrors = $derived(Object.keys($errors).length > 0);
 	let toastColor = $derived(hasErrors ? 'red' : 'green') as 'red' | 'green';
+
+	const metaContent =
+		'Contact Ross Keenan for web development consulting, JavaScript frameworks, backend systems, Generative AI, and data engineering projects. Available for contract work and consulting.';
+	const seoTitle = 'Contact';
+	const url = 'https://rosskeenan.com/contact';
+
+	const seoData: SeoData = {
+		pageTitle: seoTitle,
+		content: metaContent,
+		canonicalUrl: url
+	};
 </script>
 
-<svelte:head>
-	<title>Contact - Ross Keenan</title>
-	<meta
-		name="description"
-		content="Contact Ross Keenan for web development consulting, JavaScript frameworks, backend systems, Generative AI, and data engineering projects. Available for contract work and consulting."
-	/>
-	<link rel="canonical" href="https://rosskeenan.com/contact" />
-</svelte:head>
+<SeoHead data={seoData} />
 
 <div>
 	<div class="mt-10 min-h-screen bg-white">
