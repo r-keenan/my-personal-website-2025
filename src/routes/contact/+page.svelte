@@ -27,7 +27,7 @@
 		<div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
 			<div class="relative bg-white shadow-xl">
 				{#if $message}
-					<div transition:fly={{ y: -50, duration: 300 }} class="absolute top-4 right-4 z-50">
+					<div transition:fly={{ y: -50, duration: 300 }} class="fixed top-4 right-4 z-50">
 						<Toast color={toastColor} class="max-w-sm">
 							{#snippet icon()}
 								<CheckCircleSolid class="h-5 w-5" />
