@@ -6,6 +6,16 @@
 	const { post } = data.initialData as { post: Post };
 </script>
 
+<svelte:head>
+	<title>{post.title} | Ross Keenan</title>
+	<meta name="description" content={post.excerpt} />
+	<meta property="og:title" content={post.title} />
+	<meta property="og:description" content={post.excerpt} />
+	<meta property="og:image" content={post.imageUrl?.toString()} />
+	<meta property="og:type" content="article" />
+	<meta name="twitter:card" content={post.imageUrl?.toString()} />
+</svelte:head>
+
 <div class="relative min-h-screen overflow-hidden bg-white pt-20 sm:mt-10 md:pt-10">
 	<div class="hidden lg:absolute lg:inset-y-0 lg:block lg:h-full lg:w-full">
 		<div class="relative mx-auto h-full max-w-prose text-lg" aria-hidden="true"></div>
