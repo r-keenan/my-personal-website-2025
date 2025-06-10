@@ -1,19 +1,25 @@
 <script lang="ts">
+	import SeoHead from '$components/SeoHead.svelte';
 	import HomeHero from '$lib/components/HomeHero.svelte';
+	import type { SeoData } from '$lib/utils/types/types.js';
 	import { CheckCircleSolid } from 'flowbite-svelte-icons';
 
 	export let data;
 	const { qualifications } = data.initialData;
+
+	const metaContent =
+		'Senior Software Consultant specializing in web development, JavaScript frameworks, backend systems, and data engineering. Available for consulting and contract work.';
+	const seoTitle = 'Home';
+	const url = 'https://rosskeenan.com/';
+
+	const seoData: SeoData = {
+		pageTitle: seoTitle,
+		content: metaContent,
+		canonicalUrl: url
+	};
 </script>
 
-<svelte:head>
-	<title>Ross Keenan | Senior Software Consultant - Web Development & JavaScript Expert</title>
-	<meta
-		name="description"
-		content="Senior Software Consultant specializing in web development, JavaScript frameworks, backend systems, and data engineering. Available for consulting and contract work."
-	/>
-	<link rel="canonical" href="https://rosskeenan.com" />
-</svelte:head>
+<SeoHead data={seoData} />
 
 <HomeHero />
 <div class="bg-white">
