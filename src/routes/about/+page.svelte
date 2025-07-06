@@ -40,7 +40,9 @@
 						I develop in everything from Content Management Systems (CMS) to web sites and web apps.
 						I have experience in everything from the hot, new JavaScript frameworks, to backend
 						code, Generative AI, databases, and data engineering. You can see a full list of my
-						skill <a href="/skills" class="text-blue-light text-base font-medium">here</a>.
+						skills and experience <a href="/skills" class="text-blue-light text-base font-medium"
+							>here</a
+						>.
 					</p>
 					<p class="text-base leading-7">
 						I have six years of experience in Software Engineering, and I am a veteran of the Iraq
