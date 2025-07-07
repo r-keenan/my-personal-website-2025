@@ -1,5 +1,6 @@
 <script>
 	import { GithubSolid, LinkedinSolid } from 'flowbite-svelte-icons';
+	import UpworkIcon from '$components/icons/Upwork.svelte';
 
 	const navigation = [
 		{ name: 'Posts', href: '/posts' },
@@ -36,9 +37,20 @@
 				rel="noreferrer"
 				class="hover:text-blue-light text-gray-400"
 			>
-				<span class="sr-only">Facebook</span>
+				<span class="sr-only">GitHub</span>
 				<svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 					<GithubSolid />
+				</svg>
+			</a>
+			<a
+				href="https://www.upwork.com/freelancers/~0136d18441afe1e7e8"
+				target="_blank"
+				rel="noreferrer"
+				class="hover:text-blue-light text-gray-400"
+			>
+				<span class="sr-only">Upwork</span>
+				<svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+					<UpworkIcon />
 				</svg>
 			</a>
 		</div>
