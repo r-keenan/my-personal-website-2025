@@ -1,7 +1,9 @@
-import type { PageServerLoad } from './$types';
 import { getPostsPreview, getQualifications, sanityApiStore } from '$lib/stores/sanityDataStore';
 
-export const load: PageServerLoad = async () => {
+export const prerender = true;
+export const csr = false;
+
+export const load = async () => {
 	const state = sanityApiStore.get();
 	const promises = [];
 
