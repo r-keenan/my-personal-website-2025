@@ -4,6 +4,10 @@ import { z } from 'zod';
 import { logError } from '$lib/clients/awsCloudWatch';
 import { apiGatewayClient } from '$lib/clients/axios';
 
+// SPA for contact form
+export const prerender = false;
+export const csr = true;
+
 const schema = z.object({
 	firstName: z
 		.string()
