@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <linearGradient id="azure-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0078d4"/>
+      <stop offset="100%" style="stop-color:#005a9f"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#azure-gradient)" d="M7.5 2L2 18h5.5L15 2H7.5z"/>
+  <path fill="#40e0d0" d="M15 2L22 18H9L15 2z"/>
+</svg>
