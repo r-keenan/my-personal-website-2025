@@ -1,52 +1,17 @@
 <script lang="ts">
 	import SeoHead from '$components/SeoHead.svelte';
 	import HomeHero from '$lib/components/HomeHero.svelte';
-	import type { SeoData } from '$lib/utils/types/types.js';
+	import type { SeoData, TechLogo } from '$lib/utils/types/types.js';
 	import { CheckCircleSolid } from 'flowbite-svelte-icons';
 	import { onMount } from 'svelte';
-
-	let currentSlide = 0;
+	import { sliceTechLogos } from '$lib/utils/utilityFunctions';
 
 	export let data;
 	const { qualifications } = data.initialData;
 
-	const techLogos = [
-		{ alt: '.Net logo', src: '/logos/dotnet.svg', title: '.Net' },
-		{ alt: 'Python logo', src: '/logos/python.svg', title: 'Python' },
-		{ alt: 'Node.js logo', src: '/logos/nodejs.svg', title: 'Node.js' },
-		{ alt: 'Golang logo', src: '/logos/golang.svg', title: 'Go' },
-		{ alt: 'React logo', src: '/logos/react.svg', title: 'React' },
-		{ alt: 'Svelte logo', src: '/logos/svelte.svg', title: 'Svelte' },
-		{ alt: 'Vue logo', src: '/logos/vue.svg', title: 'Vue' },
-		{ alt: 'Angular logo', src: '/logos/angular.svg', title: 'Angular' },
-		{ alt: 'Azure logo', src: '/logos/azure.svg', title: 'Azure' },
-		{ alt: 'AWS logo', src: '/logos/aws.svg', title: 'AWS' },
-		{ alt: 'PostgreSQL logo', src: '/logos/postgres.svg', title: 'PostgreSQL' },
-		{ alt: 'SQL Server logo', src: '/logos/sqlserver.svg', title: 'SQL Server' },
-		{ alt: 'Docker logo', src: '/logos/docker.svg', title: 'Docker' },
-		{ alt: 'Apache Kafka logo', src: '/logos/kafka.svg', title: 'Kafka' },
-		{ alt: 'GitHub logo', src: '/logos/github.svg', title: 'GitHub' },
-		{ alt: 'JetBrains Rider logo', src: '/logos/rider.svg', title: 'Rider' },
-		{ alt: 'VS Code logo', src: '/logos/vscode.svg', title: 'VS Code' },
-		{ alt: 'Windsurf logo', src: '/logos/windsurf.svg', title: 'Windsurf' },
-		{ alt: 'Neovim logo', src: '/logos/neovim.svg', title: 'Neovim' },
-		{ alt: 'Ghostty logo', src: '/logos/ghostty.svg', title: 'Ghostty' }
-	];
-
 	// Group logos into slides - 5 for desktop, 4 for mobile
-	const desktopSlides: (typeof techLogos)[] = [];
-	const mobileSlides: (typeof techLogos)[] = [];
-
-	for (let i = 0; i < techLogos.length; i += 5) {
-		const slide = techLogos.slice(i, i + 5);
-		desktopSlides.push(slide);
-	}
-
-	for (let i = 0; i < techLogos.length; i += 4) {
-		const slide = techLogos.slice(i, i + 4);
-		mobileSlides.push(slide);
-	}
-
+	const desktopSlides: TechLogo[][] = [...sliceTechLogos(5)];
+	const mobileSlides: TechLogo[][] = [...sliceTechLogos(4)];
 	let currentDesktopSlide = 0;
 	let currentMobileSlide = 0;
 

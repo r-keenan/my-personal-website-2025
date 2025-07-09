@@ -9,7 +9,7 @@ import {
 	WindowOutline
 } from 'flowbite-svelte-icons';
 
-import type { Skill } from '$lib/utils/types/types';
+import type { Skill, TechLogo } from '$lib/utils/types/types';
 
 export const oneHour: number = 60 * 60;
 export const oneDay: number = 60 * 60 * 24;
@@ -176,4 +176,27 @@ export const skills: Skill[] = [
 		icon: BookOpenOutline,
 		listItems: ['Agile', 'Kanban', 'Scrum', 'SAFe', 'Waterfall']
 	}
+];
+
+export const TechLogos: TechLogo[] = [
+	{ alt: '.Net logo', src: '/logos/dotnet.svg', title: '.Net' },
+	{ alt: 'Python logo', src: '/logos/python.svg', title: 'Python' },
+	{ alt: 'Node.js logo', src: '/logos/nodejs.svg', title: 'Node.js' },
+	{ alt: 'Golang logo', src: '/logos/golang.svg', title: 'Go' },
+	{ alt: 'React logo', src: '/logos/react.svg', title: 'React' },
+	{ alt: 'Svelte logo', src: '/logos/svelte.svg', title: 'Svelte' },
+	{ alt: 'Vue logo', src: '/logos/vue.svg', title: 'Vue' },
+	{ alt: 'Angular logo', src: '/logos/angular.svg', title: 'Angular' },
+	{ alt: 'Azure logo', src: '/logos/azure.svg', title: 'Azure' },
+	{ alt: 'AWS logo', src: '/logos/aws.svg', title: 'AWS' },
+	{ alt: 'PostgreSQL logo', src: '/logos/postgres.svg', title: 'PostgreSQL' },
+	{ alt: 'SQL Server logo', src: '/logos/sqlserver.svg', title: 'SQL Server' },
+	{ alt: 'Docker logo', src: '/logos/docker.svg', title: 'Docker' },
+	{ alt: 'Apache Kafka logo', src: '/logos/kafka.svg', title: 'Kafka' },
+	{ alt: 'GitHub logo', src: '/logos/github.svg', title: 'GitHub' },
+	{ alt: 'JetBrains Rider logo', src: '/logos/rider.svg', title: 'Rider' },
+	{ alt: 'VS Code logo', src: '/logos/vscode.svg', title: 'VS Code' },
+	{ alt: 'Windsurf logo', src: '/logos/windsurf.svg', title: 'Windsurf' },
+	{ alt: 'Neovim logo', src: '/logos/neovim.svg', title: 'Neovim' },
+	{ alt: 'Ghostty logo', src: '/logos/ghostty.svg', title: 'Ghostty' }
 ];
