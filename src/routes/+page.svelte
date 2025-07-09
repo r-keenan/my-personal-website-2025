@@ -81,7 +81,7 @@
 <HomeHero />
 <!-- Technology Carousel Section -->
 <div class="bg-blue-light py-16 opacity-75">
-	<div class="mx-auto max-w-7xl px-2.5 sm:px-6 lg:px-8">
+	<div class="mx-auto max-w-7xl px-2.5 sm:px-6 lg:py-8">
 		<div class="text-center">
 			<h2 class="text-gray-darker mb-4 text-3xl font-extrabold">Technologies I Work With</h2>
 			<p class="text-gray-dark mb-8 text-lg">
@@ -95,8 +95,14 @@
 					<div class="hidden w-full grid-cols-5 gap-6 md:grid">
 						{#each desktopSlides[currentDesktopSlide] as logo (logo.title)}
 							<div class="flex flex-col items-center transition-opacity duration-500">
-								<img src={logo.src} alt={logo.alt} class="mb-3 h-18 w-18 object-contain" />
-								<span class="text-gray-dark text-center text-sm font-medium">{logo.title}</span>
+								<img
+									src={logo.src}
+									alt={logo.alt}
+									class="mb-3 h-18 w-18 object-contain font-semibold"
+								/>
+								<span class="text-gray-dark text-center text-sm font-bold tracking-wider"
+									>{logo.title}</span
+								>
 							</div>
 						{/each}
 					</div>
@@ -105,7 +111,9 @@
 						{#each mobileSlides[currentMobileSlide] as logo (logo.title)}
 							<div class="flex flex-col items-center transition-opacity duration-500">
 								<img src={logo.src} alt={logo.alt} class="mb-3 h-16 w-16 object-contain" />
-								<span class="text-gray-dark text-center text-xs font-medium">{logo.title}</span>
+								<span class="text-gray-dark text-center text-xs font-bold tracking-wider"
+									>{logo.title}</span
+								>
 							</div>
 						{/each}
 					</div>
@@ -114,8 +122,8 @@
 		</div>
 	</div>
 </div>
-<div class="bg-gray-light opacity-85">
-	<div class="mx-auto max-w-7xl p-8 sm:px-6 lg:px-8 lg:py-12">
+<div class="bg-gray-light py-16 opacity-85">
+	<div class="mx-auto max-w-7xl px-2.5 sm:px-6 lg:py-8">
 		<div class="mx-auto max-w-3xl text-center">
 			<h2 class="text-gray-dark text-3xl font-extrabold">Senior Software Consultant</h2>
 			<p class="text-gray-medium mt-4 text-lg">
