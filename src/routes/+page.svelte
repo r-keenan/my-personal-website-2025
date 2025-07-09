@@ -34,16 +34,14 @@
 	];
 
 	// Group logos into slides - 5 for desktop, 4 for mobile
-	const desktopSlides: typeof techLogos[] = [];
-	const mobileSlides: typeof techLogos[] = [];
-	
-	// Desktop slides (5 logos per slide)
+	const desktopSlides: (typeof techLogos)[] = [];
+	const mobileSlides: (typeof techLogos)[] = [];
+
 	for (let i = 0; i < techLogos.length; i += 5) {
 		const slide = techLogos.slice(i, i + 5);
 		desktopSlides.push(slide);
 	}
-	
-	// Mobile slides (4 logos per slide)
+
 	for (let i = 0; i < techLogos.length; i += 4) {
 		const slide = techLogos.slice(i, i + 4);
 		mobileSlides.push(slide);
@@ -84,11 +82,11 @@
 <HomeHero />
 
 <!-- Technology Carousel Section -->
-<div class="bg-gray-50 py-16">
-	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+<div class="bg-blue-light py-16 opacity-75">
+	<div class="mx-auto max-w-7xl px-2.5 sm:px-6 lg:px-8">
 		<div class="text-center">
-			<h2 class="text-gray-dark mb-4 text-3xl font-extrabold">Technologies I Work With</h2>
-			<p class="text-gray-medium mb-8 text-lg">
+			<h2 class="text-gray-darker mb-4 text-3xl font-extrabold">Technologies I Work With</h2>
+			<p class="text-gray-dark mb-8 text-lg">
 				Here are some of the key technologies and tools I use to build modern applications.
 			</p>
 		</div>
@@ -96,21 +94,21 @@
 			<div class="relative h-48 overflow-hidden rounded-lg bg-white shadow-md">
 				<div class="flex h-full items-center justify-center p-6">
 					<!-- Desktop view: 5 logos -->
-					<div class="hidden md:grid grid-cols-5 gap-6 w-full">
+					<div class="hidden w-full grid-cols-5 gap-6 md:grid">
 						{#each desktopSlides[currentDesktopSlide] as logo}
 							<div class="flex flex-col items-center transition-opacity duration-500">
 								<img src={logo.src} alt={logo.alt} class="mb-3 h-18 w-18 object-contain" />
-								<span class="text-gray-dark text-sm font-medium text-center">{logo.title}</span>
+								<span class="text-gray-dark text-center text-sm font-medium">{logo.title}</span>
 							</div>
 						{/each}
 					</div>
-					
+
 					<!-- Mobile view: 4 logos -->
-					<div class="md:hidden grid grid-cols-4 gap-4 w-full">
+					<div class="grid w-full grid-cols-4 gap-4 md:hidden">
 						{#each mobileSlides[currentMobileSlide] as logo}
 							<div class="flex flex-col items-center transition-opacity duration-500">
 								<img src={logo.src} alt={logo.alt} class="mb-3 h-16 w-16 object-contain" />
-								<span class="text-gray-dark text-xs font-medium text-center">{logo.title}</span>
+								<span class="text-gray-dark text-center text-xs font-medium">{logo.title}</span>
 							</div>
 						{/each}
 					</div>
@@ -119,9 +117,8 @@
 		</div>
 	</div>
 </div>
-
 <div class="bg-white">
-	<div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+	<div class="mx-auto max-w-7xl sm:px-6 lg:px-8 lg:py-12">
 		<div class="mx-auto max-w-3xl text-center">
 			<h2 class="text-gray-dark text-3xl font-extrabold">Senior Software Consultant</h2>
 			<p class="text-gray-medium mt-4 text-lg">
