@@ -11,8 +11,8 @@
 	const { qualifications } = data.initialData;
 
 	const techLogos = [
+		{ alt: '.Net logo', src: '/logos/dotnet.svg', title: '.Net' },
 		{ alt: 'Python logo', src: '/logos/python.svg', title: 'Python' },
-		{ alt: 'C# logo', src: '/logos/csharp.svg', title: 'C#' },
 		{ alt: 'Node.js logo', src: '/logos/nodejs.svg', title: 'Node.js' },
 		{ alt: 'Golang logo', src: '/logos/golang.svg', title: 'Go' },
 		{ alt: 'React logo', src: '/logos/react.svg', title: 'React' },
@@ -53,7 +53,7 @@
 	onMount(() => {
 		const desktopInterval = setInterval(() => {
 			currentDesktopSlide = (currentDesktopSlide + 1) % desktopSlides.length;
-		}, 3000);
+		}, 4000);
 
 		const mobileInterval = setInterval(() => {
 			currentMobileSlide = (currentMobileSlide + 1) % mobileSlides.length;
