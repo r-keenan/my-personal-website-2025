@@ -78,9 +78,7 @@
 </script>
 
 <SeoHead data={seoData} />
-
 <HomeHero />
-
 <!-- Technology Carousel Section -->
 <div class="bg-blue-light py-16 opacity-75">
 	<div class="mx-auto max-w-7xl px-2.5 sm:px-6 lg:px-8">
