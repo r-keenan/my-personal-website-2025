@@ -10,11 +10,11 @@
 	];
 </script>
 
-<footer class="bg-gray-light">
+<footer class="bg-blue-dark">
 	<div class="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
 		<nav class="-mb-6 flex flex-wrap justify-center gap-x-12 gap-y-3 text-sm/6" aria-label="Footer">
 			{#each navigation as nav (nav.name)}
-				<a href={nav.href} class="text-gray-dark hover:text-blue-light text-base">
+				<a href={nav.href} class="text-white-DEFAULT hover:text-blue-light text-base">
 					{nav.name}
 				</a>
 			{/each}
@@ -54,7 +54,7 @@
 				</svg>
 			</a>
 		</div>
-		<p class="text-gray-dark mt-8 text-center text-base">
+		<p class="text-white-DEFAULT mt-8 text-center text-base">
 			&copy; {new Date().getFullYear()} Ross Keenan. All rights reserved.
 		</p>
 	</div>

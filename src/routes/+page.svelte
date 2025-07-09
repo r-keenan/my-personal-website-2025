@@ -21,7 +21,6 @@
 		{ alt: 'Angular logo', src: '/logos/angular.svg', title: 'Angular' },
 		{ alt: 'Azure logo', src: '/logos/azure.svg', title: 'Azure' },
 		{ alt: 'AWS logo', src: '/logos/aws.svg', title: 'AWS' },
-		{ alt: 'Vercel logo', src: '/logos/vercel.svg', title: 'Vercel' },
 		{ alt: 'PostgreSQL logo', src: '/logos/postgres.svg', title: 'PostgreSQL' },
 		{ alt: 'SQL Server logo', src: '/logos/sqlserver.svg', title: 'SQL Server' },
 		{ alt: 'Docker logo', src: '/logos/docker.svg', title: 'Docker' },
@@ -30,7 +29,8 @@
 		{ alt: 'JetBrains Rider logo', src: '/logos/rider.svg', title: 'Rider' },
 		{ alt: 'VS Code logo', src: '/logos/vscode.svg', title: 'VS Code' },
 		{ alt: 'Windsurf logo', src: '/logos/windsurf.svg', title: 'Windsurf' },
-		{ alt: 'Neovim logo', src: '/logos/neovim.svg', title: 'Neovim' }
+		{ alt: 'Neovim logo', src: '/logos/neovim.svg', title: 'Neovim' },
+		{ alt: 'Ghostty logo', src: '/logos/ghostty.svg', title: 'Ghostty' }
 	];
 
 	// Group logos into slides - 5 for desktop, 4 for mobile
@@ -114,8 +114,8 @@
 		</div>
 	</div>
 </div>
-<div class="bg-white">
-	<div class="mx-auto max-w-7xl sm:px-6 lg:px-8 lg:py-12">
+<div class="bg-gray-light opacity-85">
+	<div class="mx-auto max-w-7xl p-8 sm:px-6 lg:px-8 lg:py-12">
 		<div class="mx-auto max-w-3xl text-center">
 			<h2 class="text-gray-dark text-3xl font-extrabold">Senior Software Consultant</h2>
 			<p class="text-gray-medium mt-4 text-lg">
