@@ -95,17 +95,16 @@
 				<div class="flex h-full items-center justify-center p-6">
 					<!-- Desktop view: 5 logos -->
 					<div class="hidden w-full grid-cols-5 gap-6 md:grid">
-						{#each desktopSlides[currentDesktopSlide] as logo}
+						{#each desktopSlides[currentDesktopSlide] as logo (logo.title)}
 							<div class="flex flex-col items-center transition-opacity duration-500">
 								<img src={logo.src} alt={logo.alt} class="mb-3 h-18 w-18 object-contain" />
 								<span class="text-gray-dark text-center text-sm font-medium">{logo.title}</span>
 							</div>
 						{/each}
 					</div>
-
 					<!-- Mobile view: 4 logos -->
 					<div class="grid w-full grid-cols-4 gap-4 md:hidden">
-						{#each mobileSlides[currentMobileSlide] as logo}
+						{#each mobileSlides[currentMobileSlide] as logo (logo.title)}
 							<div class="flex flex-col items-center transition-opacity duration-500">
 								<img src={logo.src} alt={logo.alt} class="mb-3 h-16 w-16 object-contain" />
 								<span class="text-gray-dark text-center text-xs font-medium">{logo.title}</span>
