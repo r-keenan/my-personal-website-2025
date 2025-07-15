@@ -32,7 +32,7 @@ export async function sanityClient() {
 			projectId,
 			dataset,
 			token,
-			useCdn: true,
+			useCdn: false,
 			apiVersion: '2025-02-19',
 			ignoreBrowserTokenWarning: true
 		});
