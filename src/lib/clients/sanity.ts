@@ -33,7 +33,7 @@ export async function sanityClient() {
 			dataset,
 			token,
 			useCdn: true,
-			apiVersion: '2023-02-19',
+			apiVersion: '2025-02-19',
 			ignoreBrowserTokenWarning: true
 		});
 
