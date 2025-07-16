@@ -51,7 +51,7 @@ return await Pulumi.Deployment.RunAsync(() =>
         ResourceId = contactResource.Id,
         HttpMethod = "POST",
         Authorization = "NONE",
-        ApiKeyRequired = true, // Require API key for this method
+        ApiKeyRequired = true,
     });
 
     var apiKey = new ApiKey("contact-form-api-key", new()
@@ -224,7 +224,7 @@ return await Pulumi.Deployment.RunAsync(() =>
         Runtime = "dotnet8",
         Handler = "ContactFormLambda::ContactFormLambda.ContactFormHandler::HandleContactFormAsync",
         Role = lambdaRole.Arn,
-        Code = new FileArchive("./ContactFormLambda/bin/Release/net8.0/publish"),
+        Code = new FileArchive("./ContactFormLambda/bin/Release/net8.0/linux-x64/publish"),
         Environment = new FunctionEnvironmentArgs
         {
             Variables =
@@ -434,7 +434,7 @@ return await Pulumi.Deployment.RunAsync(() =>
         HealthCheckConfiguration = new ServiceHealthCheckConfigurationArgs
         {
             HealthyThreshold = 1,
-            Interval = 60,
+            Interval = 20,
             Path = "/",
             Protocol = "HTTP",
             Timeout = 5,

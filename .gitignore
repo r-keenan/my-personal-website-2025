@@ -25,4 +25,6 @@ vite.config.ts.timestamp-*
 
 # Pulumi C# project
 infrastructure/bin/
+infrastructure/*/bin/
+infrastructure/*/obj/
 infrastructure/obj/
