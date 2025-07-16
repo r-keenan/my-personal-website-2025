@@ -21,6 +21,11 @@ This repo replaces the website that I built in late 2021 that was created with N
 - Playwright
 - AWS Secrets Manager
 - AWS CloudWatch
+- AWS API Gateway
+- AWS Lambda
+- AWS DynamoDB
+- AWS AppRunner
+- Pulumi IaC (C#)
 
 ### How to run on your local machine
 

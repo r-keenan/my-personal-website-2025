@@ -22,7 +22,6 @@ return await Pulumi.Deployment.RunAsync(() =>
     const string environment = "production";
     const string application = "my-personal-website";
 
-    // Create API Gateway REST API
     var api = new RestApi("contact-form-api", new()
     {
         Name = "contact-form-api",
@@ -39,7 +38,6 @@ return await Pulumi.Deployment.RunAsync(() =>
         },
     });
 
-    // Create API Gateway Resource for /contact
     var contactResource = new Pulumi.Aws.ApiGateway.Resource("contact-resource", new()
     {
         RestApi = api.Id,
@@ -47,7 +45,6 @@ return await Pulumi.Deployment.RunAsync(() =>
         PathPart = "contact",
     });
 
-    // Create API Gateway Method for POST /contact
     var contactMethod = new Method("contact-method", new()
     {
         RestApi = api.Id,
@@ -57,7 +54,6 @@ return await Pulumi.Deployment.RunAsync(() =>
         ApiKeyRequired = true, // Require API key for this method
     });
 
-    // Create API Key
     var apiKey = new ApiKey("contact-form-api-key", new()
     {
         Name = "contact-form-api-key",
@@ -70,7 +66,6 @@ return await Pulumi.Deployment.RunAsync(() =>
         },
     });
 
-    // Create DynamoDB table
     var contact_form_table = new Table("contact-form-table", new()
     {
         Name = "ContactMessages",
@@ -166,7 +161,6 @@ return await Pulumi.Deployment.RunAsync(() =>
         },
     });
 
-    // Create IAM role for Lambda function
     var lambdaRole = new Role("contact-form-lambda-role", new()
     {
         AssumeRolePolicy = @"{
@@ -183,7 +177,6 @@ return await Pulumi.Deployment.RunAsync(() =>
         }",
     });
 
-    // Create IAM policy for Lambda function
     var lambdaPolicy = new Policy("contact-form-lambda-policy", new()
     {
         PolicyDocument = Output.Format($@"{{
@@ -220,14 +213,12 @@ return await Pulumi.Deployment.RunAsync(() =>
         }}"),
     });
 
-    // Attach IAM policy to Lambda role
     var lambdaRolePolicyAttachment = new RolePolicyAttachment("contact-form-lambda-role-policy-attachment", new()
     {
         Role = lambdaRole.Name,
         PolicyArn = lambdaPolicy.Arn,
     });
 
-    // Create Lambda function
     var lambdaFunction = new Function("contact-form-lambda-function", new()
     {
         Runtime = "dotnet8",
@@ -251,7 +242,6 @@ return await Pulumi.Deployment.RunAsync(() =>
         },
     });
 
-    // Give API Gateway permission to invoke Lambda function
     var lambdaPermission = new Permission("contact-form-lambda-permission", new()
     {
         Action = "lambda:InvokeFunction",
@@ -260,7 +250,6 @@ return await Pulumi.Deployment.RunAsync(() =>
         SourceArn = Output.Format($"{api.ExecutionArn}/*/*"),
     });
 
-    // Create API Gateway Integration (Lambda integration)
     var contactIntegration = new Integration("contact-integration", new()
     {
         RestApi = api.Id,
@@ -271,7 +260,6 @@ return await Pulumi.Deployment.RunAsync(() =>
         Uri = lambdaFunction.InvokeArn,
     });
 
-    // Create API Gateway Deployment (depends on methods being created)
     var deployment = new Pulumi.Aws.ApiGateway.Deployment("contact-form-api-deployment", new()
     {
         RestApi = api.Id,
@@ -281,7 +269,6 @@ return await Pulumi.Deployment.RunAsync(() =>
         DependsOn = { contactIntegration }, // Ensure methods are created first
     });
 
-    // Create API Gateway Stage
     var stage = new Stage("contact-form-api-stage", new()
     {
         RestApi = api.Id,
@@ -300,7 +287,6 @@ return await Pulumi.Deployment.RunAsync(() =>
         },
     });
 
-    // Create secret to store API Gateway base URL
     var apiGatewaySecret = new Secret("contact-form-api-gateway-url-secret", new()
     {
         Name = "CONTACT_FORM_API_GATEWAY_URL",
@@ -313,7 +299,6 @@ return await Pulumi.Deployment.RunAsync(() =>
         },
     });
 
-    // Create secret version to store the API Gateway URL value
     var apiGatewaySecretVersion = new SecretVersion("contact-form-api-gateway-url-secret-version", new()
     {
         SecretId = apiGatewaySecret.Id,
@@ -323,7 +308,6 @@ return await Pulumi.Deployment.RunAsync(() =>
         })),
     });
 
-    // Create secret to store API Gateway API key
     var apiKeySecret = new Secret("contact-form-api-key-secret", new()
     {
         Name = "CONTACT_FORM_API_KEY",
@@ -336,7 +320,6 @@ return await Pulumi.Deployment.RunAsync(() =>
         },
     });
 
-    // Create secret version to store the API key value
     var apiKeySecretVersion = new SecretVersion("contact-form-api-key-secret-version", new()
     {
         SecretId = apiKeySecret.Id,
@@ -346,7 +329,6 @@ return await Pulumi.Deployment.RunAsync(() =>
         })),
     });
 
-    // Create Usage Plan (after stage is created)
     var usagePlan = new UsagePlan("contact-form-usage-plan", new()
     {
         Name = "contact-form-usage-plan",
@@ -388,7 +370,6 @@ return await Pulumi.Deployment.RunAsync(() =>
         UsagePlanId = usagePlan.Id,
     });
 
-    // Create CloudWatch Log Group for error logging
     var logGroup = new LogGroup("sveltekit-errors-log-group", new()
     {
         Name = "/sveltekit/errors",
@@ -401,7 +382,6 @@ return await Pulumi.Deployment.RunAsync(() =>
         },
     });
 
-    // Create CloudWatch Log Stream for app errors
     var logStream = new LogStream("app-errors-log-stream", new()
     {
         Name = $"app-errors-{DateTime.UtcNow.ToString("yyyy-MM-dd")}",
@@ -414,7 +394,6 @@ return await Pulumi.Deployment.RunAsync(() =>
         ProviderType = "GITHUB",
     });
 
-    // AppRunner
     var appRunnerService = new Service("sveltekit-github-apprunner", new()
     {
         ServiceName = "sveltekit-app",
@@ -485,7 +464,6 @@ return await Pulumi.Deployment.RunAsync(() =>
     },
     });
 
-    // custom domain for AppRunner
     var appRunnerCustomDomain = new CustomDomainAssociation("sveltekit-custom-domain", new()
     {
         ServiceArn = appRunnerService.Arn,
