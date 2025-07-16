@@ -13,7 +13,6 @@ This repo replaces the website that I built in late 2021 that was created with N
 - Tailwind CSS
 - Flowbite-Svelte
 - Prettier
-- GitHub Actions
 - Codeql
 - Sanity Headless CMS
 - Vite
@@ -25,6 +24,7 @@ This repo replaces the website that I built in late 2021 that was created with N
 - AWS Lambda
 - AWS DynamoDB
 - AWS AppRunner
+- GitHub Actions
 - Pulumi IaC (C#)
 
 ### How to run on your local machine
