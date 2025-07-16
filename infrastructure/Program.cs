@@ -399,6 +399,10 @@ return await Pulumi.Deployment.RunAsync(() =>
         ServiceName = "sveltekit-app",
         SourceConfiguration = new ServiceSourceConfigurationArgs
         {
+            AuthenticationConfiguration = new ServiceSourceConfigurationAuthenticationConfigurationArgs
+            {
+                ConnectionArn = githubConnection.Arn
+            },
             CodeRepository = new ServiceSourceConfigurationCodeRepositoryArgs
             {
                 RepositoryUrl = "https://github.com/r-keenan/my-personal-website-2025",
@@ -453,15 +457,16 @@ return await Pulumi.Deployment.RunAsync(() =>
         DomainName = domainName,
         SubjectAlternativeNames = new[]
         {
-        websiteUrl,
-    },
+            websiteUrl,
+            "www.rosskeenan.com"
+        },
         ValidationMethod = "DNS",
         Tags =
-    {
-        { "Environment", environment },
-        { "Application", application },
-        { "Purpose", "SSL" },
-    },
+        {
+            { "Environment", environment },
+            { "Application", application },
+            { "Purpose", "SSL" },
+        },
     });
 
     var appRunnerCustomDomain = new CustomDomainAssociation("sveltekit-custom-domain", new()
