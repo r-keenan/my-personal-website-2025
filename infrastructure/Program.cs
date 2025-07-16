@@ -457,7 +457,6 @@ return await Pulumi.Deployment.RunAsync(() =>
         DomainName = domainName,
         SubjectAlternativeNames = new[]
         {
-            websiteUrl,
             "www.rosskeenan.com"
         },
         ValidationMethod = "DNS",
@@ -469,12 +468,17 @@ return await Pulumi.Deployment.RunAsync(() =>
         },
     });
 
+    /*
     var appRunnerCustomDomain = new CustomDomainAssociation("sveltekit-custom-domain", new()
     {
         ServiceArn = appRunnerService.Arn,
         DomainName = domainName,
         EnableWwwSubdomain = true,
+    }, new CustomResourceOptions
+    {
+        DependsOn = { appRunnerService },
     });
+    */
 
     return new Dictionary<string, object?>
     {
@@ -492,3 +496,4 @@ return await Pulumi.Deployment.RunAsync(() =>
         ["apiKeySecretArn"] = apiKeySecret.Arn,
     };
 });
+
