@@ -1,6 +1,6 @@
 # Welcome to my website makeover!
 
-This is my portfolio and blog that I am currently working on. The backend is currently SvelteKit hosted on AWS. The URL to see this code live is https://rosskeenan.com.
+This is my portfolio and blog that I am currently working on. The front end and backend are currently SvelteKit hosted on AWS. The URL to see this code live is https://rosskeenan.com.
 
 This repo replaces the website that I built in late 2021 that was created with Next.js (React). You can find that repo here: [GitHub Repo for 2021 Website](https://github.com/r-keenan/my-personal-website)
 
