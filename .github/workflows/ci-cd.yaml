@@ -86,7 +86,11 @@ jobs:
           ECR_REPOSITORY: sveltekit-app
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          # Build image with build args for secrets
+          # Debug: Show that secrets are available (masked)
+          echo "SANITY_PROJECT_ID length: ${#SANITY_PROJECT_ID}"
+          echo "SANITY_DATASET: $SANITY_DATASET"
+
+          # Build image with proper secret passing
           docker build \
             --build-arg SANITY_PROJECT_ID="${{ steps.secrets.outputs.SANITY_PROJECT_ID }}" \
             --build-arg SANITY_DATASET="${{ steps.secrets.outputs.SANITY_DATASET }}" \
