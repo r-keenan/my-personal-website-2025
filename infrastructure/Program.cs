@@ -390,12 +390,13 @@ return await Pulumi.Deployment.RunAsync(() =>
         LogGroupName = logGroup.Name,
     });
 
+    /*
     var githubConnection = new Connection("sveltekit-github-connection", new()
     {
         ConnectionName = "sveltekit-github-connection",
         ProviderType = "GITHUB",
     });
-
+    */
     var ecrRepository = new Repository("sveltekit-ecr-repo", new()
     {
         Name = "sveltekit-app",
@@ -410,6 +411,56 @@ return await Pulumi.Deployment.RunAsync(() =>
         { "Application", application },
         { "Purpose", "ContainerRegistry" },
     },
+    });
+
+    var appRunnerInstanceRole = new Role("apprunner-instance-role", new()
+    {
+        AssumeRolePolicy = @"{
+        ""Version"": ""2012-10-17"",
+        ""Statement"": [
+            {
+                ""Action"": ""sts:AssumeRole"",
+                ""Principal"": {
+                    ""Service"": ""tasks.apprunner.amazonaws.com""
+                },
+                ""Effect"": ""Allow""
+            }
+        ]
+    }",
+        Tags =
+    {
+        { "Environment", environment },
+        { "Application", application },
+        { "Purpose", "AppRunnerInstanceRole" },
+    },
+    });
+
+    var appRunnerAccessRole = new Role("apprunner-access-role", new()
+    {
+        AssumeRolePolicy = @"{
+        ""Version"": ""2012-10-17"",
+        ""Statement"": [
+            {
+                ""Action"": ""sts:AssumeRole"",
+                ""Principal"": {
+                    ""Service"": ""build.apprunner.amazonaws.com""
+                },
+                ""Effect"": ""Allow""
+            }
+        ]
+    }",
+        Tags =
+    {
+        { "Environment", environment },
+        { "Application", application },
+        { "Purpose", "AppRunnerAccessRole" },
+    },
+    });
+
+    var appRunnerEcrPolicy = new RolePolicyAttachment("apprunner-ecr-policy", new()
+    {
+        Role = appRunnerAccessRole.Name,
+        PolicyArn = "arn:aws:iam::aws:policy/service-role/AWSAppRunnerServicePolicyForECRAccess",
     });
 
     var appRunnerService = new Service("sveltekit-github-apprunner", new()
@@ -431,12 +482,17 @@ return await Pulumi.Deployment.RunAsync(() =>
                 },
                 ImageRepositoryType = "ECR",
             },
-            AutoDeploymentsEnabled = false, // We'll handle deployments via CI/CD
+            AuthenticationConfiguration = new ServiceSourceConfigurationAuthenticationConfigurationArgs
+            {
+                AccessRoleArn = appRunnerAccessRole.Arn,
+            },
+            AutoDeploymentsEnabled = false,
         },
         InstanceConfiguration = new ServiceInstanceConfigurationArgs
         {
             Cpu = "0.25 vCPU",
             Memory = "0.5 GB",
+            InstanceRoleArn = appRunnerInstanceRole.Arn,
         },
         HealthCheckConfiguration = new ServiceHealthCheckConfigurationArgs
         {
@@ -453,6 +509,9 @@ return await Pulumi.Deployment.RunAsync(() =>
         { "Application", application },
         { "Source", "ecr" },
     },
+    }, new CustomResourceOptions
+    {
+        DependsOn = { appRunnerEcrPolicy },
     });
 
     var certificate = new Certificate("main-domain-certificate", new()
