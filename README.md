@@ -1,8 +1,8 @@
 # Welcome to my website makeover!
 
-This is my portfolio and blog that I am currently working on. The backend is currently SvelteKit hosted on Vercel. The URL to see this code live is https://rosskeenan.com.
+This is my portfolio and blog that I am currently working on. The front end and backend are currently SvelteKit hosted on AWS. The URL to see this code live is https://rosskeenan.com.
 
-This repo replaces the website that I built in late 2021 that was created with Next.js (React) instead of SvelteKit. You can find that repo here: [GitHub Repo for 2021 Website](https://github.com/r-keenan/my-personal-website)
+This repo replaces the website that I built in late 2021 that was created with Next.js (React). You can find that repo here: [GitHub Repo for 2021 Website](https://github.com/r-keenan/my-personal-website)
 
 ### Tech Stack for This Project
 
@@ -13,7 +13,6 @@ This repo replaces the website that I built in late 2021 that was created with N
 - Tailwind CSS
 - Flowbite-Svelte
 - Prettier
-- GitHub Actions
 - Codeql
 - Sanity Headless CMS
 - Vite
@@ -21,6 +20,12 @@ This repo replaces the website that I built in late 2021 that was created with N
 - Playwright
 - AWS Secrets Manager
 - AWS CloudWatch
+- AWS API Gateway
+- AWS Lambda
+- AWS DynamoDB
+- AWS AppRunner
+- GitHub Actions
+- Pulumi IaC (C#)
 
 ### How to run on your local machine
 
@@ -42,5 +47,3 @@ npm run build
 ```
 
 You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
