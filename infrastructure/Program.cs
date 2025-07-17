@@ -14,6 +14,8 @@ using Pulumi.Aws.SecretsManager;
 using System;
 using System.Collections.Generic;
 using System.Text.Json;
+using Pulumi.Aws.Ecr;
+using Pulumi.Aws.Ecr.Inputs;
 
 return await Pulumi.Deployment.RunAsync(() =>
 {
@@ -394,41 +396,42 @@ return await Pulumi.Deployment.RunAsync(() =>
         ProviderType = "GITHUB",
     });
 
+    var ecrRepository = new Repository("sveltekit-ecr-repo", new()
+    {
+        Name = "sveltekit-app",
+        ImageTagMutability = "MUTABLE",
+        ImageScanningConfiguration = new RepositoryImageScanningConfigurationArgs
+        {
+            ScanOnPush = true,
+        },
+        Tags =
+    {
+        { "Environment", environment },
+        { "Application", application },
+        { "Purpose", "ContainerRegistry" },
+    },
+    });
+
     var appRunnerService = new Service("sveltekit-github-apprunner", new()
     {
         ServiceName = "sveltekit-app",
         SourceConfiguration = new ServiceSourceConfigurationArgs
         {
-            AuthenticationConfiguration = new ServiceSourceConfigurationAuthenticationConfigurationArgs
+            ImageRepository = new ServiceSourceConfigurationImageRepositoryArgs
             {
-                ConnectionArn = githubConnection.Arn
-            },
-            CodeRepository = new ServiceSourceConfigurationCodeRepositoryArgs
-            {
-                RepositoryUrl = "https://github.com/r-keenan/my-personal-website-2025",
-                SourceCodeVersion = new ServiceSourceConfigurationCodeRepositorySourceCodeVersionArgs
+                ImageIdentifier = Output.Format($"{ecrRepository.RepositoryUrl}:latest"),
+                ImageConfiguration = new ServiceSourceConfigurationImageRepositoryImageConfigurationArgs
                 {
-                    Type = "BRANCH",
-                    Value = "main",
-                },
-                CodeConfiguration = new ServiceSourceConfigurationCodeRepositoryCodeConfigurationArgs
+                    Port = "3000",
+                    RuntimeEnvironmentVariables =
                 {
-                    ConfigurationSource = "API",
-                    CodeConfigurationValues = new ServiceSourceConfigurationCodeRepositoryCodeConfigurationCodeConfigurationValuesArgs
-                    {
-                        Runtime = "NODEJS_22",
-                        BuildCommand = "npm install && npm run build",
-                        StartCommand = "npm run start",
-                        Port = "3000",
-                        RuntimeEnvironmentVariables =
-                    {
-                        { "NODE_ENV", environment },
-                        { "PORT", "3000" },
-                    },
-                    },
+                    { "NODE_ENV", environment },
+                    { "PORT", "3000" },
                 },
+                },
+                ImageRepositoryType = "ECR",
             },
-            AutoDeploymentsEnabled = true,
+            AutoDeploymentsEnabled = false, // We'll handle deployments via CI/CD
         },
         InstanceConfiguration = new ServiceInstanceConfigurationArgs
         {
@@ -448,7 +451,7 @@ return await Pulumi.Deployment.RunAsync(() =>
     {
         { "Environment", environment },
         { "Application", application },
-        { "Source", "github" },
+        { "Source", "ecr" },
     },
     });
 
@@ -493,6 +496,9 @@ return await Pulumi.Deployment.RunAsync(() =>
         ["usagePlanId"] = usagePlan.Id,
         ["lambdaFunctionArn"] = lambdaFunction.Arn,
         ["apiGatewaySecretArn"] = apiGatewaySecret.Arn,
+        ["ecrRepositoryUrl"] = ecrRepository.RepositoryUrl,
+        ["ecrRepositoryArn"] = ecrRepository.Arn,
+        ["appRunnerServiceArn"] = appRunnerService.Arn,
         ["apiKeySecretArn"] = apiKeySecret.Arn,
     };
 });
