@@ -74,3 +74,36 @@ jobs:
       - name: Run tests
         if: github.event_name != 'repository_dispatch'
         run: npm run test
+
+      - name: Login to Amazon ECR
+        if: github.ref == 'refs/heads/main' || github.event_name == 'repository_dispatch'
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build, tag, and push image to Amazon ECR
+        if: github.ref == 'refs/heads/main' || github.event_name == 'repository_dispatch'
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: sveltekit-app
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          # Build image with build args for secrets
+          docker build \
+            --build-arg SANITY_PROJECT_ID="${{ steps.secrets.outputs.SANITY_PROJECT_ID }}" \
+            --build-arg SANITY_DATASET="${{ steps.secrets.outputs.SANITY_DATASET }}" \
+            --build-arg SANITY_CDN_URL="${{ steps.secrets.outputs.SANITY_CDN_URL }}" \
+            --build-arg SANITY_TOKEN="${{ steps.secrets.outputs.SANITY_TOKEN }}" \
+            -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
+            -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
+
+          # Push both tags
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+
+      - name: Deploy to AppRunner
+        if: github.ref == 'refs/heads/main' || github.event_name == 'repository_dispatch'
+        run: |
+          # Get the AppRunner service ARN from your infrastructure
+          SERVICE_ARN=$(aws apprunner list-services --query 'ServiceSummaryList[?ServiceName==`sveltekit-app`].ServiceArn' --output text)
+
+          # Start deployment
+          aws apprunner start-deployment --service-arn $SERVICE_ARN
