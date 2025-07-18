@@ -9,9 +9,13 @@ on:
     types: [sanity_content_update]
 
 jobs:
-  build:
+  setup:
     runs-on: ubuntu-latest
-
+    outputs:
+      sanity-project-id: ${{ steps.secrets.outputs.SANITY_PROJECT_ID }}
+      sanity-token: ${{ steps.secrets.outputs.SANITY_TOKEN }}
+      sanity-dataset: ${{ steps.secrets.outputs.SANITY_DATASET }}
+      sanity-cdn-url: ${{ steps.secrets.outputs.SANITY_CDN_URL }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -36,13 +40,11 @@ jobs:
           SANITY_DATASET=$(aws secretsmanager get-secret-value --secret-id "SANITY_DATASET" --query SecretString --output text)
           SANITY_CDN_URL=$(aws secretsmanager get-secret-value --secret-id "SANITY_CDN_URL" --query SecretString --output text)
 
-          # Mask secrets in logs (security)
           echo "::add-mask::$SANITY_PROJECT_ID"
           echo "::add-mask::$SANITY_TOKEN"
           echo "::add-mask::$SANITY_DATASET"
           echo "::add-mask::$SANITY_CDN_URL"
 
-          # Make available to other steps
           echo "SANITY_PROJECT_ID=$SANITY_PROJECT_ID" >> $GITHUB_OUTPUT
           echo "SANITY_TOKEN=$SANITY_TOKEN" >> $GITHUB_OUTPUT
           echo "SANITY_DATASET=$SANITY_DATASET" >> $GITHUB_OUTPUT
@@ -51,64 +53,159 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Cache node modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+  quality:
+    runs-on: ubuntu-latest
+    needs: setup
+    if: github.event_name != 'repository_dispatch'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Restore node modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install dependencies
+        run: npm install
+
       - name: Formatting
-        if: github.event_name != 'repository_dispatch'
         run: npm run format:check
 
       - name: Linting
-        if: github.event_name != 'repository_dispatch'
         run: npm run lint
 
+  test:
+    runs-on: ubuntu-latest
+    needs: setup
+    if: github.event_name != 'repository_dispatch'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Restore node modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install dependencies
+        run: npm install
+
       - name: Install Playwright browsers
-        if: github.event_name != 'repository_dispatch'
         run: npx playwright install
+
+      - name: Run tests
+        run: npm run test
+
+  build:
+    runs-on: ubuntu-latest
+    needs: [setup, quality, test]
+    if: always() && needs.setup.result == 'success' && (needs.quality.result == 'success' || needs.quality.result == 'skipped') && (needs.test.result == 'success' || needs.test.result == 'skipped')
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Restore node modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install dependencies
+        run: npm install
 
       - name: Build project
         run: npm run build
         env:
-          SANITY_PROJECT_ID: ${{ steps.secrets.outputs.SANITY_PROJECT_ID }}
-          SANITY_DATASET: ${{ steps.secrets.outputs.SANITY_DATASET }}
-          SANITY_CDN_URL: ${{ steps.secrets.outputs.SANITY_CDN_URL }}
-          SANITY_TOKEN: ${{ steps.secrets.outputs.SANITY_TOKEN }}
+          SANITY_PROJECT_ID: ${{ needs.setup.outputs.sanity-project-id }}
+          SANITY_DATASET: ${{ needs.setup.outputs.sanity-dataset }}
+          SANITY_CDN_URL: ${{ needs.setup.outputs.sanity-cdn-url }}
+          SANITY_TOKEN: ${{ needs.setup.outputs.sanity-token }}
 
-      - name: Run tests
-        if: github.event_name != 'repository_dispatch'
-        run: npm run test
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-files
+          path: |
+            build/
+            package.json
+            package-lock.json
+            Dockerfile
+
+  docker:
+    runs-on: ubuntu-latest
+    needs: [setup, build]
+    if: github.ref == 'refs/heads/main' || github.event_name == 'repository_dispatch'
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-files
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Login to Amazon ECR
         id: login-ecr
-        if: github.ref == 'refs/heads/main' || github.event_name == 'repository_dispatch'
         uses: aws-actions/amazon-ecr-login@v2
 
       - name: Build, tag, and push image to Amazon ECR
-        if: github.ref == 'refs/heads/main' || github.event_name == 'repository_dispatch'
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: sveltekit-app
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          # Debug: Show that secrets are available (masked)
-          echo "SANITY_PROJECT_ID length: ${#SANITY_PROJECT_ID}"
-          echo "SANITY_DATASET: $SANITY_DATASET"
-
-          # Build image with proper secret passing
           docker build \
-            --build-arg SANITY_PROJECT_ID="${{ steps.secrets.outputs.SANITY_PROJECT_ID }}" \
-            --build-arg SANITY_DATASET="${{ steps.secrets.outputs.SANITY_DATASET }}" \
-            --build-arg SANITY_CDN_URL="${{ steps.secrets.outputs.SANITY_CDN_URL }}" \
-            --build-arg SANITY_TOKEN="${{ steps.secrets.outputs.SANITY_TOKEN }}" \
+            --build-arg SANITY_PROJECT_ID="${{ needs.setup.outputs.sanity-project-id }}" \
+            --build-arg SANITY_DATASET="${{ needs.setup.outputs.sanity-dataset }}" \
+            --build-arg SANITY_CDN_URL="${{ needs.setup.outputs.sanity-cdn-url }}" \
+            --build-arg SANITY_TOKEN="${{ needs.setup.outputs.sanity-token }}" \
             -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
             -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
 
-          # Push both tags
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
 
-      - name: Deploy to AppRunner
-        if: github.ref == 'refs/heads/main' || github.event_name == 'repository_dispatch'
-        run: |
-          # Get the AppRunner service ARN from your infrastructure
-          SERVICE_ARN=$(aws apprunner list-services --query 'ServiceSummaryList[?ServiceName==`sveltekit-app`].ServiceArn' --output text)
+  deploy:
+    runs-on: ubuntu-latest
+    needs: docker
+    if: github.ref == 'refs/heads/main' || github.event_name == 'repository_dispatch'
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
 
-          # Start deployment
+      - name: Deploy to AppRunner
+        run: |
+          SERVICE_ARN=$(aws apprunner list-services --query 'ServiceSummaryList[?ServiceName==`sveltekit-app`].ServiceArn' --output text)
           aws apprunner start-deployment --service-arn $SERVICE_ARN
