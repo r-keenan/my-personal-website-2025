@@ -76,6 +76,7 @@ jobs:
         run: npm run test
 
       - name: Login to Amazon ECR
+        id: login-ecr
         if: github.ref == 'refs/heads/main' || github.event_name == 'repository_dispatch'
         uses: aws-actions/amazon-ecr-login@v2
 
