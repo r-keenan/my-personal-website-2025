@@ -112,8 +112,18 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install
 
-      - name: Run tests
-        run: npm run test
+      - name: Run Unit Tests
+        run: npm run test:unit
+
+      - name: Run E2E Tests
+        run: npm run test:e2e
+        env:
+          # fake values to prevent server startup issues
+          AWS_REGION: us-east-1
+          SANITY_PROJECT_ID: dummy
+          SANITY_DATASET: dummy
+          SANITY_TOKEN: dummy
+          SANITY_CDN_URL: https://dummy.com
 
   build:
     runs-on: ubuntu-latest
