@@ -1,8 +1,7 @@
-import { Page } from '@playwright/test';
+import type { Page } from 'playwright';
 import { faker } from '@faker-js/faker';
-import { mockQualifications } from './mockData';
 import type { Qualification } from '../src/lib/utils/types/types';
-import { PortableTextBlock } from '@portabletext/types';
+import type { PortableTextBlock } from '@portabletext/types';
 
 export const mockSanityAPI = async (page: Page) => {
 	await page.route('**/v1/data/query/**', async (route) => {
