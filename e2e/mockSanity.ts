@@ -4,6 +4,27 @@ import type { Qualification } from '../src/lib/utils/types/types';
 import type { PortableTextBlock } from '@portabletext/types';
 
 export const mockSanityAPI = async (page: Page) => {
+	// Mock AWS Secrets Manager call
+	await page.route('**/secretsmanager/**', async (route) => {
+		const body = route.request().postData();
+		let secretValue = '';
+
+		if (body?.includes('SANITY_PROJECT_ID')) {
+			secretValue = 'mock-project-id';
+		} else if (body?.includes('SANITY_DATASET')) {
+			secretValue = 'mock-dataset';
+		} else if (body?.includes('SANITY_TOKEN')) {
+			secretValue = 'mock-token';
+		} else if (body?.includes('SANITY_CDN_URL')) {
+			secretValue = 'https://mock-cdn.sanity.io';
+		}
+
+		await route.fulfill({
+			status: 200,
+			contentType: 'application/json',
+			body: JSON.stringify({ SecretString: secretValue })
+		});
+	});
 	await page.route('**/v1/data/query/**', async (route) => {
 		const url = route.request().url();
 		const body = route.request().postData();
