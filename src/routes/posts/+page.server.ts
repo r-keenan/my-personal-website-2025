@@ -7,7 +7,7 @@ export const load: PageServerLoad = async () => {
 
 	return {
 		initialData: {
-			postsPreview: data?.[0] || []
+			postsPreview: data || []
 		}
 	};
 };

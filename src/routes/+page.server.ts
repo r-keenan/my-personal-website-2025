@@ -7,7 +7,7 @@ export const load: PageServerLoad = async () => {
 
 	return {
 		initialData: {
-			qualifications: data?.[0] || []
+			qualifications: data || []
 		}
 	};
 };
