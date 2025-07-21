@@ -22,9 +22,7 @@ const config = {
 				throw new Error(message);
 			}
 		},
-		adapter: adapter({
-			runtime: 'nodejs22.x'
-		}),
+		adapter: adapter(),
 		alias: {
 			$components: path.resolve('./src/lib//components'),
 			$lib: path.resolve('./src/lib'),
