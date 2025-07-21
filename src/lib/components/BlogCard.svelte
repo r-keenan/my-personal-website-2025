@@ -9,7 +9,7 @@
 
 <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
 	<div class="shrink-0">
-		<a href={`/posts/${postPreview.slug.current}`}>
+		<a href={`/posts/${postPreview.slug?.current || postPreview.slug}`}>
 			<img
 				class="h-48 w-full object-cover"
 				src={postPreview.imageUrl?.toString()}

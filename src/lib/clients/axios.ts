@@ -1,5 +1,5 @@
 import axios, { type AxiosInstance } from 'axios';
-import { getApiGatewayConfig } from '$lib/clients/apiGateway';
+import { getApiGatewayConfig } from '../clients/aws/apiGateway';
 
 let apiGatewayConfigPromise: Promise<{ apiBaseUrl: string; apiKey: string }> | null = null;
 

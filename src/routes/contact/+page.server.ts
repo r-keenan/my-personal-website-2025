@@ -1,7 +1,7 @@
 import { superValidate, message } from 'sveltekit-superforms/server';
 import { zod } from 'sveltekit-superforms/adapters';
 import { z } from 'zod';
-import { logError } from '$lib/clients/awsCloudWatch';
+import { logError } from '../../lib/clients/aws/awsCloudWatch';
 import { apiGatewayClient } from '$lib/clients/axios';
 
 // SPA for contact form
@@ -67,8 +67,6 @@ export const actions = {
 		try {
 			const client = await apiGatewayClient();
 			const response = await client.post('/contact', form.data);
-
-			console.log(response.status);
 
 			if (response.status != 200 && response.status != 201) {
 				logError('Form validation failed', request);

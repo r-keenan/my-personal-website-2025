@@ -1,5 +1,5 @@
 import { createClient, SanityClient } from '@sanity/client';
-import { getSecret } from './awsSecretsManager';
+import { getSecret } from './aws/awsSecretsManager';
 
 // Singleton client
 let client: SanityClient | null = null;

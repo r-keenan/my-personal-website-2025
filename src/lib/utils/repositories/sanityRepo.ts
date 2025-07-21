@@ -16,8 +16,22 @@ export const getQualifications = async (): Promise<Qualification[]> => {
 export const getPostsPreview = async (): Promise<PostPreview[]> => {
 	const client = await getSanityClient();
 	const posts = await client.fetch(postsPreviewQuery);
-	// Process images etc...
-	return posts;
+
+	const data = await Promise.all(
+		posts.map(async (post: Post) => {
+			// Only process if post has an image
+			if (post.mainImage?.asset?._ref) {
+				const imageUrl = await formatImageUrl(post.mainImage.asset._ref);
+				return {
+					...post,
+					imageUrl
+				};
+			}
+			return post;
+		})
+	);
+
+	return data;
 };
 
 export const getPost = async (slug: string): Promise<Post> => {
@@ -34,7 +48,11 @@ export const getPost = async (slug: string): Promise<Post> => {
 		publishedAt = formatBlogDate(post.publishedAt, MONTH_FORMAT.FULL_MONTH);
 	}
 
-	let data: Post;
+	let data: Post = {
+		...post,
+		imageUrl,
+		publishedAt
+	};
 
-	return (data = { ...post, imageUrl, publishedAt });
+	return data;
 };
