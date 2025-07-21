@@ -15,7 +15,7 @@ export const load = async () => {
 	}
 
 	if (promises.length > 0) {
-		await Promise.all(promises);
+		//await Promise.all(promises);
 	}
 
 	return {
