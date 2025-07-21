@@ -1,17 +1,19 @@
 import { defineConfig } from '@playwright/test';
 
+const portNum = 4173;
+
 export default defineConfig({
 	globalSetup: './e2e/globalSetup.ts',
 	webServer: {
 		command: 'npm run build && npm run preview',
-		port: 5173,
+		port: portNum,
 		reuseExistingServer: !process.env.CI,
 		env: {
 			NODE_ENV: 'test'
 		}
 	},
 	use: {
-		baseURL: 'http://localhost:4173'
+		baseURL: `http://localhost:${portNum}`
 	},
 	testDir: 'e2e'
 });
