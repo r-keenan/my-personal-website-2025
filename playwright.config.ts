@@ -1,19 +1,12 @@
 import { defineConfig } from '@playwright/test';
 
-const portNum = 4173;
+const portNum = 5173;
 
 export default defineConfig({
-	globalSetup: './e2e/globalSetup.ts',
 	webServer: {
-		command: 'npm run build && npm run preview',
+		command: 'npm run dev',
 		port: portNum,
-		reuseExistingServer: !process.env.CI,
-		env: {
-			NODE_ENV: 'test',
-			PUBLIC_SANITY_PROJECT_ID: 'test-project',
-			PUBLIC_SANITY_DATASET: 'test',
-			SANITY_API_TOKEN: 'test-token'
-		}
+		reuseExistingServer: !process.env.CI
 	},
 	use: {
 		baseURL: `http://localhost:${portNum}`
