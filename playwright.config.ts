@@ -9,7 +9,10 @@ export default defineConfig({
 		port: portNum,
 		reuseExistingServer: !process.env.CI,
 		env: {
-			NODE_ENV: 'test'
+			NODE_ENV: 'test',
+			PUBLIC_SANITY_PROJECT_ID: 'test-project',
+			PUBLIC_SANITY_DATASET: 'test',
+			SANITY_API_TOKEN: 'test-token'
 		}
 	},
 	use: {
