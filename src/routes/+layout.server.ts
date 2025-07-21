@@ -1,26 +1,15 @@
-import { getPostsPreview, getQualifications, sanityApiStore } from '$lib/stores/sanityDataStore';
+import { getQualifications } from '$lib/utils/repositories/sanityRepo';
+import type { Qualification } from '$lib/utils/types/types';
 
 export const prerender = true;
 export const csr = true;
 
 export const load = async () => {
-	const state = sanityApiStore.get();
-	const promises = [];
-
-	if (!state.qualifications?.data) {
-		promises.push(getQualifications());
-	}
-	if (!state.postsPreview?.data) {
-		promises.push(getPostsPreview());
-	}
-
-	if (promises.length > 0) {
-		//await Promise.all(promises);
-	}
+	const data: Qualification[] = await getQualifications();
 
 	return {
 		initialData: {
-			qualifications: sanityApiStore.get().qualifications.data || []
+			qualifications: data?.[0] || []
 		}
 	};
 };
