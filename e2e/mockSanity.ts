@@ -2,6 +2,7 @@ import type { Page } from 'playwright';
 import { faker } from '@faker-js/faker';
 import type { Qualification } from '../src/lib/utils/types/types';
 import type { PortableTextBlock } from '@portabletext/types';
+import { sanityApiVersion } from '../src/lib/clients/sanity';
 
 export const mockSanityAPI = async (page: Page) => {
 	// Mock AWS Secrets Manager call
@@ -25,9 +26,13 @@ export const mockSanityAPI = async (page: Page) => {
 			body: JSON.stringify({ SecretString: secretValue })
 		});
 	});
-	await page.route('**/v1/data/query/**', async (route) => {
+	await page.route(`**/v${sanityApiVersion}/data/query/**`, async (route) => {
 		const url = route.request().url();
 		const body = route.request().postData();
+		const queryParams = new URL(url).searchParams;
+		const query = queryParams.get('query');
+
+		console.log('Intercepted Sanity API call:', url);
 
 		if (body?.includes('qualifications') || url.includes('qualifications')) {
 			await route.fulfill({

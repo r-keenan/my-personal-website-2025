@@ -4,6 +4,8 @@ import { getSecret } from './aws/awsSecretsManager';
 // Singleton client
 let client: SanityClient | null = null;
 
+export const sanityApiVersion = '2025-02-19';
+
 async function getConfigValue(secretName: string, envVarName: string): Promise<string> {
 	// Try AWS Secrets Manager first
 	try {
@@ -41,7 +43,7 @@ export async function sanityClient() {
 			dataset,
 			token,
 			useCdn: false,
-			apiVersion: '2025-02-19',
+			apiVersion: sanityApiVersion,
 			ignoreBrowserTokenWarning: true
 		});
 
