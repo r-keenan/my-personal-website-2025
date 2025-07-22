@@ -10,6 +10,7 @@ import { formatBlogDate, formatImageUrl } from '../utilityFunctions';
 
 export const getQualifications = async (): Promise<Qualification[]> => {
 	const client = await getSanityClient();
+
 	return await client.fetch(qualificationsPreviewQuery);
 };
 
@@ -36,6 +37,7 @@ export const getPostsPreview = async (): Promise<PostPreview[]> => {
 
 export const getPost = async (slug: string): Promise<Post> => {
 	const client = await getSanityClient();
+
 	const post = await client.fetch(fullPostQuery, { slug });
 
 	let imageUrl = '';

@@ -78,8 +78,14 @@ export async function getSanityImageUrl(): Promise<string> {
 	}
 }
 
-export function getSanityClient() {
-	return sanityClient();
-}
+export const getSanityClient = async () => {
+	const client = await sanityClient();
+
+	if (!client) {
+		throw new Error('Sanity client is null - failed to initialize client properly');
+	}
+
+	return client;
+};
 
 export default { getSanityClient, getSanityImageUrl };
