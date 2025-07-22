@@ -26,13 +26,14 @@ export const mockSanityAPI = async (page: Page) => {
 			body: JSON.stringify({ SecretString: secretValue })
 		});
 	});
-	await page.route(`**/v${sanityApiVersion}/data/query/**`, async (route) => {
+	await page.route('**/*sanity.io/**', async (route) => {
 		const url = route.request().url();
 		const body = route.request().postData();
 		const queryParams = new URL(url).searchParams;
 		const query = queryParams.get('query');
 
-		console.log('Intercepted Sanity API call:', url);
+		console.log('🎯 Intercepted Sanity API call:', url);
+		console.log('🔍 Query:', query);
 
 		if (body?.includes('qualifications') || url.includes('qualifications')) {
 			await route.fulfill({
