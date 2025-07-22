@@ -8,6 +8,15 @@ on:
   repository_dispatch:
     types: [sanity_content_update]
 
+# Global environment variables for testing/fallback
+env:
+  AWS_REGION: us-east-1
+  NODE_VERSION: '22'
+  SANITY_PROJECT_ID: dummy
+  SANITY_DATASET: dummy
+  SANITY_TOKEN: dummy
+  SANITY_CDN_URL: https://dummy.com
+
 jobs:
   setup:
     runs-on: ubuntu-latest
@@ -23,7 +32,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -70,7 +79,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Restore node modules
         uses: actions/cache@v4
@@ -98,7 +107,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Restore node modules
         uses: actions/cache@v4
@@ -113,20 +122,13 @@ jobs:
         run: npx playwright install
 
       - name: Generate SvelteKit files
-        run: npm run build || npx svelte-kit sync
+        run: npx svelte-kit sync
 
       - name: Run Unit Tests
         run: npm run test:unit
 
       - name: Run E2E Tests
         run: npm run test:e2e
-        env:
-          # fake values to prevent server startup issues
-          AWS_REGION: us-east-1
-          SANITY_PROJECT_ID: dummy
-          SANITY_DATASET: dummy
-          SANITY_TOKEN: dummy
-          SANITY_CDN_URL: https://dummy.com
 
   build:
     runs-on: ubuntu-latest
@@ -139,7 +141,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Restore node modules
         uses: actions/cache@v4
