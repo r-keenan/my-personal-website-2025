@@ -54,10 +54,10 @@ jobs:
           echo "SANITY_DATASET=$SANITY_DATASET" >> $GITHUB_OUTPUT
           echo "SANITY_CDN_URL=$SANITY_CDN_URL" >> $GITHUB_OUTPUT
 
-          echo "::add-mask::$SANITY_PROJECT_ID"
-          echo "::add-mask::$SANITY_TOKEN"
-          echo "::add-mask::$SANITY_DATASET"
-          echo "::add-mask::$SANITY_CDN_URL"
+          #echo "::add-mask::$SANITY_PROJECT_ID"
+          #echo "::add-mask::$SANITY_TOKEN"
+          #echo "::add-mask::$SANITY_DATASET"
+          #echo "::add-mask::$SANITY_CDN_URL"
 
       - name: Install dependencies
         run: npm install
