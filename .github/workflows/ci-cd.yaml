@@ -16,6 +16,7 @@ env:
   SANITY_DATASET: dummy
   SANITY_TOKEN: dummy
   SANITY_CDN_URL: https://dummy.com
+  PLAYWRIGHT_TEST_MODE: 'true'
 
 jobs:
   setup:

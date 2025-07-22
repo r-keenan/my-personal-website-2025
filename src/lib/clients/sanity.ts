@@ -31,6 +31,17 @@ async function getConfigValue(secretName: string, envVarName: string): Promise<s
 
 export async function sanityClient() {
 	if (client) return client;
+
+	// Check if we're in test mode - return mock client
+	if (process.env.NODE_ENV === 'test' || process.env.PLAYWRIGHT_TEST_MODE === 'true') {
+		console.log('🧪 Creating mock Sanity client for tests');
+		client = {
+			fetch: async () => ({ result: [] }) // Mock fetch method
+			// Add other methods your app uses
+		} as any;
+		return client;
+	}
+
 	try {
 		const [projectId, dataset, token] = await Promise.all([
 			getConfigValue('SANITY_PROJECT_ID', 'SANITY_PROJECT_ID'),
@@ -55,6 +66,10 @@ export async function sanityClient() {
 }
 
 export async function getSanityImageUrl(): Promise<string> {
+	if (process.env.NODE_ENV === 'test' || process.env.PLAYWRIGHT_TEST_MODE === 'true') {
+		return 'https://mock-cdn.sanity.io';
+	}
+
 	try {
 		return await getConfigValue('SANITY_CDN_URL', 'SANITY_CDN_URL');
 	} catch (error) {
