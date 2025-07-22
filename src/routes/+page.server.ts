@@ -1,24 +1,13 @@
 import type { PageServerLoad } from './$types';
-import { getPostsPreview, getQualifications, sanityApiStore } from '$lib/stores/sanityDataStore';
+import type { Qualification } from '$lib/utils/types/types';
+import { getQualifications } from '$lib/utils/repositories/sanityRepo';
 
 export const load: PageServerLoad = async () => {
-	const state = sanityApiStore.get();
-	const promises = [];
-
-	if (!state.qualifications?.data) {
-		promises.push(getQualifications());
-	}
-	if (!state.postsPreview?.data) {
-		promises.push(getPostsPreview());
-	}
-
-	if (promises.length > 0) {
-		await Promise.all(promises);
-	}
+	const data: Qualification[] = await getQualifications();
 
 	return {
 		initialData: {
-			qualifications: sanityApiStore.get().qualifications.data || []
+			qualifications: data || []
 		}
 	};
 };

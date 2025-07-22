@@ -1,43 +1,28 @@
+import { sanityClient } from '$lib/clients/sanity';
+import { getPost, getPostsPreview } from '$lib/utils/repositories/sanityRepo';
+import type { Post, PostPreview } from '$lib/utils/types/types';
 import type { EntryGenerator, PageServerLoad } from './$types';
-import {
-	getPost,
-	getPostsPreview,
-	getQualifications,
-	sanityApiStore
-} from '$lib/stores/sanityDataStore';
 
 export const load: PageServerLoad = async ({ params, depends }) => {
 	depends(`posts:${params.slug}`);
-	const state = sanityApiStore.get();
-	const promises = [];
 	const { slug } = params;
 
-	if (!state.qualifications?.data) {
-		promises.push(getQualifications());
-	}
-	if (!state.postsPreview?.data) {
-		promises.push(getPostsPreview());
-	}
-	promises.push(getPost(slug));
-
-	if (promises.length > 0) {
-		await Promise.all(promises);
-	}
+	const data: Post = await getPost(slug);
 
 	return {
 		initialData: {
-			post: sanityApiStore.get().post.data || []
+			post: data || []
 		}
 	};
 };
 
 type PostSlug = { slug: string };
 
-export const entries: EntryGenerator = () => {
-	const state = sanityApiStore.get().postsPreview;
+export const entries: EntryGenerator = async () => {
+	const data: PostPreview[] = await getPostsPreview();
 
 	const postSlugs: PostSlug[] = [];
-	state.data?.map((post) => {
+	data?.map((post: PostPreview) => {
 		postSlugs.push({ slug: post.slug.current });
 	});
 

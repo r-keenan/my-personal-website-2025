@@ -1,4 +1,4 @@
-import { getSecret } from '$lib/clients/awsSecretsManager';
+import { getSecret } from '$lib/clients/aws/awsSecretsManager';
 
 interface ApiGatewayConfig {
 	apiBaseUrl: string;
