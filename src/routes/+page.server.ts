@@ -1,18 +1,23 @@
 import type { PageServerLoad } from './$types';
 import { getPostsPreview, getQualifications, sanityApiStore } from '$lib/stores/sanityDataStore';
-
-// This will not allow me to use a constant from utils. It throws an error that the value must be statically analyzable
-// 86400 = seconds in a day
+import { getAllRepos, getPinnedRepos, githubApiStore } from '$lib/stores/githubDataStore';
 
 export const load: PageServerLoad = async () => {
-	const state = sanityApiStore.get();
+	const sanityState = sanityApiStore.get();
+	const githubState = githubApiStore.get();
 	const promises = [];
 
-	if (!state.qualifications?.data) {
+	if (!sanityState.qualifications?.data) {
 		promises.push(getQualifications());
 	}
-	if (!state.postsPreview?.data) {
+	if (!sanityState.postsPreview?.data) {
 		promises.push(getPostsPreview());
+	}
+	if (!githubState.allRepos?.data) {
+		promises.push(getAllRepos());
+	}
+	if (!githubState.pinnedRepos?.data) {
+		promises.push(getPinnedRepos());
 	}
 
 	if (promises.length > 0) {

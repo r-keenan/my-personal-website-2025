@@ -64,8 +64,6 @@ export const actions = {
 			const client = await apiGatewayClient();
 			const response = await client.post('/contact', form.data);
 
-			console.log(response.status);
-
 			if (response.status != 200 && response.status != 201) {
 				logError('Form validation failed', request);
 				return message(

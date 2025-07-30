@@ -48,7 +48,6 @@ export function formatBlogDate(dateTime: string, monthFormat: MONTH_FORMAT): str
 
 		dateStr = `${month} ${day}, ${year}`;
 	} catch (error) {
-		console.log(error);
 		console.error('Invalid date format');
 		throw new Error('Invalid date format');
 	}

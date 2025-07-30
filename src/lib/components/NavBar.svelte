@@ -9,6 +9,15 @@
 		'text-white-DEFAULT bg-green-100 md:bg-transparent md:text-white-DEFAULT md:dark:text-white dark:bg-green-600 md:dark:bg-transparent';
 	let nonActiveClass =
 		'text-gray-700 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-gray-300 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent';
+
+	const navigation = [
+		{ name: 'Home', href: '/' },
+		{ name: 'Posts', href: '/posts' },
+		{ name: 'Projects', href: '/projects' },
+		{ name: 'Skills', href: '/skills' },
+		{ name: 'About', href: '/about' },
+		{ name: 'Contact', href: '/contact' }
+	];
 </script>
 
 {#key activeUrl}
@@ -27,32 +36,14 @@
 			<NavHamburger />
 		</div>
 		<NavUl {activeUrl} {activeClass} {nonActiveClass}>
-			<NavLi
-				href="/"
-				data-sveltekit-preload-data="hover"
-				class="text-blue-light hover:bg-gray-light hover:text-white-DEFAULT pr-2 text-lg"
-				>Home</NavLi
-			>
-			<NavLi
-				href="/posts"
-				data-sveltekit-preload-data="hover"
-				class="text-blue-light pr-4 text-lg hover:bg-gray-700 hover:text-white">Posts</NavLi
-			>
-			<NavLi
-				href="/skills"
-				data-sveltekit-preload-data="hover"
-				class="text-blue-light pr-4 text-lg hover:bg-gray-700 hover:text-white">Skills</NavLi
-			>
-			<NavLi
-				href="/about"
-				data-sveltekit-preload-data="hover"
-				class="text-blue-light pr-4 text-lg hover:bg-gray-700 hover:text-white">About Me</NavLi
-			>
-			<NavLi
-				href="/contact"
-				data-sveltekit-preload-data="hover"
-				class="text-blue-light text-lg hover:bg-gray-700 hover:text-white">Contact</NavLi
-			>
+			{#each navigation as nav (nav.name)}
+				<NavLi
+					href={nav.href}
+					data-sveltekit-preload-data="hover"
+					class="text-blue-light hover:bg-gray-light hover:text-white-DEFAULT pr-2 text-lg"
+					>{nav.name}</NavLi
+				>
+			{/each}
 		</NavUl>
 	</Navbar>
 {/key}
