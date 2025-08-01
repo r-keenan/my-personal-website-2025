@@ -29,6 +29,8 @@ describe('/+page.svelte', () => {
 		};
 
 		render(Page, { props: { data: mockData } });
-		expect(screen.getByRole('heading', { level: 2 })).toBeInTheDocument();
+		expect(screen.getByText('Technologies I Work With')).toBeInTheDocument();
+
+		expect(screen.getByText('Senior Software Consultant')).toBeInTheDocument();
 	});
 });

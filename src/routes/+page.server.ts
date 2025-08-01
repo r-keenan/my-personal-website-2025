@@ -26,7 +26,7 @@ export const load: PageServerLoad = async () => {
 
 	return {
 		initialData: {
-			qualifications: sanityApiStore.get().qualifications.data || []
+			qualifications: data || []
 		}
 	};
 };

@@ -1,6 +1,8 @@
-import { monthsAbbreviated, monthsFull } from '$lib/constants/index';
+import { monthsAbbreviated, monthsFull, TechLogos } from '$lib/constants/index';
 import { MONTH_FORMAT } from '$lib/enums/index';
 import { getSanityImageUrl } from '$lib/clients/sanity';
+import { waitFor } from '@testing-library/svelte';
+import type { TechLogo } from './types/types';
 
 export function formatPhone(phoneNumber: string): string {
 	const regexPattern = /[^0-9]+/g;
@@ -71,3 +73,14 @@ export async function formatImageUrl(image: string): Promise<string> {
 
 	return imageUrl;
 }
+
+export const sliceTechLogos = (slideLength: number) => {
+	let slicedArray: TechLogo[][] = [];
+
+	for (let i = 0; i < TechLogos.length; i += slideLength) {
+		const slide = TechLogos.slice(i, i + slideLength);
+		slicedArray.push(slide);
+	}
+
+	return slicedArray;
+};

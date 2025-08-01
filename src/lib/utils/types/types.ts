@@ -60,3 +60,9 @@ export type SeoData = {
 export type SeoBlogPostData = SeoData & {
 	imageUrl: string;
 };
+
+export type TechLogo = {
+	alt: string;
+	src: string;
+	title: string;
+};

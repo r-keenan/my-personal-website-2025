@@ -34,7 +34,7 @@
 			</p>
 		</div>
 		<div class="mx-auto mt-12 grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-3">
-			{#each postsPreview as postPreview (postPreview.slug)}
+			{#each postsPreview as postPreview (postPreview.slug.current)}
 				<BlogCard {postPreview} />
 			{/each}
 		</div>

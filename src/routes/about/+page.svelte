@@ -38,13 +38,20 @@
 				<div class="text-gray-medium mx-auto mt-6 max-w-3xl space-y-6">
 					<p class="text-base leading-7">
 						I develop in everything from Content Management Systems (CMS) to web sites and web apps.
-						I am interested in everything from the hot, new JavaScript frameworks, to backend code,
-						databases, and data engineering.
+						I have experience in everything from the hot, new JavaScript frameworks, to backend
+						code, Generative AI, databases, and data engineering. You can see a full list of my
+						skills and experience <a href="/skills" class="text-blue-light text-base font-medium"
+							>here</a
+						>.
 					</p>
 					<p class="text-base leading-7">
-						Feel free to reach out to me for any consultations or sites that you want to develop or
-						update. I am not looking for full-time employment, but I am open to outside contract
-						work. I am available to hire for hourly or fixed-priced contracts.
+						I have six years of experience in Software Engineering, and I am a veteran of the Iraq
+						War. I served in Iraq from 2006-2007, doing Convoy Security, and I was in the Nebraska
+						Army National Guard from 2004-2010.
+					</p>
+					<p class="text-base leading-7">
+						Feel free to reach out to me for any consultations for any tech-related issue or inquiry
+						that you have. I am available to hire for hourly or fixed-priced contracts.
 					</p>
 					<p class="text-base leading-7">
 						<span>Let&apos;s make something great together!</span>
