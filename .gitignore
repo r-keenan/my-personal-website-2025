@@ -28,3 +28,6 @@ infrastructure/bin/
 infrastructure/*/bin/
 infrastructure/*/obj/
 infrastructure/obj/
+
+#VS Code MCP Servers
+.vscode/mcp.json
