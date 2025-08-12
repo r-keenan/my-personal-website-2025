@@ -1,6 +1,6 @@
 import type { AxiosInstance } from 'axios';
-import { getSecret } from './awsSecretsManager';
 import axios from 'axios';
+import { getSecret } from './aws/awsSecretsManager';
 
 let client: AxiosInstance | null = null;
 

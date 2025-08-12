@@ -1,7 +1,11 @@
 <script lang="ts">
 	import RepoCard from '$components/RepoCard.svelte';
 	import SeoHead from '$components/SeoHead.svelte';
-	import type { SeoData } from '$lib/utils/types/types';
+	import type { GitHubRepo, SeoData } from '$lib/utils/types/types';
+
+	export let data;
+	const { pinnedRepos, allRepos }: { pinnedRepos: GitHubRepo[]; allRepos: GitHubRepo[] } =
+		data.initialData;
 
 	const content =
 		'Ross Keenan is a Senior Software Consultant specializing in web development, JavaScript frameworks, backend systems, and data engineering. Available for contract work and consulting.';
@@ -32,12 +36,9 @@
 			</h3>
 		</div>
 		<div class="mx-auto mt-8 grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-3">
-			<RepoCard />
-			<!--
-			{#each postsPreview as postPreview (postPreview.slug)}
-				<BlogCard {postPreview} />
+			{#each pinnedRepos as repo (repo.name)}
+				<RepoCard {repo} />
 			{/each}
-			-->
 		</div>
 		<div class="text-center">
 			<h3 class="text-gray-dark pt-8 text-2xl font-extrabold tracking-tight sm:text-2xl">
@@ -45,12 +46,9 @@
 			</h3>
 		</div>
 		<div class="mx-auto mt-8 grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-3">
-			<RepoCard />
-			<!--
-			{#each postsPreview as postPreview (postPreview.slug)}
-				<BlogCard {postPreview} />
+			{#each allRepos as repo (repo.name)}
+				<RepoCard {repo} />
 			{/each}
-			-->
 		</div>
 	</div>
 </div>
