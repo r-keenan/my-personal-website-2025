@@ -31,23 +31,23 @@
 			<p class="text-gray-medium mx-auto mt-3 max-w-2xl text-xl sm:mt-4">
 				Projects and Tutorials that I have worked on or am currently working on
 			</p>
-			<h3 class="text-gray-dark pt-8 text-2xl font-extrabold tracking-tight sm:text-2xl">
+			<h3 class="text-blue-light pt-8 text-2xl font-extrabold tracking-tight sm:text-2xl">
 				Featured Projects
 			</h3>
 		</div>
 		<div class="mx-auto mt-8 grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-3">
 			{#each pinnedRepos as repo (repo.name)}
-				<RepoCard {repo} />
+				<RepoCard {repo} featured={true} />
 			{/each}
 		</div>
 		<div class="text-center">
-			<h3 class="text-gray-dark pt-8 text-2xl font-extrabold tracking-tight sm:text-2xl">
+			<h3 class="text-blue-light pt-8 text-2xl font-extrabold tracking-tight sm:text-2xl">
 				All Projects
 			</h3>
 		</div>
 		<div class="mx-auto mt-8 grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-3">
 			{#each allRepos as repo (repo.name)}
-				<RepoCard {repo} />
+				<RepoCard {repo} featured={false} />
 			{/each}
 		</div>
 	</div>

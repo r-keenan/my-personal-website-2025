@@ -1,15 +1,20 @@
 <script lang="ts">
 	import type { GitHubRepo } from '$lib/utils/types/types';
 	import { Card } from 'flowbite-svelte';
-	import { ArrowUpRightFromSquareOutline, GithubSolid } from 'flowbite-svelte-icons';
+	import { ArrowUpRightFromSquareOutline, GithubSolid, StarSolid } from 'flowbite-svelte-icons';
 
-	let { repo }: { repo: GitHubRepo } = $props();
+	let { repo, featured }: { repo: GitHubRepo; featured: boolean } = $props();
 
 	repo.name = repo.name.includes('r-keenan/') ? repo.name.replace('r-keenan/', '') : repo.name;
 </script>
 
 <Card class="p-4 sm:p-6 md:p-8">
-	<GithubSolid class="mb-3 h-8 w-8 text-gray-500 dark:text-gray-400" />
+	<div class="mb-3 flex items-center justify-between">
+		<GithubSolid class="h-6 w-6 text-gray-500 dark:text-gray-400" />
+		{#if featured}
+			<StarSolid class="h-6 w-6 shrink-0 text-amber-300 dark:text-amber-300" />
+		{/if}
+	</div>
 	<a href="/">
 		<h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
 			{repo.name}
