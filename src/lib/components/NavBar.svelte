@@ -35,7 +35,7 @@
 			<Avatar isClickable={true} />
 			<NavHamburger />
 		</div>
-		<NavUl {activeUrl} {activeClass} {nonActiveClass}>
+		<NavUl {activeUrl} classes={{ active: activeClass, nonActive: nonActiveClass }}>
 			{#each navigation as nav (nav.name)}
 				<NavLi
 					href={nav.href}

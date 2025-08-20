@@ -1,7 +1,12 @@
 <script lang="ts">
 	import type { GitHubRepo } from '$lib/utils/types/types';
 	import { Card } from 'flowbite-svelte';
-	import { ArrowUpRightFromSquareOutline, GithubSolid, StarSolid } from 'flowbite-svelte-icons';
+	import {
+		ArrowUpRightFromSquareOutline,
+		GithubSolid,
+		LaptopCodeSolid,
+		StarSolid
+	} from 'flowbite-svelte-icons';
 
 	let { repo, featured }: { repo: GitHubRepo; featured: boolean } = $props();
 
@@ -21,6 +26,7 @@
 		</h5>
 	</a>
 	<p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Repo Description</p>
+	<LaptopCodeSolid class="h-6 w-6 shrink-0 text-blue-400 dark:text-blue-400" />
 	<a
 		href="/"
 		target="_blank"
