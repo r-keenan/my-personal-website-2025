@@ -31,7 +31,7 @@
 		<p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{repo.description}</p>
 	{/if}
 	<p class="mb-3 font-normal text-gray-500 dark:text-gray-400">
-		<span><strong>Last Updated: </strong></span>
+		<span class="font-bold text-black">Last Updated:</span>
 		{repo.updatedAt}
 	</p>
 	<div class="mb-3 flex items-center gap-2">
