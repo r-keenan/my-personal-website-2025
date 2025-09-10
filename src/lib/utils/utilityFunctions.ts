@@ -102,13 +102,8 @@ export const paginateArray = <T>(
 	itemsPerPage: number
 ): {
 	items: T[];
-	currentPage: number;
 	totalPages: number;
 	totalItems: number;
-	hasNextPage: boolean;
-	hasPreviousPage: boolean;
-	startIndex: number;
-	endIndex: number;
 } => {
 	const totalItems = array.length;
 	const totalPages = Math.ceil(totalItems / itemsPerPage);
@@ -119,12 +114,7 @@ export const paginateArray = <T>(
 
 	return {
 		items,
-		currentPage,
 		totalPages,
-		totalItems,
-		hasNextPage: currentPage < totalPages,
-		hasPreviousPage: currentPage > 1,
-		startIndex,
-		endIndex: Math.min(endIndex, totalItems)
+		totalItems
 	};
 };
