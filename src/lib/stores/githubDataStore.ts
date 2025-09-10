@@ -88,6 +88,7 @@ export async function getPinnedRepos(): Promise<GitHubRepo[]> {
 			name: edge.node.name,
 			author: edge.node.owner.login,
 			language: edge.node.primaryLanguage?.name || '',
+			description: edge.node.description,
 			updatedAt: edge.node.updatedAt,
 			createdAt: edge.node.createdAt
 		}));
@@ -131,6 +132,7 @@ export async function getAllRepos(): Promise<GitHubRepo[]> {
 			name: repo.full_name,
 			author: repo.owner.login,
 			language: repo.language,
+			description: '',
 			updatedAt: repo.updated_at,
 			createdAt: repo.created_at
 		}));

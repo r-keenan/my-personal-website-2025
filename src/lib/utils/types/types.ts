@@ -35,6 +35,7 @@ export type GitHubRepo = {
 	name: string;
 	author: string;
 	language: string;
+	description: string;
 	updatedAt: Date;
 	createdAt: Date;
 };
