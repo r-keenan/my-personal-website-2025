@@ -84,7 +84,12 @@ export async function getPinnedRepos(): Promise<GitHubRepo[]> {
 
 		const pinnedItems = response.data.data.user.pinnedItems.edges;
 
-		const githubRepos: GitHubRepo[] = pinnedItems.map((edge: any) => ({
+		// Sort by updatedAt descending (most recent first)
+		const sortedPinnedItems = pinnedItems.sort((a: any, b: any) => {
+			return new Date(b.node.updatedAt).getTime() - new Date(a.node.updatedAt).getTime();
+		});
+
+		const githubRepos: GitHubRepo[] = sortedPinnedItems.map((edge: any) => ({
 			url: edge.node.url,
 			name: edge.node.name,
 			author: edge.node.owner.login,
