@@ -1,6 +1,7 @@
 import { updated } from '$app/state';
 import { githubClient } from '$lib/clients/github';
 import type { GitHubRepo, ResourceState } from '$lib/utils/types/types';
+import { formatTimestamp } from '$lib/utils/utilityFunctions';
 import type { AxiosInstance } from 'axios';
 import { writable } from 'svelte/store';
 
@@ -89,8 +90,8 @@ export async function getPinnedRepos(): Promise<GitHubRepo[]> {
 			author: edge.node.owner.login,
 			language: edge.node.primaryLanguage?.name || '',
 			description: edge.node.description,
-			updatedAt: edge.node.updatedAt,
-			createdAt: edge.node.createdAt
+			updatedAt: formatTimestamp(edge.node.updatedAt),
+			createdAt: formatTimestamp(edge.node.createdAt)
 		}));
 
 		store.update((state) => ({
@@ -133,8 +134,8 @@ export async function getAllRepos(): Promise<GitHubRepo[]> {
 			author: repo.owner.login,
 			language: repo.language,
 			description: '',
-			updatedAt: repo.updated_at,
-			createdAt: repo.created_at
+			updatedAt: formatTimestamp(repo.updated_at),
+			createdAt: formatTimestamp(repo.created_at)
 		}));
 
 		store.update((state) => ({
