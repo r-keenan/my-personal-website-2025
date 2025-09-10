@@ -11,7 +11,7 @@ on:
 # Global environment variables for testing/fallback
 env:
   AWS_REGION: us-east-1
-  NODE_VERSION: '22'
+  NODE_VERSION: '24'
   SANITY_PROJECT_ID: dummy
   SANITY_DATASET: dummy
   SANITY_TOKEN: dummy
