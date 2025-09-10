@@ -2,10 +2,27 @@
 	import RepoCard from '$components/RepoCard.svelte';
 	import SeoHead from '$components/SeoHead.svelte';
 	import type { GitHubRepo, SeoData } from '$lib/utils/types/types';
+	import { paginateArray } from '$lib/utils/utilityFunctions.js';
+	import { PaginationNav } from 'flowbite-svelte';
 
-	export let data;
+	let { data } = $props();
+
 	const { pinnedRepos, allRepos }: { pinnedRepos: GitHubRepo[]; allRepos: GitHubRepo[] } =
 		data.initialData;
+
+	let currentPage = $state(1);
+	const itemsPerPage = 9;
+
+	let paginated = paginateArray(allRepos, currentPage, itemsPerPage);
+
+	const totalPages = paginated.totalPages;
+	let paginatedRepos: GitHubRepo[] = $state(paginated.items);
+
+	const handlePageChange = (page: number) => {
+		currentPage = page;
+		paginated = paginateArray(allRepos, currentPage, itemsPerPage);
+		paginatedRepos = paginated.items;
+	};
 
 	const content =
 		'Ross Keenan is a Senior Software Consultant specializing in web development, JavaScript frameworks, backend systems, and data engineering. Available for contract work and consulting.';
@@ -46,9 +63,12 @@
 			</h3>
 		</div>
 		<div class="mx-auto mt-8 grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-3">
-			{#each allRepos as repo (repo.name)}
+			{#each paginatedRepos as repo (repo.name)}
 				<RepoCard {repo} featured={false} />
 			{/each}
+		</div>
+		<div class="mt-10 grid place-items-center">
+			<PaginationNav {currentPage} {totalPages} onPageChange={handlePageChange} />
 		</div>
 	</div>
 </div>

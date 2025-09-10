@@ -95,3 +95,36 @@ export const sliceTechLogos = (slideLength: number) => {
 
 	return slicedArray;
 };
+
+export const paginateArray = <T>(
+	array: T[],
+	currentPage: number,
+	itemsPerPage: number
+): {
+	items: T[];
+	currentPage: number;
+	totalPages: number;
+	totalItems: number;
+	hasNextPage: boolean;
+	hasPreviousPage: boolean;
+	startIndex: number;
+	endIndex: number;
+} => {
+	const totalItems = array.length;
+	const totalPages = Math.ceil(totalItems / itemsPerPage);
+	const startIndex = (currentPage - 1) * itemsPerPage;
+	const endIndex = startIndex + itemsPerPage;
+
+	const items = array.slice(startIndex, endIndex);
+
+	return {
+		items,
+		currentPage,
+		totalPages,
+		totalItems,
+		hasNextPage: currentPage < totalPages,
+		hasPreviousPage: currentPage > 1,
+		startIndex,
+		endIndex: Math.min(endIndex, totalItems)
+	};
+};
