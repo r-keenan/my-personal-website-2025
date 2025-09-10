@@ -30,6 +30,16 @@ export type Qualification = SanityDocument & {
 	category: string;
 };
 
+export type GitHubRepo = {
+	url: string;
+	name: string;
+	author: string;
+	language: string;
+	description: string;
+	updatedAt: Date;
+	createdAt: Date;
+};
+
 export type ResourceState<T> = {
 	data: T | null;
 	loading: boolean;

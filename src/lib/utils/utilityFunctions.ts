@@ -1,10 +1,9 @@
 import { monthsAbbreviated, monthsFull, TechLogos } from '$lib/constants/index';
 import { MONTH_FORMAT } from '$lib/enums/index';
 import { getSanityImageUrl } from '$lib/clients/sanity';
-import { waitFor } from '@testing-library/svelte';
 import type { TechLogo } from './types/types';
 
-export function formatPhone(phoneNumber: string): string {
+export const formatPhone = (phoneNumber: string): string => {
 	const regexPattern = /[^0-9]+/g;
 	const newPhoneNumber = phoneNumber.replace(regexPattern, '');
 	let desiredPhoneFormat = '';
@@ -33,9 +32,21 @@ export function formatPhone(phoneNumber: string): string {
 	} else {
 		return newPhoneNumber;
 	}
-}
+};
 
-export function formatBlogDate(dateTime: string, monthFormat: MONTH_FORMAT): string {
+export const formatTimestamp = (timestamp: string): string => {
+	const date = new Date(timestamp);
+
+	const formatted = date.toLocaleDateString('en-US', {
+		year: 'numeric',
+		month: 'long',
+		day: 'numeric'
+	});
+
+	return formatted;
+};
+
+export const formatBlogDate = (dateTime: string, monthFormat: MONTH_FORMAT): string => {
 	let dateStr = '';
 
 	try {
@@ -50,15 +61,14 @@ export function formatBlogDate(dateTime: string, monthFormat: MONTH_FORMAT): str
 
 		dateStr = `${month} ${day}, ${year}`;
 	} catch (error) {
-		console.log(error);
 		console.error('Invalid date format');
 		throw new Error('Invalid date format');
 	}
 
 	return dateStr;
-}
+};
 
-export async function formatImageUrl(image: string): Promise<string> {
+export const formatImageUrl = async (image: string): Promise<string> => {
 	const sanityImageUrl = await getSanityImageUrl();
 	let imageUrl: URL | string = new URL(`${sanityImageUrl}${image}`);
 	imageUrl.searchParams.append('auto', 'format');
@@ -73,7 +83,7 @@ export async function formatImageUrl(image: string): Promise<string> {
 	if (imageUrl.includes('image-')) imageUrl = imageUrl.replace('image-', '');
 
 	return imageUrl;
-}
+};
 
 export const sliceTechLogos = (slideLength: number) => {
 	let slicedArray: TechLogo[][] = [];
@@ -84,4 +94,27 @@ export const sliceTechLogos = (slideLength: number) => {
 	}
 
 	return slicedArray;
+};
+
+export const paginateArray = <T>(
+	array: T[],
+	currentPage: number,
+	itemsPerPage: number
+): {
+	items: T[];
+	totalPages: number;
+	totalItems: number;
+} => {
+	const totalItems = array.length;
+	const totalPages = Math.ceil(totalItems / itemsPerPage);
+	const startIndex = (currentPage - 1) * itemsPerPage;
+	const endIndex = startIndex + itemsPerPage;
+
+	const items = array.slice(startIndex, endIndex);
+
+	return {
+		items,
+		totalPages,
+		totalItems
+	};
 };

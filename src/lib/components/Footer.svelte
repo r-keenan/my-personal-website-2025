@@ -4,8 +4,9 @@
 
 	const navigation = [
 		{ name: 'Posts', href: '/posts' },
+		{ name: 'Projects', href: '/projects' },
 		{ name: 'Skills', href: '/skills' },
-		{ name: 'About Me', href: '/about' },
+		{ name: 'About', href: '/about' },
 		{ name: 'Contact', href: '/contact' }
 	];
 </script>
