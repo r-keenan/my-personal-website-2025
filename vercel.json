@@ -1,5 +1,11 @@
 {
 	"buildCommand": "pnpm run build",
 	"outputDirectory": "build",
-	"framework": null
+	"framework": null,
+	"routes": [
+		{
+			"src": "/contact",
+			"dest": "/200.html"
+		}
+	]
 }
