@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-static';
+import adapter from '@sveltejs/adapter-vercel';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import path from 'path';
 
@@ -23,11 +23,7 @@ const config = {
 			}
 		},
 		adapter: adapter({
-			pages: 'build',
-			assets: 'build',
-			fallback: '200.html',
-			precompress: false,
-			strict: false
+			runtime: 'nodejs22.x'
 		}),
 		alias: {
 			$components: path.resolve('./src/lib/components'),
