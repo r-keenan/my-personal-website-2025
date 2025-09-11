@@ -1,7 +1,7 @@
 import { monthsAbbreviated, monthsFull, TechLogos } from '$lib/constants/index';
 import { MONTH_FORMAT } from '$lib/enums/index';
 import { getSanityImageUrl } from '$lib/clients/sanity';
-import type { TechLogo } from './types/types';
+import type { Pagination, TechLogo } from './types/types';
 
 export const formatPhone = (phoneNumber: string): string => {
 	const regexPattern = /[^0-9]+/g;
@@ -100,11 +100,7 @@ export const paginateArray = <T>(
 	array: T[],
 	currentPage: number,
 	itemsPerPage: number
-): {
-	items: T[];
-	totalPages: number;
-	totalItems: number;
-} => {
+): Pagination<T> => {
 	const totalItems = array.length;
 	const totalPages = Math.ceil(totalItems / itemsPerPage);
 	const startIndex = (currentPage - 1) * itemsPerPage;

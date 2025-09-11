@@ -67,3 +67,9 @@ export type TechLogo = {
 	src: string;
 	title: string;
 };
+
+export type Pagination<T> = {
+	items: T[];
+	totalPages: number;
+	totalItems: number;
+};
