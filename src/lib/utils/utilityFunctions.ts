@@ -35,6 +35,11 @@ export const formatPhone = (phoneNumber: string): string => {
 };
 
 export const formatTimestamp = (timestamp: string): string => {
+	let utcTimestamp = timestamp;
+	if (!timestamp.includes('Z') && !timestamp.includes('+') && !timestamp.includes('-', 10)) {
+		utcTimestamp = timestamp.endsWith('Z') ? timestamp : `${timestamp}Z`;
+	}
+
 	const date = new Date(timestamp);
 
 	const formatted = date.toLocaleDateString('en-US', {
