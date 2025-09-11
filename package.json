@@ -60,7 +60,7 @@
 		"@sanity/client": "^6.28.4",
 		"@sanity/types": "^3.81.0",
 		"@sveltejs/adapter-static": "^3.0.9",
-		"@sveltejs/adapter-vercel": "^5.7.2",
+		"@sveltejs/adapter-vercel": "^5.10.2",
 		"axios": "^1.9.0",
 		"zod": "^3.24.2"
 	}
