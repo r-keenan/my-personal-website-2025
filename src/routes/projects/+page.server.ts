@@ -1,6 +1,10 @@
 import type { PageServerLoad } from './$types';
 import { getAllRepos, getPinnedRepos, githubApiStore } from '$lib/stores/githubDataStore';
 
+// SPA mode
+export const prerender = false;
+export const csr = true;
+
 export const load: PageServerLoad = async () => {
 	const state = githubApiStore.get();
 	const promises = [];

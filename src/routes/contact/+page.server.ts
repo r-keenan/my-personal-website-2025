@@ -4,7 +4,7 @@ import { logError } from '../../lib/clients/aws/awsCloudWatch';
 import { apiGatewayClient } from '$lib/clients/axios';
 import { contactSchema } from '$lib/schemas/contactSchema';
 
-// SPA for contact form
+// SPA mode
 export const prerender = false;
 export const csr = true;
 
