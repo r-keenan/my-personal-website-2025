@@ -5,11 +5,16 @@
 	import { CheckCircleSolid } from 'flowbite-svelte-icons';
 	import { fly } from 'svelte/transition';
 	import { superForm } from 'sveltekit-superforms';
+	import { contactSchema, type ContactFormData } from '$lib/schemas/contactSchema';
+	import { zod } from 'sveltekit-superforms/adapters';
 
 	let { data } = $props();
 
-	// Client API:
-	const { form, errors, constraints, enhance, message } = superForm(data.form);
+	// Client API with client-side validation:
+	const { form, errors, constraints, enhance, message, validate } = superForm(data.form, {
+		validators: zod(contactSchema),
+		validationMethod: 'oninput'
+	});
 
 	// Computed toast properties
 	let hasErrors = $derived(Object.keys($errors).length > 0);
