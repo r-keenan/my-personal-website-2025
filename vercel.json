@@ -2,7 +2,11 @@
 	"buildCommand": "pnpm run build",
 	"outputDirectory": "build",
 	"framework": null,
+	"trailingSlash": false,
 	"routes": [
+		{
+			"handle": "filesystem"
+		},
 		{
 			"src": "/contact",
 			"dest": "/200.html"
